@@ -1,0 +1,475 @@
+/* =========================================================
+   AccountPage.css — FE-04 Account Settings
+   Dùng hoàn toàn CSS vars từ global.css, không hard-code màu
+   ========================================================= */
+
+/* ── Page wrapper ── */
+.account-page {
+    padding: 40px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .account-page {
+        padding: 24px 16px;
+    }
+}
+
+/* ── Page header ── */
+.account-page__header {
+    margin-bottom: 32px;
+}
+
+.account-page__title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+}
+
+.account-page__subtitle {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-top: 6px;
+}
+
+/* ── Two-column grid ── */
+.account-page__grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .account-page__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Sidebar card ── */
+.account-sidebar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+}
+
+.account-sidebar__avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--navy) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(3, 78, 162, 0.25);
+}
+
+.account-sidebar__name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.account-sidebar__role {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: var(--r-full);
+    background: var(--primary-light);
+    color: var(--primary-hover);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+}
+
+.account-sidebar__role.role-student {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.account-sidebar__role.role-cm {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.account-sidebar__role.role-admin {
+    background: #ffedd5;
+    color: #c2410c;
+}
+
+.account-sidebar__divider {
+    width: 100%;
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+}
+
+.account-sidebar__meta {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.account-sidebar__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.account-sidebar__meta-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--r-sm);
+    background: var(--secondary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary);
+    flex-shrink: 0;
+}
+
+.account-sidebar__meta-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1;
+}
+
+.account-sidebar__meta-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-top: 2px;
+}
+
+/* ── Right column ── */
+.account-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ── Panel (card) ── */
+.account-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 28px;
+}
+
+.account-panel__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.account-panel__title-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--r-sm);
+    background: var(--secondary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary);
+    flex-shrink: 0;
+}
+
+.account-panel__title-icon.orange {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+/* ── Form fields ── */
+.account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.account-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.account-field__label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Read-only (email) */
+.account-field__readonly {
+    height: 44px;
+    padding: 0 14px 0 40px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--r-md);
+    background: var(--surface-alt);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.account-field__icon-wrap {
+    position: relative;
+}
+
+.account-field__icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.account-field__icon-right {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 2px;
+    transition: color 0.15s;
+}
+
+.account-field__icon-right:hover {
+    color: var(--text-primary);
+}
+
+.account-field__helper {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ── Toggle row ── */
+.account-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--r-md);
+    gap: 12px;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.account-toggle-row:hover {
+    background: var(--bg);
+    border-color: var(--text-muted);
+}
+
+.account-toggle-row__left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.account-toggle-row__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--r-sm);
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.account-toggle-row__title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.account-toggle-row__desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    line-height: 1.4;
+}
+
+/* ── Toggle switch ── */
+.toggle-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch__track {
+    width: 44px;
+    height: 24px;
+    background: var(--border);
+    border-radius: var(--r-full);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.toggle-switch input:checked+.toggle-switch__track {
+    background: var(--primary);
+}
+
+.toggle-switch input:disabled+.toggle-switch__track {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.toggle-switch__track::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch input:checked+.toggle-switch__track::after {
+    transform: translateX(20px);
+}
+
+/* ── Form actions ── */
+.account-form__actions {
+    display: flex;
+    gap: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+}
+
+/* ── Alerts ── */
+.account-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: var(--r-md);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.account-alert--success {
+    background: var(--success-light);
+    color: var(--success);
+    border: 1px solid rgba(45, 122, 90, 0.2);
+}
+
+.account-alert--error {
+    background: var(--error-light);
+    color: var(--error);
+    border: 1px solid rgba(192, 57, 43, 0.2);
+}
+
+/* ── Loading state ── */
+.account-loading {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 64px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    grid-column: 1 / -1;
+}
+
+.account-loading__spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+.account-loading__text {
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* ── Error state ── */
+.account-error-state {
+    background: var(--error-light);
+    border: 1px solid rgba(192, 57, 43, 0.2);
+    border-radius: var(--r-lg);
+    padding: 28px;
+    grid-column: 1 / -1;
+}
+
+.account-error-state__msg {
+    color: var(--error);
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 14px;
+}
+
+/* ── Btn spinner variant (dark bg) ── */
+.btn-spinner--primary {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+}

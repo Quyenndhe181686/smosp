@@ -1,0 +1,1528 @@
+﻿// --- File: ContentErrorReport.java ---
+package com.sep490_g47.smosp.account.entity;
+
+import com.sep490_g47.smosp.account.enums.ReportEntityType;
+import com.sep490_g47.smosp.account.enums.ReportStatus;
+import com.sep490_g47.smosp.auth.entity.UserAccount;
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "content_error_report")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class ContentErrorReport extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reporter_id", nullable = false)
+    private UserAccount reporter;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "entity_type", nullable = false, length = 50)
+    private ReportEntityType entityType;
+
+    @Column(name = "entity_id", nullable = false)
+    private UUID entityId;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String description;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    @Builder.Default
+    private ReportStatus status = ReportStatus.PENDING;
+
+
+    @Column(name = "processing_note", columnDefinition = "TEXT")
+    private String processingNote;
+
+    @Column(name = "deleted_reason", columnDefinition = "TEXT")
+    private String deletedReason;
+
+    @Column(name = "deleted_by")
+    private UUID deletedBy;
+}
+
+// --- File: Notification.java ---
+package com.sep490_g47.smosp.account.entity;
+
+import com.sep490_g47.smosp.auth.entity.UserAccount;
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.UUID;
+
+@Entity
+@Table(name = "notification")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class Notification extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserAccount user;
+
+    @Column(nullable = false, length = 50)
+    private String type;
+
+    @Column(nullable = false, length = 255)
+    private String title;
+
+    @Column(columnDefinition = "TEXT")
+    private String body;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(columnDefinition = "jsonb")
+    private Map<String, Object> metadata;
+
+    @Column(name = "is_read", nullable = false)
+    @Builder.Default
+    private Boolean isRead = false;
+
+}
+
+// --- File: EmailVerificationToken.java ---
+package com.sep490_g47.smosp.auth.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "email_verification_tokens")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class EmailVerificationToken extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserAccount user;
+
+    @Column(name = "token_hash", nullable = false, unique = true, length = 255)
+    private String tokenHash;
+
+    @Column(name = "expires_at", nullable = false)
+    private LocalDateTime expiresAt;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private Boolean used = false;
+
+}
+
+// --- File: OauthIdentity.java ---
+package com.sep490_g47.smosp.auth.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "oauth_identities",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"provider", "provider_uid"}))
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class OauthIdentity extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserAccount user;
+
+    @Column(nullable = false, length = 50)
+    private String provider; // "google"
+
+    @Column(name = "provider_uid", nullable = false, length = 255)
+    private String providerUid;
+
+    @CreationTimestamp
+    @Column(name = "linked_at", nullable = false, updatable = false)
+    private LocalDateTime linkedAt;
+}
+
+// --- File: PasswordResetToken.java ---
+package com.sep490_g47.smosp.auth.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "password_reset_tokens")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class PasswordResetToken extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserAccount user;
+
+    @Column(name = "token_hash", nullable = false, length = 255)
+    private String tokenHash;
+
+    @Column(name = "expires_at", nullable = false)
+    private LocalDateTime expiresAt;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private Boolean used = false;
+
+}
+
+// --- File: RefreshToken.java ---
+package com.sep490_g47.smosp.auth.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "refresh_tokens")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class RefreshToken extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserAccount user;
+
+    @Column(nullable = false, unique = true, length = 255)
+    private String token;
+
+    @Column(name = "expires_at", nullable = false)
+    private LocalDateTime expiresAt;
+
+}
+
+// --- File: Role.java ---
+package com.sep490_g47.smosp.auth.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "roles")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class Role extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(nullable = false, unique = true, length = 50)
+    private String name; // ROLE_STUDENT, ROLE_CONTENT_MANAGER, ROLE_ADMIN
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
+}
+
+// --- File: UserAccount.java ---
+package com.sep490_g47.smosp.auth.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "user_accounts")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class UserAccount extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
+
+    @Column(unique = true, length = 100)
+    private String email;
+
+    @Column(unique = true, length = 50)
+    private String username;
+
+    @Column(name = "password_hash", length = 255)
+    private String passwordHash;
+
+    @Column(nullable = false, length = 20)
+    @Builder.Default
+    private String status = "ACTIVE"; // ACTIVE / INACTIVE
+
+    @Column(name = "failed_login_attempts", nullable = false)
+    @Builder.Default
+    private Integer failedLoginAttempts = 0;
+
+    @Column(name = "lock_time")
+    private LocalDateTime lockTime;
+
+    @Column(name = "display_name", length = 100)
+    private String displayName;
+
+    @Column(name = "notif_enabled", nullable = false)
+    @Builder.Default
+    private Boolean notifEnabled = true;
+
+    @Column(name = "fcm_token", length = 500)
+    private String fcmToken;
+
+}
+
+// --- File: BaseEntity.java ---
+package com.sep490_g47.smosp.common.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
+
+@MappedSuperclass
+@Getter
+@Setter
+public abstract class BaseEntity {
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false, nullable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+}
+
+// --- File: Course.java ---
+package com.sep490_g47.smosp.course.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+import java.util.List;
+import java.util.ArrayList;
+
+@Entity
+@Table(name = "course")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Course extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(nullable = false, unique = true)
+    private String code;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private Integer credits;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Column(name = "counts_toward_gpa", nullable = false)
+    @Builder.Default
+    private Boolean countsTowardGpa = true;
+
+    @Column(name = "is_active", nullable = false)
+    @Builder.Default
+    private Boolean isActive = true;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<CoursePrerequisite> prerequisites = new ArrayList<>();
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private Set<LearningResource> learningResources = new HashSet<>();
+}
+
+// --- File: CoursePrerequisite.java ---
+package com.sep490_g47.smosp.course.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "course_prerequisite", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"course_id", "prerequisite_id"})
+})
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class CoursePrerequisite extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "prerequisite_id", nullable = false)
+    private Course prerequisiteCourse;
+
+    @Column(name = "group_no", nullable = false)
+    @Builder.Default
+    private Integer groupNo = 1;
+}
+
+// --- File: LearningResource.java ---
+package com.sep490_g47.smosp.course.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import com.sep490_g47.smosp.course.enums.ResourceType;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "learning_resource")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class LearningResource extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
+
+    @Column(nullable = false)
+    private String title;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String url;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "resource_type", nullable = false)
+    private ResourceType resourceType;
+
+    @Column(name = "display_order", nullable = false)
+    @Builder.Default
+    private Integer displayOrder = 0;
+
+}
+
+// --- File: InterestOption.java ---
+package com.sep490_g47.smosp.interest.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "interest_option")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class InterestOption extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(name = "specialization_id", nullable = false)
+    private UUID specializationId;
+
+    @Column(nullable = false, length = 255)
+    private String label;
+
+    @Column(name = "is_active", nullable = false)
+    @Builder.Default
+    private Boolean isActive = true;
+
+}
+
+// --- File: Major.java ---
+package com.sep490_g47.smosp.major.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "major")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class Major extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(unique = true, nullable = false, length = 50)
+    private String code;
+
+    @Column(nullable = false, length = 255)
+    private String name;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
+
+    @Column(name = "tuition_per_term", precision = 15, scale = 2)
+    private BigDecimal tuitionPerTerm;
+
+    @Column(name = "price_per_credit", precision = 15, scale = 2)
+    private BigDecimal pricePerCredit;
+
+    @Column(name = "tuition_updated_at")
+    private LocalDateTime tuitionUpdatedAt;
+
+    @Column(name = "is_active", nullable = false)
+    @Builder.Default
+    private Boolean isActive = true;
+
+}
+
+// --- File: NarrowSpecialization.java ---
+package com.sep490_g47.smosp.narrowspec.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import com.sep490_g47.smosp.specialization.entity.Specialization;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "narrow_spec")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class NarrowSpecialization extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "specialization_id", nullable = false)
+    private Specialization specialization;
+
+    @Column(nullable = false, unique = true)
+    private String code;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Column(name = "is_published", nullable = false)
+    @Builder.Default
+    private Boolean isPublished = false;
+
+    @Column(name = "published_at")
+    private LocalDateTime publishedAt;
+}
+
+// --- File: NarrowSpecWeightConfig.java ---
+package com.sep490_g47.smosp.narrowspec.entity;
+
+import com.sep490_g47.smosp.auth.entity.UserAccount;
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
+import java.util.UUID;
+
+@Entity
+@Table(name = "narrow_spec_weight_config")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class NarrowSpecWeightConfig extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "narrow_spec_id", nullable = false, unique = true)
+    private NarrowSpecialization narrowSpec;
+
+    @Column(name = "alpha_base", nullable = false)
+    private BigDecimal alphaBase;
+
+    @Column(name = "w_gpa", nullable = false)
+    @Builder.Default
+    private BigDecimal wGpa = new BigDecimal("0.400");
+
+    @Column(name = "w_skill", nullable = false)
+    @Builder.Default
+    private BigDecimal wSkill = new BigDecimal("0.350");
+
+    @Column(name = "w_int", nullable = false)
+    @Builder.Default
+    private BigDecimal wInt = new BigDecimal("0.250");
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "updated_by", nullable = false)
+    private UserAccount updatedBy;
+}
+
+// --- File: NarrowSpecWeightConfigAudit.java ---
+package com.sep490_g47.smosp.narrowspec.entity;
+
+import com.sep490_g47.smosp.auth.entity.UserAccount;
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "narrow_spec_weight_config_audit")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class NarrowSpecWeightConfigAudit extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "narrow_spec_id", nullable = false)
+    private NarrowSpecialization narrowSpec;
+
+    @Column(name = "alpha_base_old")
+    private BigDecimal alphaBaseOld;
+
+    @Column(name = "alpha_base_new")
+    private BigDecimal alphaBaseNew;
+
+    @Column(name = "w_gpa_old")
+    private BigDecimal wGpaOld;
+
+    @Column(name = "w_gpa_new")
+    private BigDecimal wGpaNew;
+
+    @Column(name = "w_skill_old")
+    private BigDecimal wSkillOld;
+
+    @Column(name = "w_skill_new")
+    private BigDecimal wSkillNew;
+
+    @Column(name = "w_int_old")
+    private BigDecimal wIntOld;
+
+    @Column(name = "w_int_new")
+    private BigDecimal wIntNew;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "changed_by", nullable = false)
+    private UserAccount changedBy;
+
+    @Column(name = "changed_at", nullable = false)
+    @Builder.Default
+    private LocalDateTime changedAt = LocalDateTime.now();
+
+    @Column(columnDefinition = "TEXT")
+    private String note;
+}
+
+// --- File: NsCourse.java ---
+package com.sep490_g47.smosp.narrowspec.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import com.sep490_g47.smosp.course.entity.Course;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "ns_course", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"narrow_spec_id", "course_id"})
+})
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class NsCourse extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "narrow_spec_id", nullable = false)
+    private NarrowSpecialization narrowSpec;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
+
+    @Column(name = "term_order", nullable = false)
+    private Integer termOrder;
+}
+
+// --- File: NsExcludedCourse.java ---
+package com.sep490_g47.smosp.narrowspec.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import com.sep490_g47.smosp.course.entity.Course;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "ns_excluded_course", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"narrow_spec_id", "course_id"})
+})
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class NsExcludedCourse extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "narrow_spec_id", nullable = false)
+    private NarrowSpecialization narrowSpec;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
+
+    @Column(columnDefinition = "TEXT")
+    private String note;
+}
+
+// --- File: PersonalRoadmap.java ---
+package com.sep490_g47.smosp.roadmap.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import com.sep490_g47.smosp.narrowspec.entity.NarrowSpecialization;
+import com.sep490_g47.smosp.student.entity.StudentProfile;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+@Entity
+@Table(name = "personal_roadmap")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class PersonalRoadmap extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "student_id", nullable = false)
+    private StudentProfile studentProfile;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "narrow_spec_id", nullable = false)
+    private NarrowSpecialization narrowSpec;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(name = "cloned_at", nullable = false)
+    private LocalDateTime clonedAt;
+
+    @OneToMany(mappedBy = "personalRoadmap", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<PersonalRoadmapItem> items = new ArrayList<>();
+
+    @OneToMany(mappedBy = "personalRoadmap", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<RoadmapBookmark> bookmarks = new ArrayList<>();
+
+    @OneToMany(mappedBy = "personalRoadmap", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<RoadmapNote> notes = new ArrayList<>();
+}
+
+// --- File: PersonalRoadmapItem.java ---
+package com.sep490_g47.smosp.roadmap.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import com.sep490_g47.smosp.course.entity.Course;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "personal_roadmap_item", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"roadmap_id", "course_id"})
+})
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class PersonalRoadmapItem extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "roadmap_id", nullable = false)
+    private PersonalRoadmap personalRoadmap;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
+
+    @Column(name = "progress_status", nullable = false)
+    @Builder.Default
+    private String progressStatus = "PLANNED"; // PLANNED / IN_PROGRESS / COMPLETED
+
+    @Column(name = "is_removed_from_standard", nullable = false)
+    @Builder.Default
+    private Boolean isRemovedFromStandard = false;
+
+    @Column(name = "manually_edited", nullable = false)
+    @Builder.Default
+    private Boolean manuallyEdited = false;
+}
+
+// --- File: RoadmapBookmark.java ---
+package com.sep490_g47.smosp.roadmap.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import com.sep490_g47.smosp.course.entity.Course;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "roadmap_bookmark", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"roadmap_id", "course_id"})
+})
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class RoadmapBookmark extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "roadmap_id", nullable = false)
+    private PersonalRoadmap personalRoadmap;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
+}
+
+// --- File: RoadmapNote.java ---
+package com.sep490_g47.smosp.roadmap.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import com.sep490_g47.smosp.course.entity.Course;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "roadmap_note", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"roadmap_id", "course_id"})
+})
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class RoadmapNote extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "roadmap_id", nullable = false)
+    private PersonalRoadmap personalRoadmap;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
+
+    @Column(length = 500)
+    private String note;
+}
+
+// --- File: CourseSkillMap.java ---
+package com.sep490_g47.smosp.skill.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(
+    name = "course_skill_map",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"course_id", "skill_id"})
+    }
+)
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class CourseSkillMap extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(name = "course_id", nullable = false)
+    private UUID courseId;
+
+    @Column(name = "skill_id", nullable = false)
+    private UUID skillId;
+
+}
+
+// --- File: Skill.java ---
+package com.sep490_g47.smosp.skill.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+@Entity
+@Table(name = "skill")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class Skill extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(name = "specialization_id", nullable = false)
+    private UUID specializationId;
+
+    @Column(nullable = false, length = 255)
+    private String name;
+
+    @Column(name = "is_active", nullable = false)
+    @Builder.Default
+    private Boolean isActive = true;
+
+    @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<SkillAlias> aliases = new ArrayList<>();
+
+}
+
+// --- File: SkillAlias.java ---
+package com.sep490_g47.smosp.skill.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "skill_alias")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class SkillAlias extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "skill_id", nullable = false)
+    private Skill skill;
+
+    @Column(nullable = false, length = 255)
+    private String alias;
+
+}
+
+// --- File: SpecCourse.java ---
+package com.sep490_g47.smosp.specialization.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import com.sep490_g47.smosp.course.entity.Course;
+import com.sep490_g47.smosp.course.enums.CourseType;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "spec_course", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"specialization_id", "course_id"})
+})
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class SpecCourse extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "specialization_id", nullable = false)
+    private Specialization specialization;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
+
+    @Column(name = "term_order", nullable = false)
+    private Integer termOrder;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "course_type", nullable = false)
+    private CourseType courseType;
+}
+
+// --- File: Specialization.java ---
+package com.sep490_g47.smosp.specialization.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import com.sep490_g47.smosp.major.entity.Major;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "specialization")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class Specialization extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "major_id", nullable = false)
+    private Major major;
+
+    @Column(unique = true, nullable = false, length = 50)
+    private String code;
+
+    @Column(nullable = false, length = 255)
+    private String name;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
+
+    @Column(name = "alpha_base", precision = 5, scale = 2)
+    @Builder.Default
+    private BigDecimal alphaBase = new BigDecimal("0.70");
+
+    @Column(name = "is_active", nullable = false)
+    @Builder.Default
+    private Boolean isActive = true;
+
+}
+
+// --- File: StudentInterest.java ---
+package com.sep490_g47.smosp.student.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import com.sep490_g47.smosp.interest.entity.InterestOption;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(
+    name = "student_interest",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"student_profile_id", "interest_option_id"})
+    }
+)
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class StudentInterest extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_profile_id", nullable = false)
+    private StudentProfile studentProfile;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "interest_option_id", nullable = false)
+    private InterestOption interestOption;
+
+    @Column(name = "declared_at", nullable = false)
+    private LocalDateTime declaredAt;
+}
+
+// --- File: StudentProfile.java ---
+package com.sep490_g47.smosp.student.entity;
+
+import com.sep490_g47.smosp.auth.entity.UserAccount;
+import com.sep490_g47.smosp.major.entity.Major;
+import com.sep490_g47.smosp.specialization.entity.Specialization;
+import com.sep490_g47.smosp.narrowspec.entity.NarrowSpecialization;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "student_profile")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class StudentProfile {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    private UserAccount userAccount;
+
+    @Column(name = "full_name")
+    private String fullName;
+
+    @Column(name = "student_code")
+    private String studentCode;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "major_id")
+    private Major major;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "specialization_id")
+    private Specialization specialization;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "current_narrow_spec_id")
+    private NarrowSpecialization currentNarrowSpec;
+
+    @Column(name = "current_term")
+    private Integer currentTerm;
+
+    @Column(name = "cumulative_gpa", precision = 5, scale = 3)
+    private BigDecimal cumulativeGpa;
+
+    @Column(name = "profile_updated_at")
+    private LocalDateTime profileUpdatedAt;
+}
+
+// --- File: StudentSkill.java ---
+package com.sep490_g47.smosp.student.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import com.sep490_g47.smosp.skill.entity.Skill;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(
+    name = "student_skill",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"student_profile_id", "skill_id"})
+    }
+)
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class StudentSkill extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_profile_id", nullable = false)
+    private StudentProfile studentProfile;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "skill_id", nullable = false)
+    private Skill skill;
+
+    @Column(name = "declared_at", nullable = false)
+    private LocalDateTime declaredAt;
+}
+
+// --- File: TagMap.java ---
+package com.sep490_g47.smosp.tagmap.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
+import java.util.UUID;
+
+@Entity
+@Table(
+    name = "tag_map",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"narrow_spec_id", "source_type", "source_id"})
+    }
+)
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class TagMap extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(name = "narrow_spec_id", nullable = false)
+    private UUID narrowSpecId;
+
+    @Column(name = "source_type", nullable = false, length = 50)
+    private String sourceType;
+
+    @Column(name = "source_id", nullable = false)
+    private UUID sourceId;
+
+    @Column(name = "mapping_type", nullable = false, length = 50)
+    @Builder.Default
+    private String mappingType = "SHARED";
+
+    @Column(nullable = false, precision = 5, scale = 2)
+    @Builder.Default
+    private BigDecimal weight = BigDecimal.ONE;
+
+}
+
+// --- File: AdminActionLog.java ---
+package com.sep490_g47.smosp.transcript.entity;
+
+import com.sep490_g47.smosp.auth.entity.UserAccount;
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "admin_action_log")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class AdminActionLog extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "actor_id", nullable = false)
+    private UserAccount actor;
+
+    @Column(nullable = false, length = 100)
+    private String action;
+
+    @Column(name = "target_type", nullable = false, length = 100)
+    private String targetType;
+
+    @Column(name = "target_id", nullable = false)
+    private UUID targetId;
+
+    @Column(columnDefinition = "TEXT")
+    private String detail;
+
+}
+
+
+// --- File: CourseGradeStatus.java ---
+package com.sep490_g47.smosp.transcript.entity;
+
+public enum CourseGradeStatus {
+    PASSED,
+    FAILED,
+    STUDYING,
+    NOT_STARTED
+}
+
+// --- File: StudentCourseGrade.java ---
+package com.sep490_g47.smosp.transcript.entity;
+
+import com.sep490_g47.smosp.course.entity.Course;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
+import java.util.UUID;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+
+@Entity
+@Table(name = "student_course_grade")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class StudentCourseGrade extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "transcript_id", nullable = false)
+    private Transcript transcript;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id", nullable = true)
+    private Course course;
+
+    @Column(name = "course_code_raw", nullable = false)
+    private String courseCodeRaw;
+
+    @Column(name = "grade", precision = 4, scale = 1)
+    private BigDecimal grade;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private CourseGradeStatus status;
+}
+
+// --- File: Transcript.java ---
+package com.sep490_g47.smosp.transcript.entity;
+
+import com.sep490_g47.smosp.student.entity.StudentProfile;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+
+@Entity
+@Table(name = "transcript")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class Transcript extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_profile_id", nullable = false)
+    private StudentProfile studentProfile;
+
+    @Column(name = "upload_time", nullable = false)
+    private LocalDateTime uploadTime;
+
+    @Column(name = "file_name", nullable = false)
+    private String fileName;
+
+    @Column(name = "total_credits")
+    private Integer totalCredits;
+
+    @Column(name = "completed_courses")
+    private Integer completedCourses;
+
+    @OneToMany(mappedBy = "transcript", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<StudentCourseGrade> grades = new ArrayList<>();
+}
+
+// --- File: TranscriptMappingPreset.java ---
+package com.sep490_g47.smosp.transcript.entity;
+
+import com.sep490_g47.smosp.common.entity.BaseEntity;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import java.util.Map;
+import java.util.UUID;
+
+
+@Entity
+@Table(name = "transcript_mapping_preset")
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
+public class TranscriptMappingPreset extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(name = "preset_name", nullable = false, length = 100)
+    private String presetName;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "column_mapping", columnDefinition = "jsonb")
+    private Map<String, String> columnMapping;
+
+    @Column(name = "is_default", nullable = false)
+    @Builder.Default
+    private Boolean isDefault = false;
+
+    @Column(name = "is_active", nullable = false)
+    @Builder.Default
+    private Boolean isActive = false;
+
+}
+
+

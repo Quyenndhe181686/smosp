@@ -1,0 +1,441 @@
+/* =============================================================
+   ProfileCheckPage.css — Trang Kiểm Tra Hồ Sơ (pre-recommendation)
+   Design tokens từ global.css:
+     --primary:   #F37021  (orange)
+     --secondary: #034EA2  (blue)
+     --accent:    #51B848  (green)
+   Cùng ngôn ngữ thiết kế với MajorCatalog / MajorDetailPage:
+   surface mềm, shadow thay border, hover-reveal, blend nền.
+   ============================================================= */
+
+.pcheck-page {
+    min-height: 100vh;
+    background-color: transparent;
+    font-family: var(--font-family, "Be Vietnam Pro", sans-serif);
+    color: #1E293B;
+}
+
+.pcheck-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 28px;
+}
+
+/* ═══════════════════════════════════════════
+   HEADER & TITLE
+   ═══════════════════════════════════════════ */
+.pcheck-page-header {
+    padding: 12px 0 28px;
+    margin-bottom: 24px;
+    border-bottom: 1.5px solid #EEF2F6;
+}
+
+.pcheck-page-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary, #F37021);
+    margin-bottom: 8px;
+}
+
+.pcheck-page-title {
+    margin: 0 0 10px;
+    font-size: 28px;
+    font-weight: 900;
+    color: #1E293B;
+    letter-spacing: -0.5px;
+}
+
+.pcheck-page-subtitle {
+    margin: 0 0 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #64748B;
+    max-width: 720px;
+}
+
+/* Progress bar */
+.pcheck-progress {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 420px;
+}
+
+.pcheck-progress__track {
+    height: 8px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.pcheck-progress__fill {
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(90deg, var(--primary, #F37021), #FFB27A);
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pcheck-progress__label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748B;
+}
+
+/* Scroll Reveal Animation */
+.pcheck-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pcheck-reveal.pcheck-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════
+   CONTENT
+═══════════════════════════════════════════ */
+.pcheck-content {
+    padding: 40px 0 64px;
+}
+
+/* ── Check cards grid ── */
+.pcheck-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.pcheck-card {
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 2px 14px rgba(16, 24, 40, 0.06);
+    padding: 22px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.26s ease;
+}
+
+.pcheck-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pcheck-card--done::before {
+    background: linear-gradient(90deg, var(--accent, #51B848), #9be08e);
+}
+
+.pcheck-card--pending::before {
+    background: linear-gradient(90deg, var(--primary, #F37021), #ffb27a);
+}
+
+.pcheck-card:hover::before {
+    transform: scaleX(1);
+}
+
+.pcheck-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 38px rgba(3, 78, 162, 0.12);
+}
+
+.pcheck-card__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.pcheck-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    color: #034EA2;
+    background: #EEF4FC;
+    flex-shrink: 0;
+}
+
+.pcheck-card--done .pcheck-card__icon {
+    color: #1E7A16;
+    background: #E8F9E6;
+}
+
+.pcheck-card__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    padding: 4px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.pcheck-card__badge--done {
+    color: #1E7A16;
+    background: #E8F9E6;
+}
+
+.pcheck-card__badge--pending {
+    color: #E05A00;
+    background: #FFF1E8;
+}
+
+.pcheck-card__title {
+    margin: 0 0 4px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #1E293B;
+}
+
+.pcheck-card__desc {
+    margin: 0;
+    font-size: 12.5px;
+    color: #64748B;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.pcheck-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #EEF2F8;
+}
+
+.pcheck-card__meta {
+    font-size: 10.5px;
+    color: #94A3B8;
+    font-weight: 500;
+}
+
+.pcheck-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: var(--secondary, #034EA2);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, gap 0.15s ease;
+}
+
+.pcheck-card--pending .pcheck-card__link {
+    color: var(--primary, #F37021);
+}
+
+.pcheck-card:hover .pcheck-card__link {
+    opacity: 1;
+    transform: translateX(0);
+    gap: 7px;
+}
+
+/* ═══════════════════════════════════════════
+   BANNER
+═══════════════════════════════════════════ */
+.pcheck-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 12px rgba(16, 24, 40, 0.05);
+}
+
+.pcheck-banner--success {
+    background: linear-gradient(135deg, #EEFBEC 0%, #F6FFF5 100%);
+}
+
+.pcheck-banner--warning {
+    background: linear-gradient(135deg, #FFF4EC 0%, #FFFAF6 100%);
+}
+
+.pcheck-banner__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+}
+
+.pcheck-banner--success .pcheck-banner__icon {
+    color: #1E7A16;
+    background: #DFF5DC;
+}
+
+.pcheck-banner--warning .pcheck-banner__icon {
+    color: #E05A00;
+    background: #FFE7D6;
+}
+
+.pcheck-banner__text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1E293B;
+    margin-bottom: 3px;
+}
+
+.pcheck-banner__text p {
+    margin: 0;
+    font-size: 12.5px;
+    color: #5b6270;
+    line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   CTA
+═══════════════════════════════════════════ */
+.pcheck-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0 4px;
+}
+
+.pcheck-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 15px 34px;
+    border: none;
+    border-radius: 14px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(90deg, var(--primary, #F37021), #ff8c45);
+    box-shadow: 0 10px 26px rgba(243, 112, 33, 0.3);
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, opacity 0.22s ease;
+}
+
+.pcheck-cta__btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 34px rgba(243, 112, 33, 0.38);
+}
+
+.pcheck-cta__btn:active:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.pcheck-cta__btn svg {
+    transition: transform 0.2s ease;
+}
+
+.pcheck-cta__btn:hover:not(:disabled) svg {
+    transform: translateX(3px);
+}
+
+.pcheck-cta__btn--disabled {
+    cursor: not-allowed;
+    background: #CBD5E1;
+    color: #64748B;
+    box-shadow: none;
+}
+
+.pcheck-cta__btn--disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.pcheck-cta__btn--loading {
+    cursor: progress;
+    opacity: 0.9;
+}
+
+.pcheck-cta__spinner {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    animation: pcheck-spin 0.7s linear infinite;
+}
+
+@keyframes pcheck-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.pcheck-cta__note {
+    margin: 0;
+    font-size: 12px;
+    color: #94A3B8;
+    font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 860px) {
+    .pcheck-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .pcheck-container {
+        padding: 0 18px;
+    }
+
+    .pcheck-header {
+        padding: 46px 0 36px;
+    }
+
+    .pcheck-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pcheck-card__link {
+        opacity: 1;
+        transform: none;
+    }
+
+    .pcheck-cta__btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pcheck-card,
+    .pcheck-cta__btn,
+    .pcheck-card__link,
+    .pcheck-progress__fill {
+        transition: none;
+        animation: none;
+    }
+}

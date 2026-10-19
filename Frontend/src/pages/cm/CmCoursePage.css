@@ -1,0 +1,1040 @@
+/* ================================================================
+   CmCoursePage.css
+   Pattern: mirror CmCatalogPage — course- prefix
+   Colors: #F37021 primary, #034EA2 blue, #51B848 green
+   Font: Be Vietnam Pro
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+.course-page {
+    width: 100%;
+    padding: 20px 24px 28px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: var(--cm-ink);
+    background: var(--cm-surface-alt);
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Thông báo dùng CmToast dùng chung — xem .cm-toast-* trong cm-ui.css */
+
+/* ── Split layout ── */
+/* Danh sách môn bên trái, chi tiết bên phải.
+   minmax(0,…) để tên môn dài không nong cột ra ngoài khung.
+   Chiều cao trừ thanh điều hướng, khối tiêu đề trang và thanh lọc. */
+.course-wrap {
+    display: grid;
+    grid-template-columns: minmax(280px, 2fr) minmax(0, 3fr);
+    height: calc(100vh - 290px);
+    min-height: 500px;
+    border: 1px solid var(--cm-border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--cm-surface);
+}
+
+/* ══ LEFT — List panel ══ */
+.course-list-panel {
+    border-right: 0.5px solid #e4e6ee;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+}
+
+.course-list-top {
+    padding: 12px 12px 10px;
+    border-bottom: 0.5px solid #e4e6ee;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    flex-shrink: 0;
+}
+
+.course-list-search-row {
+    display: flex;
+    gap: 6px;
+}
+
+.course-search {
+    flex: 1;
+    border: 0.5px solid rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    color: #0d1b3e;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: #fff;
+    transition: border-color 0.12s;
+}
+
+.course-search:focus {
+    outline: none;
+    border-color: #034EA2;
+}
+
+.course-search::placeholder {
+    color: #9ca3af;
+}
+
+.course-filter-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.course-filter-select {
+    flex: 1;
+    border: 0.5px solid rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+    padding: 5px 22px 5px 8px;
+    font-size: 11px;
+    font-weight: 500;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5'%3E%3Cpath d='M0 0l4.5 5L9 0z' fill='%23888'/%3E%3C/svg%3E") no-repeat right 7px center;
+    color: #6b7280;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    cursor: pointer;
+    appearance: none;
+    transition: border-color 0.12s;
+}
+
+.course-filter-select:focus {
+    outline: none;
+    border-color: #034EA2;
+}
+
+.course-filter-select.active {
+    border-color: #034EA2;
+    background-color: #edf4ff;
+    color: #034EA2;
+}
+
+.course-count-label {
+    font-size: 11px;
+    color: #9ca3af;
+    white-space: nowrap;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+/* List scroll */
+.course-list-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 0;
+}
+
+.course-list-empty {
+    padding: 24px 16px;
+    font-size: 12px;
+    color: #9ca3af;
+    text-align: center;
+}
+
+/* Course row */
+.course-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    cursor: pointer;
+    transition: background 0.1s;
+    border-bottom: 0.5px solid #f0f0f0;
+    gap: 8px;
+}
+
+.course-row:hover {
+    background: #f0f2f7;
+}
+
+.course-row.sel {
+    background: #edf4ff;
+}
+
+.course-row.inactive {
+    opacity: 0.55;
+}
+
+.course-row-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.course-row-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dot-active {
+    background: #51B848;
+}
+
+.dot-hidden {
+    background: #d1d5db;
+}
+
+.course-row-code {
+    font-size: 11px;
+    font-weight: 700;
+    color: #034EA2;
+}
+
+.course-row-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: #0d1b3e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.course-row-right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.course-row-credits {
+    font-size: 11px;
+    font-weight: 700;
+    color: #6b7280;
+    background: #f0f2f7;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.course-row-nogpa {
+    font-size: 10px;
+    font-weight: 600;
+    color: #9A5100;
+    background: #fff6ed;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.course-row-prereq {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+/* ══ RIGHT — Detail panel ══ */
+.course-right-panel {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+}
+
+.course-rp-header {
+    padding: 14px 20px 12px;
+    border-bottom: 0.5px solid #e4e6ee;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.course-rp-meta {
+    flex: 1;
+}
+
+.course-rp-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 3px;
+}
+
+.course-rp-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0d1b3e;
+    line-height: 1.2;
+}
+
+.course-rp-btns {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    align-items: flex-start;
+}
+
+.course-rp-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+}
+
+/* Empty */
+.course-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 40px;
+}
+
+.course-empty-icon {
+    display: flex;
+    color: #0d1b3e;
+    opacity: 0.18;
+}
+
+.course-empty-text {
+    font-size: 13px;
+    color: #9ca3af;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* Status banner */
+.course-status-banner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.course-status-banner.active {
+    background: #edf7ec;
+    color: #2d7a26;
+    border: 0.5px solid #c0dd97;
+}
+
+.course-status-banner.inactive {
+    background: #f0f2f7;
+    color: #6b7280;
+    border: 0.5px solid #d1d5db;
+}
+
+.course-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.active .course-status-dot {
+    background: #51B848;
+}
+
+.inactive .course-status-dot {
+    background: #9ca3af;
+}
+
+.course-nogpa-badge {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 700;
+    background: #fff6ed;
+    color: #9A5100;
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+
+/* Form */
+.course-form-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.course-form-field {
+    margin-bottom: 12px;
+}
+
+.course-form-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.course-req {
+    color: #d93025;
+}
+
+.course-input {
+    width: 100%;
+    border: 0.5px solid rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 12px;
+    color: #0d1b3e;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: #fff;
+    transition: border-color 0.12s;
+    box-sizing: border-box;
+}
+
+.course-input:focus {
+    outline: none;
+    border-color: #034EA2;
+}
+
+.course-input::placeholder {
+    color: #9ca3af;
+}
+
+.course-input.has-error {
+    border-color: #d93025;
+    background: #fff8f8;
+}
+
+.course-textarea {
+    resize: none;
+    height: 72px;
+    line-height: 1.5;
+}
+
+.course-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5'%3E%3Cpath d='M0 0l4.5 5L9 0z' fill='%23888'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+    cursor: pointer;
+}
+
+.course-field-error {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: #d93025;
+    margin-top: 3px;
+}
+
+.course-field-hint {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 3px;
+    line-height: 1.4;
+}
+
+/* Checkbox */
+.course-checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    padding: 10px 12px;
+    background: #f7f9ff;
+    border: 0.5px solid #e4e6ee;
+    border-radius: 9px;
+    margin-bottom: 12px;
+}
+
+.course-checkbox {
+    width: 15px;
+    height: 15px;
+    accent-color: #034EA2;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.course-checkbox-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #0d1b3e;
+}
+
+.course-checkbox-hint {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 2px;
+    line-height: 1.4;
+}
+
+/* Divider */
+.course-divider {
+    border: none;
+    border-top: 0.5px solid #f0f0f0;
+    margin: 16px 0;
+}
+
+/* Section title */
+.course-sec-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Prereq tags (display mode) */
+.course-prereq-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.course-prereq-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    background: #f5f3ff;
+    color: #6d28d9;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.course-prereq-edit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: 0.5px solid rgba(0, 0, 0, 0.14);
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b7280;
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.course-prereq-edit-btn:hover {
+    background: #f0f2f7;
+    color: #034EA2;
+    border-color: rgba(3, 78, 162, 0.25);
+}
+
+.course-prereq-none {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+/* Prereq panel */
+.course-prereq-info {
+    display: flex;
+    gap: 8px;
+    background: #f7f9ff;
+    border: 0.5px solid #e4e6ee;
+    border-radius: 9px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #374151;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.course-prereq-info-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    color: #034EA2;
+}
+
+.course-prereq-selected {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 4px;
+    min-height: 36px;
+}
+
+.course-prereq-empty {
+    font-size: 12px;
+    color: #9ca3af;
+    padding: 6px 0;
+}
+
+.course-prereq-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f5f3ff;
+    border-radius: 8px;
+    padding: 6px 10px;
+}
+
+.course-prereq-chip-code {
+    font-size: 11px;
+    font-weight: 700;
+    color: #6d28d9;
+    flex-shrink: 0;
+}
+
+.course-prereq-chip-name {
+    font-size: 12px;
+    color: #374151;
+    flex: 1;
+}
+
+.course-prereq-chip-x {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition: color 0.12s;
+}
+
+.course-prereq-chip-x:hover {
+    color: #d93025;
+}
+
+.course-prereq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.course-prereq-pick {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 7px 10px;
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    transition: background 0.1s, border-color 0.1s;
+}
+
+.course-prereq-pick:hover {
+    background: #f7f9ff;
+}
+
+.course-prereq-pick.selected {
+    background: #f5f3ff;
+    border-color: rgba(109, 40, 217, 0.25);
+}
+
+.course-prereq-pick-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+}
+
+.course-prereq-credits {
+    font-size: 10px;
+    color: #9ca3af;
+    font-weight: 600;
+}
+
+.course-prereq-pick-btn {
+    padding: 3px 9px;
+    border: 0.5px solid rgba(0, 0, 0, 0.14);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: #fff;
+    color: #374151;
+    white-space: nowrap;
+    transition: background 0.1s, color 0.1s;
+}
+
+.course-prereq-pick-btn:hover {
+    background: #edf4ff;
+    color: #034EA2;
+    border-color: rgba(3, 78, 162, 0.3);
+}
+
+.course-prereq-pick-btn.active {
+    background: #f5f3ff;
+    color: #6d28d9;
+    border-color: rgba(109, 40, 217, 0.3);
+}
+
+/* Resources */
+.course-resource-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 6px 0;
+}
+
+.course-resource-toggle:hover .course-sec-title {
+    color: #374151;
+}
+
+.course-resource-count {
+    font-size: 10px;
+    color: #9ca3af;
+    font-weight: 500;
+    background: #f0f2f7;
+    padding: 1px 5px;
+    border-radius: 5px;
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.course-chevron {
+    font-size: 14px;
+    color: #9ca3af;
+    transition: transform 0.18s;
+    flex-shrink: 0;
+}
+
+.course-chevron.open {
+    transform: rotate(90deg);
+}
+
+.course-resources-body {
+    margin-top: 8px;
+}
+
+.course-resource-add {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+    background: #f7f9ff;
+    border: 0.5px solid #e4e6ee;
+    border-radius: 9px;
+    margin-bottom: 10px;
+}
+
+.course-resource-add-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.course-resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.course-resource-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background: #fff;
+}
+
+.course-resource-order {
+    font-size: 11px;
+    font-weight: 700;
+    color: #9ca3af;
+    width: 16px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.course-resource-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.course-resource-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #0d1b3e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.course-resource-url {
+    font-size: 11px;
+    color: #034EA2;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.course-resource-url:hover {
+    text-decoration: underline;
+}
+
+.course-resource-type {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+
+.course-resource-del {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition: color 0.12s;
+}
+
+.course-resource-del:hover {
+    color: #d93025;
+}
+
+/* Buttons */
+.course-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px solid transparent;
+    border-radius: var(--cm-radius-sm);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background var(--cm-ease), border-color var(--cm-ease), color var(--cm-ease);
+}
+
+.course-btn svg {
+    flex-shrink: 0;
+}
+
+/* Biến thể gọn dùng trong hàng học liệu đang sửa */
+.course-btn-xs {
+    padding: 5px 11px;
+    font-size: 11.5px;
+}
+
+/* Không co lại khi nằm cạnh ô nhập co giãn */
+.course-btn-nowrap {
+    flex-shrink: 0;
+}
+
+.course-btn-save {
+    background: var(--cm-blue);
+    border-color: var(--cm-blue);
+    color: #fff;
+}
+
+.course-btn-save:hover {
+    background: var(--cm-blue-dark);
+    border-color: var(--cm-blue-dark);
+}
+
+.course-btn-ghost {
+    background: var(--cm-surface);
+    border-color: var(--cm-border-strong);
+    color: var(--cm-text);
+}
+
+.course-btn-ghost:hover {
+    background: var(--cm-blue-tint);
+    border-color: var(--cm-blue);
+    color: var(--cm-blue);
+}
+
+.course-btn-outline {
+    background: transparent;
+    border: 0.5px solid rgba(109, 40, 217, 0.3);
+    color: #6d28d9;
+}
+
+.course-btn-outline:hover {
+    background: #f5f3ff;
+}
+
+.course-btn-mute {
+    background: transparent;
+    border: 0.5px solid rgba(211, 47, 47, 0.3);
+    color: #a32d2d;
+}
+
+.course-btn-mute:hover {
+    background: #fdecea;
+}
+
+.course-btn-activate {
+    background: transparent;
+    border: 0.5px solid rgba(81, 184, 72, 0.4);
+    color: #2d7a26;
+}
+
+.course-btn-activate:hover {
+    background: #edf7ec;
+}
+
+.course-badge-count {
+    background: #6d28d9;
+    color: #fff;
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 8px;
+    font-weight: 700;
+    min-width: 16px;
+    text-align: center;
+}
+
+.course-form-note {
+    font-size: 12px;
+    color: #9ca3af;
+    line-height: 1.5;
+    margin-top: 8px;
+    padding: 10px 12px;
+    background: #f7f9ff;
+    border-radius: 8px;
+    border: 0.5px dashed #d1d5db;
+}
+
+.course-form-note strong {
+    color: #374151;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .course-wrap {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .course-list-panel {
+        height: 320px;
+        border-right: none;
+        border-bottom: 0.5px solid #e4e6ee;
+    }
+}
+
+/* ── Course Status Row matching CmCatalogPage ── */
+.course-status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #f7f9ff;
+    border: 0.5px solid #e4e6ee;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.course-status-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+    flex-shrink: 0;
+}
+
+/* ── Pagination ── */
+.course-pagination {
+    padding: 8px 12px;
+    border-top: 0.5px solid #e4e6ee;
+    background: #fff;
+    flex-shrink: 0;
+}
+
+.course-row-term-badge {
+    background-color: #edf4ff;
+    color: #034EA2;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #d0e1fd;
+    margin-right: 4px;
+    white-space: nowrap;
+}
+
+/* ── Xoá môn học (DEF_44) + số tài nguyên trên dòng môn (DEF_72) ── */
+.course-btn-danger {
+    background: #DC2626;
+    color: #fff;
+    border-color: #DC2626;
+}
+.course-btn-danger:hover { background: #B91C1C; border-color: #B91C1C; }
+
+.course-row-resources {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #7C3AED;
+    background: #F5F3FF;
+    border: 1px solid #DDD6FE;
+    border-radius: 6px;
+    padding: 1px 6px;
+}
+
+.course-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 20px;
+}
+.course-modal {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px;
+    max-width: 460px;
+    width: 100%;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.28);
+}
+.course-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #B91C1C;
+    margin-bottom: 10px;
+}
+.course-modal-text {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #334155;
+    margin: 0 0 18px;
+}
+.course-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}

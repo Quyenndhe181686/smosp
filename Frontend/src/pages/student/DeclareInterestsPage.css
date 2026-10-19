@@ -1,0 +1,657 @@
+/* ================================================================
+   DeclareInterestsPage.css
+   Font: Be Vietnam Pro | Brand: #034EA2 · #F37021 · #51B848
+   Prefix: wi- (Work Interest)
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+.wi-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    width: 100%;
+    /* Chừa chỗ cho thanh lưu lơ lửng (.wi-footer-bar) khỏi che nội dung cuối trang */
+    padding-bottom: 88px;
+}
+
+/* ── No entrance animation ── */
+.wi-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+.wi-head {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.wi-head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+/* Nhãn bước — màu hồng của bước "Sở thích" trong luồng khai báo hồ sơ */
+.wi-step-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    margin-bottom: 4px;
+    border-radius: 999px;
+    background: #FDF0F6;
+    color: #DB2777;
+    border: 1px solid #F9C0DA;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.wi-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 22px;
+    font-weight: 800;
+    color: #0d1b3e;
+    margin: 0;
+}
+
+/* Icon tiêu đề trong ô vuông bo tròn có viền — dùng chung ở cả 4 trang khai báo. */
+.wi-title-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: #FCE7F3;
+    border: 2.5px solid #FBCFE8;
+    box-shadow: 0 3px 0 #FBCFE8;
+    color: #DB2777;
+    flex-shrink: 0;
+}
+
+.wi-subtitle {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 0;
+    max-width: 760px;
+    line-height: 1.6;
+}
+
+.wi-context-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(90deg, #FDF0F6 0%, #FEF7FA 100%);
+    border: 1px solid #F7CFE2;
+    color: #A2154F;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 13px 20px;
+    border-radius: 12px;
+}
+
+.wi-context-banner strong {
+    font-weight: 800;
+    color: #DB2777;
+}
+
+.wi-context-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #DB2777;
+    box-shadow: 0 0 0 3px rgba(219, 39, 119, 0.18);
+    flex-shrink: 0;
+}
+
+/* ── Impact banner (results depend on this declaration) ────────── */
+.wi-impact-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #FFF4E9;
+    border: 1px solid #FBD7B8;
+    color: #9A4A0E;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    padding: 13px 20px;
+    border-radius: 12px;
+}
+
+.wi-impact-banner svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: #F37021;
+}
+
+.wi-impact-banner strong {
+    font-weight: 800;
+    color: #D95F14;
+}
+
+.wi-impact-banner-close {
+    background: transparent;
+    border: none;
+    color: #9A4A0E;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.65;
+    padding: 2px 6px;
+    margin-left: auto;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+}
+
+.wi-impact-banner-close:hover {
+    opacity: 1;
+    background: rgba(243, 112, 33, 0.12);
+}
+
+.wi-card {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    transition: none;
+}
+
+.wi-card:hover {
+    box-shadow: none;
+}
+
+.wi-list-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 22px;
+}
+
+.wi-list-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0d1b3e;
+    margin: 0;
+}
+
+.wi-selected-count {
+    font-size: 12px;
+    font-weight: 700;
+    color: #DB2777;
+}
+
+/* ── Pills (Matching Skill Tag style) ───────────────────────── */
+.wi-pill-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* ── 3 Column Grid for Cartoony Interest Tags ── */
+.wi-grid-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px 14px;
+    width: 100%;
+    margin-top: 16px;
+}
+
+@media (max-width: 1024px) {
+    .wi-grid-3col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .wi-grid-3col {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tag sở thích — tông hồng, kiểu cartoon: nền đặc, viền dày, bóng cứng. */
+.wi-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    height: auto;
+    padding: 10px 18px;
+    border-radius: 22px;
+    border: 2.5px solid #94A3B8;
+    background: #FFFFFF;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #1E293B;
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    box-shadow: 0 3.5px 0 #CBD5E1 !important;
+    transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease, border-color 140ms ease;
+    width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    word-break: break-word;
+    text-align: left;
+    line-height: 1.35;
+}
+
+.wi-pill:hover {
+    transform: translateY(-2px);
+    border-color: #DB2777;
+    background: #FDF2F8;
+    box-shadow: 0 5.5px 0 #FBCFE8 !important;
+}
+
+/* Bấm xuống thì tag lún theo — phản hồi kiểu nút bấm vật lý. */
+.wi-pill:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 #CBD5E1 !important;
+}
+
+.wi-pill-checked {
+    background: #EC4899 !important;
+    border: 2.5px solid #BE185D !important;
+    color: #FFFFFF !important;
+    font-weight: 800;
+    box-shadow: 0 3.5px 0 #BE185D !important;
+    transform: translateY(-2px);
+}
+
+.wi-pill-checked:hover {
+    background: #DB2777 !important;
+    box-shadow: 0 5.5px 0 #BE185D !important;
+}
+
+.wi-checkbox {
+    width: 18px;
+    height: 18px;
+    border-radius: 6px;
+    border: 2.5px solid #94A3B8;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 140ms ease;
+}
+
+.wi-checkbox-on {
+    background: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+}
+
+.wi-checkbox-on::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 9px;
+    border: solid #DB2777;
+    border-width: 0 2.2px 2.2px 0;
+    transform: rotate(45deg);
+}
+
+/* ── Pagination ─────────────────────────────────────────────── */
+.wi-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid transparent;
+}
+
+.wi-page-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+.wi-page-btn:hover:not(:disabled) {
+    background: transparent;
+    color: #034EA2;
+    box-shadow: none;
+}
+
+.wi-page-btn:disabled {
+    opacity: 0.4;
+    background: transparent;
+    color: #94A3B8;
+    cursor: not-allowed;
+}
+
+.wi-page-info {
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    padding: 4px 8px;
+    background: transparent;
+}
+
+/* ── Grid of selectable interest cards (legacy) ────────────────────────── */
+.wi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.wi-option-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 6px;
+    background: #fff;
+    border: 2.5px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    box-shadow: 0 3px 0 #E2E8F0;
+    transition: border-color 140ms ease, background 140ms ease, transform 120ms ease, box-shadow 140ms ease;
+}
+
+.wi-option-card:hover {
+    transform: translateY(-2px);
+    border-color: #F9A8D4;
+    box-shadow: 0 5px 0 #FBCFE8;
+}
+
+.wi-option-checked {
+    background: #FDF2F8;
+    border-color: #DB2777;
+    box-shadow: 0 3px 0 #F9A8D4;
+}
+
+.wi-icon-chip {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: #FCE7F3;
+    border: 2.5px solid #FBCFE8;
+    margin-bottom: 6px;
+}
+
+.wi-option-checked .wi-icon-chip {
+    background: #fff;
+    border-color: #DB2777;
+}
+
+.wi-icon-chip::before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin: 12px;
+    border-radius: 50%;
+    background: #DB2777;
+}
+
+.wi-option-checked .wi-icon-chip::before {
+    background: #BE185D;
+}
+
+.wi-option-name {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #1F2430;
+    line-height: 1.35;
+}
+
+.wi-option-checked .wi-option-name {
+    color: #BE185D;
+}
+
+.wi-option-desc {
+    font-size: 11px;
+    font-weight: 500;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.wi-check-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 20px;
+    height: 20px;
+    border-radius: 7px;
+    border: 2.5px solid #94A3B8;
+    background: #fff;
+}
+
+.wi-check-badge-on {
+    background: #DB2777;
+    border-color: #BE185D;
+    position: absolute;
+}
+
+.wi-check-badge-on::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* ── Footer bar ───────────────────────────────────────────────── */
+/* Thanh lưu lơ lửng — cùng cách làm với .sk-footer-bar bên trang Kỹ năng. */
+.wi-footer-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    position: fixed !important;
+    right: 28px;
+    bottom: 20px;
+    z-index: 60;
+    width: auto;
+    max-width: calc(100vw - 56px);
+    margin: 0 !important;
+    padding: 9px 10px 9px 20px !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 999px !important;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18) !important;
+}
+
+.wi-footer-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1F2430;
+}
+
+.wi-footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.wi-save-ok {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #27500a;
+    background: #eaf3de;
+    padding: 8px 14px;
+    border-radius: 8px;
+}
+
+.wi-btn-primary {
+    height: 38px;
+    padding: 0 20px;
+    border-radius: 999px;
+    white-space: nowrap;
+    border: none;
+    background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
+    color: #fff;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    box-shadow: 0 6px 18px rgba(219, 39, 119, 0.26);
+    transition: background 140ms ease, transform 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms ease;
+}
+
+.wi-btn-primary:hover:not(:disabled) {
+    filter: brightness(1.07);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(219, 39, 119, 0.34);
+}
+
+.wi-btn-primary:active:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.wi-btn-primary:disabled {
+    opacity: 0.7;
+    cursor: default;
+    transform: none;
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .wi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .wi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wi-card {
+        padding: 20px;
+    }
+
+    /* Màn hẹp: viên thuốc trải ngang thay vì co lại ở góc phải */
+    .wi-footer-bar {
+        left: 14px;
+        right: 14px;
+        bottom: 12px;
+        max-width: none;
+        padding: 10px 12px 10px 16px !important;
+        border-radius: 16px !important;
+    }
+
+    .wi-footer-text {
+        font-size: 12px;
+    }
+
+    .wi-footer-actions {
+        justify-content: flex-end;
+    }
+}
+
+.wi-search {
+    width: 100%;
+    max-width: 240px;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 10px;
+    border: 1px solid #E6E8EF;
+    font-size: 13px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    outline: none;
+    transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.wi-search:focus {
+    border-color: #034EA2;
+    box-shadow: 0 0 0 3px rgba(3, 78, 162, 0.12);
+}
+
+.wi-empty {
+    font-size: 13.5px;
+    color: #64748B;
+    text-align: center;
+    padding: 24px 16px;
+    margin: 0;
+    width: 100%;
+    background: #F8FAFC;
+    border-radius: 12px;
+    border: 1px dashed #E2E8F0;
+    box-sizing: border-box;
+}
+
+/* ── 3 Column Panel Layout ── */
+.wi-columns-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 20px;
+    align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+    .wi-columns-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .wi-columns-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.wi-column-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+@media (min-width: 1025px) {
+    .wi-column-card:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -8px;
+        border-right: 2px dashed #CBD5E1;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .wi-column-card:nth-child(odd):not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -8px;
+        border-right: 2px dashed #CBD5E1;
+    }
+}

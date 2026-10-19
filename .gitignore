@@ -1,0 +1,19 @@
+# IDE
+.idea/
+*.iml
+
+# Claude Code (cấu hình máy cá nhân, không chia sẻ)
+.claude/
+
+# Environment Variables
+.env
+
+backend/docs/
+*.docx
+*.pdf
+*.doc
+*.xlsx
+*.pptx
+*.ppt
+*.xls
+

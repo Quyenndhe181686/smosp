@@ -1,0 +1,787 @@
+/* ================================================================
+   CmCatalogPage.css
+   Pattern: mirror StudentDashboard — cc- prefix
+   Colors: #F37021 primary, #034EA2 blue, #51B848 green
+   Font: Be Vietnam Pro
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+/* ── Page wrapper ── */
+.cc-page {
+    width: 100%;
+    padding: 20px 24px 28px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: var(--cm-ink);
+    background: var(--cm-surface-alt);
+    min-height: 100vh;
+}
+
+/* Cây danh mục bên trái, khung chi tiết bên phải.
+   minmax(0,…) để tên ngành dài không nong cột ra ngoài khung. */
+.cc-wrap {
+    display: grid;
+    grid-template-columns: minmax(260px, 2fr) minmax(0, 3fr);
+    height: calc(100vh - 230px);
+    min-height: 500px;
+    border: 1px solid var(--cm-border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--cm-surface);
+}
+
+@media (max-width: 1000px) {
+    .cc-wrap {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 0;
+    }
+
+    .cc-tree-panel {
+        border-right: none;
+        border-bottom: 1px solid var(--cm-border);
+    }
+
+    .cc-tree-scroll {
+        max-height: 420px;
+    }
+}
+
+/* ══════════════════════════════════════════
+   LEFT — Tree panel
+══════════════════════════════════════════ */
+.cc-tree-panel {
+    border-right: 0.5px solid #e4e6ee;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.cc-tree-top {
+    padding: 12px 12px 10px;
+    border-bottom: 0.5px solid #e4e6ee;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    flex-shrink: 0;
+}
+
+/* Ô tìm kiếm — icon nằm trong ô, không chiếm thêm một dòng riêng */
+.cc-search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cc-search-icon {
+    position: absolute;
+    left: 10px;
+    color: var(--cm-muted);
+    pointer-events: none;
+}
+
+.cc-tree-search {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 7px 10px 7px 32px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12.5px;
+    color: var(--cm-ink);
+    outline: none;
+    transition: border-color var(--cm-ease), box-shadow var(--cm-ease);
+}
+
+.cc-tree-search:focus {
+    border-color: var(--cm-blue);
+    box-shadow: var(--cm-ring);
+}
+
+.cc-tree-search::placeholder {
+    color: var(--cm-muted);
+}
+
+.cc-filter-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+/* + Major button in header */
+.cc-add-major-wrap {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cc-btn-add-major {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 13px;
+    border: 1px solid var(--cm-blue);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-blue);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background var(--cm-ease), border-color var(--cm-ease);
+}
+
+.cc-btn-add-major:hover {
+    background: var(--cm-blue-dark);
+    border-color: var(--cm-blue-dark);
+}
+
+/* Inline add buttons in tree rows */
+.cc-btn-inline {
+    padding: 2px 7px;
+    border: 0.5px solid rgba(0, 0, 0, 0.14);
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: transparent;
+    color: #9ca3af;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.12s, background 0.12s, color 0.12s;
+    flex-shrink: 0;
+    line-height: 1.4;
+}
+
+.cc-btn-inline--ns {
+    color: #034EA2;
+    border-color: rgba(3, 78, 162, 0.25);
+}
+
+.cc-btn-inline--spec {
+    color: #6b7280;
+    border-color: rgba(0, 0, 0, 0.14);
+}
+
+/* Show inline buttons on hover */
+.cc-major-head:hover .cc-btn-inline,
+.cc-spec-head:hover .cc-btn-inline {
+    opacity: 1;
+}
+
+.cc-btn-inline:hover {
+    background: #edf4ff;
+    color: #034EA2;
+    border-color: rgba(3, 78, 162, 0.3);
+    opacity: 1;
+}
+
+/* Tree scroll area */
+.cc-tree-scroll {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding: 6px 0;
+}
+
+.cc-tree-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cc-tree-scroll::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px;
+}
+
+.cc-tree-scroll::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+.cc-tree-empty {
+    padding: 20px 16px;
+    font-size: 12px;
+    color: #9ca3af;
+    text-align: center;
+}
+
+.cc-tree-empty-sub {
+    padding: 4px 16px 4px 28px;
+    font-size: 11px;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* Major */
+.cc-major-node {
+    margin-bottom: 1px;
+}
+
+.cc-major-head {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.cc-major-head:hover {
+    background: #f0f2f7;
+}
+
+.cc-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    color: #9ca3af;
+    flex-shrink: 0;
+    transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1), color 0.12s;
+}
+
+.cc-chevron:hover {
+    color: #034EA2;
+}
+
+.cc-chevron.open {
+    transform: rotate(90deg);
+}
+
+.cc-chevron--sm {
+    width: 12px;
+    height: 12px;
+}
+
+.cc-node-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0d1b3e;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cc-node-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dot-active {
+    background: #51B848;
+}
+
+.dot-hidden {
+    background: #d1d5db;
+}
+
+.dot-pub {
+    background: #51B848;
+}
+
+.dot-draft {
+    background: #F37021;
+}
+
+/* Spec */
+.cc-spec-list {
+    padding-left: 14px;
+}
+
+.cc-spec-node {
+    margin-bottom: 1px;
+}
+
+.cc-spec-head {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px 5px 2px;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.cc-spec-head:hover {
+    background: #f0f2f7;
+}
+
+.cc-spec-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #374151;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cc-spec-count {
+    font-size: 10px;
+    color: #9ca3af;
+    flex-shrink: 0;
+}
+
+/* NS */
+.cc-ns-list {
+    padding-left: 16px;
+}
+
+.cc-ns-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px 4px 2px;
+    cursor: pointer;
+    transition: background 0.1s;
+    border-radius: 6px;
+}
+
+.cc-ns-row:hover {
+    background: #f0f2f7;
+}
+
+.cc-ns-row.sel {
+    background: #edf4ff;
+}
+
+.cc-ns-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.cc-ns-label {
+    font-size: 11px;
+    color: #6b7280;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Nhãn trạng thái trong cây — thu nhỏ vì nằm trong hàng chật */
+.cc-ns-status {
+    flex-shrink: 0;
+    padding: 1px 7px;
+    font-size: 10px;
+}
+
+/* ══════════════════════════════════════════
+   RIGHT — Detail / Form panel
+══════════════════════════════════════════ */
+.cc-right-panel {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+    min-height: 0;
+}
+
+/* Header */
+.cc-rp-header {
+    padding: 14px 20px 12px;
+    border-bottom: 0.5px solid #e4e6ee;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.cc-rp-meta {
+    flex: 1;
+}
+
+.cc-rp-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 3px;
+}
+
+.cc-rp-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0d1b3e;
+    line-height: 1.2;
+}
+
+.cc-rp-subtitle {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 2px;
+}
+
+.cc-rp-btns {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+/* Body */
+.cc-rp-body {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding: 16px 20px;
+}
+
+.cc-rp-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cc-rp-body::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px;
+}
+
+.cc-rp-body::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* Empty state */
+.cc-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 40px;
+}
+
+.cc-empty-icon {
+    display: flex;
+    color: #0d1b3e;
+    opacity: 0.16;
+}
+
+.cc-empty-text {
+    font-size: 13px;
+    color: #9ca3af;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.cc-status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #f7f9ff;
+    border: 0.5px solid #e4e6ee;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.cc-status-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+    flex-shrink: 0;
+}
+
+.cc-status-since {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+.cc-status-warn {
+    font-size: 11px;
+    color: #C45A0A;
+    font-weight: 500;
+}
+
+/* ── Info grid ── */
+.cc-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.cc-info-box {
+    background: #f7f7f5;
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.cc-info-lbl {
+    font-size: 10px;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 3px;
+}
+
+.cc-info-val {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0d1b3e;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.cc-info-val.blue {
+    color: #034EA2;
+}
+
+.cc-info-val.green {
+    color: #2d7a26;
+}
+
+.cc-info-val.orange {
+    color: #C45A0A;
+}
+
+.cc-info-val.muted {
+    color: #9ca3af;
+}
+
+/* ── Section title ── */
+.cc-sec-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 8px;
+}
+
+/* ── Form elements ── */
+.cc-form-row {
+    margin-bottom: 13px;
+}
+
+.cc-form-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.cc-req {
+    color: #d93025;
+}
+
+.cc-input {
+    width: 100%;
+    border: 0.5px solid rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 12px;
+    color: #0d1b3e;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: #fff;
+    transition: border-color 0.12s;
+}
+
+.cc-input:focus {
+    outline: none;
+    border-color: #034EA2;
+}
+
+.cc-input::placeholder {
+    color: #9ca3af;
+}
+
+.cc-textarea {
+    resize: none;
+    height: 76px;
+    line-height: 1.5;
+}
+
+.cc-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5'%3E%3Cpath d='M0 0l4.5 5L9 0z' fill='%23888'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+    cursor: pointer;
+}
+
+.cc-char-count {
+    font-size: 10px;
+    color: #9ca3af;
+    text-align: right;
+    margin-top: 2px;
+}
+
+.cc-form-hint {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 3px;
+    line-height: 1.4;
+}
+
+.cc-form-note {
+    font-size: 12px;
+    color: #9ca3af;
+    line-height: 1.5;
+    margin-top: 8px;
+}
+
+.cc-form-note strong {
+    color: #374151;
+}
+
+/* ── Nút ── */
+/* inline-flex + gap để icon và nhãn luôn thẳng hàng */
+.cc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px solid transparent;
+    border-radius: var(--cm-radius-sm);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background var(--cm-ease), border-color var(--cm-ease), color var(--cm-ease);
+}
+
+.cc-btn svg {
+    flex-shrink: 0;
+}
+
+.cc-btn-save {
+    background: var(--cm-blue);
+    border-color: var(--cm-blue);
+    color: #fff;
+}
+
+.cc-btn-save:hover {
+    background: var(--cm-blue-dark);
+    border-color: var(--cm-blue-dark);
+}
+
+.cc-btn-ghost {
+    background: var(--cm-surface);
+    border-color: var(--cm-border-strong);
+    color: var(--cm-text);
+}
+
+.cc-btn-ghost:hover {
+    background: var(--cm-blue-tint);
+    border-color: var(--cm-blue);
+    color: var(--cm-blue);
+}
+
+/* Hành động phá huỷ — luôn viền đỏ, tô đặc khi rê chuột để không bị bấm nhầm */
+.cc-btn-danger-sm {
+    background: var(--cm-surface);
+    border-color: var(--cm-danger-border);
+    color: var(--cm-danger);
+}
+
+.cc-btn-danger-sm:hover {
+    background: var(--cm-danger-strong);
+    border-color: var(--cm-danger-strong);
+    color: #fff;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .cc-wrap {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .cc-tree-panel {
+        height: 320px;
+        border-right: none;
+        border-bottom: 0.5px solid #e4e6ee;
+    }
+}
+
+/* ── Major image upload preview styles ── */
+.cc-image-preview-container {
+    position: relative;
+    width: 100%;
+    max-width: 240px;
+    height: 120px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #fafafa;
+    margin-bottom: 4px;
+}
+
+.cc-major-image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cc-image-preview-tag {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(15, 23, 42, 0.75);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+}
+
+.cc-image-preview-tag--new {
+    background: rgba(3, 78, 162, 0.85);
+}
+
+/* ── Bảng kiểm điều kiện công bố (DEF_82) + link thử lại (DEF_88) ── */
+.cc-checklist {
+    margin-top: 14px;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    background: #F8FAFC;
+}
+.cc-checklist-title {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #64748B;
+    margin-bottom: 8px;
+}
+.cc-checklist-row {
+    display: grid;
+    grid-template-columns: 16px 1fr auto;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    padding: 3px 0;
+}
+.cc-checklist-row--ok .cc-checklist-mark { color: #16A34A; font-weight: 800; }
+.cc-checklist-row--missing .cc-checklist-mark { color: #DC2626; font-weight: 800; }
+.cc-checklist-label { color: #334155; }
+.cc-checklist-val { color: #64748B; font-weight: 600; }
+.cc-btn-link {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    text-decoration: underline;
+    font-weight: 700;
+    cursor: pointer;
+}

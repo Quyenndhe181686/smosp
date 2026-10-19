@@ -1,0 +1,613 @@
+/* ================================================================
+   AdminDashboard.css
+
+   Dùng chung token màu của cm-ui.css (nạp qua CmToast / CmPagination)
+   để trang Admin và trang Content Manager là một hệ thống thị giác.
+
+   Nguyên tắc màu: nền và khung luôn trung tính, màu chỉ mang ngữ nghĩa
+     lam = thông tin & thương hiệu, lục = ổn / đang hoạt động,
+     cam = cần chú ý, đỏ = phải xử lý, tím = cấu hình / nhân sự nội bộ.
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+.ad-page {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    width: 100%;
+    padding-bottom: 56px;
+    font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+    color: var(--cm-ink);
+}
+
+/* ── Đầu trang ── */
+.ad-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--cm-border);
+}
+
+.ad-header-main {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+}
+
+.ad-header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: var(--cm-blue-soft);
+    color: var(--cm-blue);
+}
+
+.ad-header-title {
+    margin: 0 0 3px;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    color: var(--cm-ink);
+}
+
+.ad-header-sub {
+    margin: 0;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--cm-text-soft);
+    line-height: 1.45;
+}
+
+.ad-header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ad-refresh-time {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--cm-muted);
+    white-space: nowrap;
+}
+
+/* ── Khu vực & tiêu đề khu vực ── */
+.ad-zone {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ad-sec-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cm-text);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.ad-sec-title svg {
+    color: var(--cm-blue);
+}
+
+/* ============================================================
+   Thẻ số liệu
+   ============================================================ */
+.ad-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.ad-stat-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1000px) {
+
+    .ad-stat-grid,
+    .ad-stat-grid--3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 620px) {
+
+    .ad-stat-grid,
+    .ad-stat-grid--3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ad-stat-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 16px 18px 16px 21px;
+    background: var(--cm-surface);
+    border: 1px solid var(--cm-border);
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: left;
+    font-family: inherit;
+    transition: border-color var(--cm-ease), box-shadow var(--cm-ease);
+}
+
+.ad-stat-card.is-link {
+    cursor: pointer;
+}
+
+.ad-stat-card.is-link:hover {
+    border-color: var(--stat-color);
+    box-shadow: 0 2px 12px rgba(13, 27, 62, 0.08);
+}
+
+.ad-stat-card:focus-visible {
+    outline: none;
+    box-shadow: var(--cm-ring);
+}
+
+/* Vạch màu bên trái — nhận diện nhóm số liệu khi lướt nhanh */
+.ad-stat-rail {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--stat-color);
+}
+
+.ad-stat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+    min-width: 0;
+}
+
+.ad-stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--cm-text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.ad-stat-value {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--stat-color);
+}
+
+.ad-stat-value.is-loading {
+    color: var(--cm-border-strong);
+}
+
+.ad-stat-hint {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--cm-muted);
+}
+
+.ad-stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--stat-bg);
+    color: var(--stat-color);
+}
+
+.ad-stat-card--blue {
+    --stat-color: #034EA2;
+    --stat-bg: #e6f1fb;
+}
+
+.ad-stat-card--teal {
+    --stat-color: #0f766e;
+    --stat-bg: #d9f2ef;
+}
+
+.ad-stat-card--purple {
+    --stat-color: #6d28d9;
+    --stat-bg: #f3e8ff;
+}
+
+.ad-stat-card--green {
+    --stat-color: #2d7a26;
+    --stat-bg: #edf7ec;
+}
+
+.ad-stat-card--orange {
+    --stat-color: #c45a0a;
+    --stat-bg: #fff1e2;
+}
+
+.ad-stat-card--red {
+    --stat-color: #a32d2d;
+    --stat-bg: #fdecea;
+}
+
+/* ============================================================
+   Card
+   ============================================================ */
+.ad-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--cm-surface);
+    border: 1px solid var(--cm-border);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.ad-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+/* Biểu đồ token cần nhiều chỗ hơn thẻ preset bên cạnh */
+.ad-row-split {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 14px;
+}
+
+@media (max-width: 1000px) {
+
+    .ad-row-2,
+    .ad-row-split {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ad-card-head {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    flex-wrap: wrap;
+    padding: 15px 20px 14px;
+    border-bottom: 1px solid var(--cm-line);
+}
+
+.ad-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+}
+
+.ad-card-icon--blue {
+    background: var(--cm-blue-soft);
+    color: var(--cm-blue);
+}
+
+.ad-card-icon--purple {
+    background: #f3e8ff;
+    color: var(--cm-purple);
+}
+
+.ad-card-icon--orange {
+    background: var(--cm-warn-bg);
+    color: var(--cm-warn);
+}
+
+.ad-card-icon--green {
+    background: var(--cm-success-bg);
+    color: var(--cm-success);
+}
+
+.ad-card-titles {
+    flex: 1;
+    min-width: 160px;
+}
+
+.ad-card-title {
+    margin: 0 0 2px;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--cm-ink);
+}
+
+.ad-card-sub {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--cm-text-soft);
+}
+
+.ad-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.ad-cb {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 16px 20px;
+}
+
+.ad-divider {
+    height: 1px;
+    margin: 14px 0;
+    background: var(--cm-line);
+}
+
+.ad-sub-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.ad-sub-title svg {
+    color: var(--cm-blue);
+}
+
+/* ── Dòng nhãn — giá trị ── */
+.ad-srow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--cm-line);
+}
+
+.ad-srow:last-child {
+    border-bottom: none;
+}
+
+.ad-srow-lbl {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--cm-text-soft);
+}
+
+.ad-srow-lbl svg {
+    color: var(--cm-muted);
+}
+
+.ad-srow-val {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--cm-ink);
+    text-align: right;
+}
+
+.ad-srow-val--muted {
+    font-weight: 500;
+    color: var(--cm-text-soft);
+}
+
+/* ── Biểu đồ ── */
+.ad-chart-wrap {
+    position: relative;
+    width: 100%;
+    height: 210px;
+}
+
+.ad-donut-wrap {
+    position: relative;
+    width: 100%;
+    height: 150px;
+}
+
+.ad-chart-note {
+    margin: 10px 0 0;
+    font-size: 11.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--cm-text-soft);
+    text-align: center;
+}
+
+.ad-legend-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.ad-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--cm-text-soft);
+}
+
+.ad-legend-item strong {
+    font-weight: 700;
+    color: var(--cm-ink);
+}
+
+.ad-legend-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+/* ── Tóm tắt token tháng hiện tại ── */
+.ad-token-layout {
+    display: grid;
+    grid-template-columns: 1fr 210px;
+    gap: 20px;
+    align-items: start;
+}
+
+@media (max-width: 820px) {
+    .ad-token-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ad-token-side {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 16px;
+    border: 1px solid var(--cm-border);
+    border-radius: 12px;
+    background: var(--cm-surface-sunken);
+}
+
+.ad-token-side-lbl {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--cm-text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.ad-token-side-val {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--cm-blue);
+}
+
+.ad-token-side-val--warn {
+    color: var(--cm-warn);
+}
+
+.ad-token-side-val--danger {
+    color: var(--cm-danger-strong);
+}
+
+.ad-token-side-sub {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--cm-text-soft);
+}
+
+.ad-token-bar-bg {
+    height: 7px;
+    border-radius: 4px;
+    background: var(--cm-hover);
+    overflow: hidden;
+}
+
+.ad-token-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 220ms ease;
+}
+
+/* ── Trạng thái rỗng & khung chờ ── */
+.ad-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 18px;
+    border-radius: var(--cm-radius);
+    background: var(--cm-surface-alt);
+    border: 1px dashed var(--cm-border);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--cm-text-soft);
+    text-align: center;
+}
+
+.ad-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ad-skeleton-row {
+    height: 38px;
+    border-radius: var(--cm-radius);
+    background: linear-gradient(90deg, #f1f3f7 25%, #e7eaf1 37%, #f1f3f7 63%);
+    background-size: 400% 100%;
+    animation: adShimmer 1.3s ease-in-out infinite;
+}
+
+.ad-skeleton-row--chart {
+    height: 210px;
+}
+
+@keyframes adShimmer {
+    from {
+        background-position: 100% 50%;
+    }
+
+    to {
+        background-position: 0 50%;
+    }
+}
+
+.ad-spin {
+    animation: adSpin 0.8s linear infinite;
+}
+
+@keyframes adSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Nút điều hướng ghim đáy card — mọi card trong cùng hàng kết thúc bằng một
+   hành động rõ ràng, không để người dùng phải tự tìm đường sang trang cấu hình */
+.ad-card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    margin-top: auto;
+    padding: 12px 0;
+    border: none;
+    border-top: 1px solid var(--cm-line);
+    background: none;
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--cm-blue);
+    cursor: pointer;
+    transition: background var(--cm-ease);
+}
+
+.ad-card-foot:hover {
+    background: var(--cm-blue-tint);
+}

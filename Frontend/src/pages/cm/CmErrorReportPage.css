@@ -1,0 +1,539 @@
+/* ================================================================
+   CmErrorReportPage.css — tiền tố cmer-
+
+   Dùng token dùng chung của cm-ui.css (nạp kèm CmPagination /
+   CmSelect / CmToast). Nút, tag và thông báo lấy từ hệ thống chung:
+   .cm-btn-*, .cm-tag-*, .cm-toast-*.
+   ================================================================ */
+
+.cmer-page {
+    width: 100%;
+    padding: 20px 24px 28px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: var(--cm-surface-alt);
+    min-height: 100vh;
+}
+
+.cmer-spin {
+    animation: cmerSpin 0.8s linear infinite;
+}
+
+@keyframes cmerSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Hai cột: danh sách bên trái, chi tiết bên phải.
+   Chiều cao trừ đi thanh điều hướng + khối tiêu đề trang. */
+.cmer-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 11fr) minmax(360px, 9fr);
+    height: calc(100vh - 230px);
+    min-height: 520px;
+    border: 1px solid var(--cm-border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--cm-surface);
+}
+
+@media (max-width: 1080px) {
+    .cmer-wrap {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 0;
+    }
+
+    .cmer-left-panel {
+        border-right: none;
+        border-bottom: 1px solid var(--cm-border);
+    }
+
+    .cmer-scope-cm .cmer-table-wrapper {
+        max-height: 460px;
+    }
+}
+
+/* ══════════════════════════════════════════
+   Trái — danh sách báo cáo
+   ══════════════════════════════════════════ */
+.cmer-left-panel {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    border-right: 1px solid var(--cm-border);
+    background: var(--cm-surface-alt);
+}
+
+.cmer-tree-top {
+    flex-shrink: 0;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--cm-border);
+    background: var(--cm-surface);
+}
+
+.cmer-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* Chip lọc: kèm số lượng nên CM biết ngay nhóm nào còn tồn đọng */
+.cmer-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: 999px;
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--cm-text-soft);
+    cursor: pointer;
+    transition: background var(--cm-ease), border-color var(--cm-ease), color var(--cm-ease);
+}
+
+.cmer-chip:hover {
+    background: var(--cm-blue-tint);
+    border-color: var(--cm-blue);
+    color: var(--cm-blue);
+}
+
+.cmer-chip.is-active {
+    background: var(--cm-blue);
+    border-color: var(--cm-blue);
+    color: #fff;
+}
+
+.cmer-chip-count {
+    padding: 0 6px;
+    border-radius: 999px;
+    background: var(--cm-hover);
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--cm-text);
+}
+
+.cmer-chip.is-active .cmer-chip-count {
+    background: rgba(255, 255, 255, 0.24);
+    color: #fff;
+}
+
+.cmer-list-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.cmer-scope-cm .cmer-table-wrapper {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+}
+
+/* table-layout: fixed — bề rộng cột theo tỉ lệ % bên dưới, nội dung dài bị cắt
+   bằng ellipsis thay vì nong bảng ra. Để auto thì tên môn dài đẩy tổng bề rộng
+   vượt panel trái, bảng tràn ngang và cột đầu bị cắt mất. */
+.cmer-scope-cm .cmer-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.cmer-scope-cm .cmer-table th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    /* Padding ngang 8px thay vì 14px: panel trái chỉ ~505px ở màn 1280, riêng
+       padding 5 cột đã ngốn 140px và bóp nghẹt cột trạng thái. */
+    padding: 9px 8px;
+    background: var(--cm-surface-alt);
+    border-bottom: 1px solid var(--cm-border);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    /* KHÔNG nowrap: panel trái hẹp nên nhãn dài ("NGƯỜI XỬ LÝ", "TRẠNG THÁI")
+       tràn khỏi ô và làm bảng cuộn ngang dù mọi ô đều vừa. Cho xuống dòng. */
+    overflow: hidden;
+}
+
+/* display: table-cell khai lại một cách CỐ Ý, không thừa.
+
+   AdminReportsPage.css dùng CHUNG tiền tố .cmer- và có rule
+   `.cmer-col-status { display: flex }`. CSS được gộp toàn cục nên rule đó rơi
+   sang cả trang này; ô bị đẩy khỏi thuật toán table layout, table-layout:fixed
+   không cấp được bề rộng và cột trạng thái co lại còn đúng phần padding. */
+.cmer-scope-cm .cmer-table td,
+.cmer-scope-cm .cmer-table th {
+    display: table-cell;
+}
+
+.cmer-scope-cm .cmer-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--cm-line);
+    font-size: 12px;
+    color: var(--cm-text);
+    vertical-align: middle;
+    /* Chốt chặn cuối: nội dung nào vẫn quá dài thì bị cắt, tuyệt đối không được
+       nong bảng ra làm cả danh sách cuộn ngang. */
+    overflow: hidden;
+}
+
+.cmer-row {
+    background: var(--cm-surface);
+    cursor: pointer;
+    transition: background var(--cm-ease);
+}
+
+.cmer-row:hover td {
+    background: var(--cm-hover);
+}
+
+/* Dòng đang chọn — vạch màu ở cột đầu thay cho việc chỉ đổi nền nhạt */
+.cmer-row.is-selected td {
+    background: var(--cm-blue-tint);
+}
+
+.cmer-row.is-selected td:first-child {
+    box-shadow: inset 3px 0 0 var(--cm-blue);
+}
+
+.cmer-scope-cm .cmer-col-desc {
+    width: 22%;
+}
+
+.cmer-scope-cm .cmer-desc-text {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cmer-scope-cm .cmer-col-entity {
+    width: 26%;
+}
+
+.cmer-entity {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.cmer-entity-type {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: var(--cm-muted);
+}
+
+.cmer-entity-name {
+    font-weight: 600;
+    color: var(--cm-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cmer-entity-code {
+    margin-left: 6px;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--cm-text-soft);
+}
+
+.cmer-entity--unknown {
+    font-style: italic;
+    color: var(--cm-text-soft);
+    opacity: 0.7;
+}
+
+.cmer-scope-cm .cmer-col-assignee {
+    width: 18%;
+}
+
+.cmer-assignee {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--cm-text-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.cmer-assignee.is-mine {
+    color: #047857;
+}
+
+.cmer-assignee--none {
+    font-weight: 500;
+    font-style: italic;
+    opacity: 0.65;
+}
+
+.cmer-claim-hint {
+    margin: 0 0 4px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: #f0f7ff;
+    border: 1px solid #cfe3fb;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #1e3a5f;
+}
+
+.cmer-scope-cm .cmer-col-date {
+    width: 15%;
+    font-size: 11.5px;
+    color: var(--cm-text-soft);
+    white-space: nowrap;
+}
+
+.cmer-scope-cm .cmer-col-status {
+    width: 19%;
+}
+
+.cmer-pagination {
+    flex-shrink: 0;
+    padding: 10px 12px;
+    border-top: 1px solid var(--cm-border);
+    background: var(--cm-surface);
+}
+
+.cmer-placeholder {
+    padding: 48px 16px;
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--cm-muted);
+}
+
+/* ══════════════════════════════════════════
+   Phải — chi tiết và xử lý
+   ══════════════════════════════════════════ */
+.cmer-right-panel {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    background: var(--cm-surface);
+}
+
+.cmer-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-shrink: 0;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--cm-border);
+}
+
+.cmer-panel-meta {
+    min-width: 0;
+}
+
+.cmer-panel-eyebrow {
+    margin-bottom: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.cmer-panel-title {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--cm-ink);
+}
+
+.cmer-panel-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+    min-height: 0;
+    padding: 16px 20px 22px;
+    overflow-y: auto;
+}
+
+.cmer-detail-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    min-width: 0;
+}
+
+.cmer-detail-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.cmer-detail-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.cmer-detail-value {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--cm-ink);
+}
+
+.cmer-detail-desc-box {
+    width: 100%;
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid var(--cm-border);
+    border-left: 3px solid var(--cm-blue);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface-sunken);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--cm-text);
+    white-space: pre-line;
+}
+
+.cmer-divider {
+    margin: 2px 0;
+    border: 0;
+    border-top: 1px solid var(--cm-border);
+}
+
+.cmer-section-title {
+    margin: 0;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.cmer-cancelled-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid var(--cm-border);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-hover);
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--cm-text-soft);
+}
+
+.cmer-cancelled-box svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.cmer-cancelled-note {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--cm-border-strong);
+}
+
+/* ── Biểu mẫu ── */
+.cmer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.cmer-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cmer-form-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--cm-text);
+}
+
+.cmer-required {
+    color: var(--cm-danger-strong);
+}
+
+.cmer-form-textarea {
+    width: 100%;
+    padding: 9px 11px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--cm-ink);
+    outline: none;
+    resize: vertical;
+    transition: border-color var(--cm-ease), box-shadow var(--cm-ease);
+}
+
+.cmer-form-textarea:focus {
+    border-color: var(--cm-blue);
+    box-shadow: var(--cm-ring);
+}
+
+.cmer-form-textarea::placeholder {
+    color: var(--cm-muted);
+}
+
+.cmer-form-textarea:disabled {
+    background: #f6f7f9;
+    color: var(--cm-muted);
+    cursor: not-allowed;
+}
+
+.cmer-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2px;
+}
+
+/* ── Chỗ trống khi chưa chọn báo cáo ── */
+.cmer-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex: 1;
+    padding: 24px;
+    text-align: center;
+    color: var(--cm-muted);
+}
+
+.cmer-empty-icon {
+    display: flex;
+    color: var(--cm-ink);
+    opacity: 0.2;
+}
+
+.cmer-empty-text {
+    max-width: 280px;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+}

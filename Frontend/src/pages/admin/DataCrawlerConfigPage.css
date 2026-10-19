@@ -1,0 +1,404 @@
+/* ================================================================
+   DataCrawlerConfigPage.css
+
+   Khung trang, card, bảng, form lấy từ admin-ui.css. File này chỉ giữ
+   những khối riêng của trang thu thập dữ liệu: ô thông tin lịch chạy,
+   công tắc bật/tắt nguồn và khối hạn mức token.
+   ================================================================ */
+
+/* ── Bố cục: form cấu hình rộng hơn khối hạn mức bên cạnh ── */
+.dcc-row-split {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 14px;
+    align-items: start;
+}
+
+@media (max-width: 1000px) {
+    .dcc-row-split {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Ô thông tin lịch chạy ── */
+.dcc-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+@media (max-width: 820px) {
+    .dcc-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.dcc-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 13px 15px;
+    border: 1px solid var(--cm-border);
+    border-radius: var(--cm-radius);
+    background: var(--cm-surface-sunken);
+}
+
+.dcc-info-lbl {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--cm-text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.dcc-info-lbl svg {
+    color: var(--cm-blue);
+}
+
+.dcc-info-val {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--cm-ink);
+    overflow-wrap: anywhere;
+}
+
+/* ── Form chu kỳ ── */
+.dcc-cron-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.dcc-cron-field {
+    margin-bottom: 0;
+}
+
+.dcc-cron-input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.dcc-cron-sep {
+    font-size: 13px;
+    color: var(--cm-text-soft);
+    white-space: nowrap;
+}
+
+/* Input giờ:phút — thu nhỏ để khớp với ô số ngày */
+.adm-input--time {
+    width: 110px;
+    min-width: 100px;
+    cursor: pointer;
+}
+
+.dcc-cron-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--cm-text-soft);
+}
+
+.dcc-cron-hint svg {
+    flex-shrink: 0;
+    color: var(--cm-muted);
+}
+
+/* ── Bảng nguồn dữ liệu ── */
+.dcc-source-table thead th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background: var(--cm-surface-alt);
+}
+
+.dcc-source-table thead th:first-child,
+.dcc-source-table tbody td:first-child {
+    padding-left: 20px;
+}
+
+.dcc-source-table thead th:last-child,
+.dcc-source-table tbody td:last-child {
+    padding-right: 20px;
+}
+
+.dcc-planned-tag {
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.dcc-code {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 5px;
+    background: var(--cm-hover);
+    color: var(--cm-text);
+}
+
+.dcc-test-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+}
+
+/* ── Công tắc bật/tắt nguồn ── */
+.dcc-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 21px;
+    padding: 0;
+    border: none;
+    border-radius: 11px;
+    cursor: pointer;
+    transition: background var(--cm-ease);
+}
+
+.dcc-toggle--on {
+    background: var(--cm-blue);
+}
+
+.dcc-toggle--off {
+    background: var(--cm-border-strong);
+}
+
+.dcc-toggle:focus-visible {
+    outline: none;
+    box-shadow: var(--cm-ring);
+}
+
+.dcc-toggle:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.dcc-toggle-knob {
+    position: absolute;
+    top: 2.5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    transition: left var(--cm-ease);
+}
+
+.dcc-toggle--on .dcc-toggle-knob {
+    left: 17px;
+}
+
+.dcc-toggle--off .dcc-toggle-knob {
+    left: 3px;
+}
+
+/* ── Form AI: hai cột, các trường dài chiếm trọn hàng ── */
+.dcc-ai-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 14px;
+}
+
+.dcc-field--full {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 640px) {
+    .dcc-ai-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Hạn mức token ── */
+.dcc-token-value {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 10px;
+}
+
+.dcc-token-bar-bg {
+    height: 8px;
+    border-radius: 4px;
+    background: var(--cm-hover);
+    overflow: hidden;
+}
+
+.dcc-token-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 220ms ease;
+}
+
+.dcc-token-sub {
+    margin: 8px 0 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cm-text-soft);
+}
+
+.dcc-token-warn {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 10px 12px;
+    border: 1px solid var(--cm-warn-border);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-warn-bg);
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--cm-warn-strong);
+}
+
+.dcc-token-warn svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--cm-warn);
+}
+
+/* ══════════════════════════════════════════
+   Phiên đang chạy — bảng theo dõi trực tiếp
+   ══════════════════════════════════════════ */
+.dcc-live {
+    border-color: #cfe3fb;
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 60%);
+}
+
+.dcc-stop-all {
+    margin-left: auto;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+.dcc-stop-all:hover:not(:disabled) {
+    background: #fef2f2;
+    border-color: #f87171;
+}
+
+.dcc-live-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 4px 2px 2px;
+}
+
+.dcc-live-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px 14px;
+    padding: 10px 12px;
+    border: 1px solid var(--cm-border, #e5e7eb);
+    border-radius: 10px;
+    background: #fff;
+}
+
+.dcc-live-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.dcc-live-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0d1b3e;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dcc-live-code {
+    padding: 0 5px;
+    border-radius: 4px;
+    background: #f1f5f9;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #64748b;
+}
+
+.dcc-live-stage {
+    font-size: 11.5px;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.dcc-live-side {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.dcc-live-count {
+    font-size: 11.5px;
+    color: #9ca3af;
+}
+
+.dcc-live-owner {
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: #f4f4f5;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #52525b;
+}
+
+.dcc-live-stop {
+    padding: 2px 9px;
+    border: 1px solid #fecaca;
+    border-radius: 999px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #b91c1c;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.dcc-live-stop:hover:not(:disabled) {
+    background: #fef2f2;
+    border-color: #f87171;
+}
+
+.dcc-live-stop:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* Thanh tiến độ trải hết chiều ngang, nằm dưới cả 2 cột */
+.dcc-live-bar {
+    grid-column: 1 / -1;
+    height: 5px;
+    border-radius: 999px;
+    background: #eef2f7;
+    overflow: hidden;
+}
+
+.dcc-live-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: #2563eb;
+    transition: width 0.4s ease;
+}
+
+/* Chưa biết % (nguồn không trả tổng số tin) — chạy sọc thay vì hiện 0% sai sự thật */
+.dcc-live-fill--unknown {
+    background: repeating-linear-gradient(90deg, #bfdbfe 0 10px, #eef2f7 10px 20px);
+}

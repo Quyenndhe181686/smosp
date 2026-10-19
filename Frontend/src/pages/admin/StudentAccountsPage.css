@@ -1,0 +1,17 @@
+/* ================================================================
+   StudentAccountsPage.css
+
+   Khung trang, thẻ số liệu, bảng, hộp thoại đều lấy từ admin-ui.css.
+   File này chỉ giữ phần riêng của trang danh sách sinh viên.
+   ================================================================ */
+
+/* Cột trạng thái rộng đúng bằng ô chọn bên dưới để tiêu đề không bị lệch */
+.sap-th-status {
+    width: 190px;
+}
+
+@media (max-width: 720px) {
+    .sap-th-status {
+        width: auto;
+    }
+}

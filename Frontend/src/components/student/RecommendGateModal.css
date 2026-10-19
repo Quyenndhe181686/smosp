@@ -1,0 +1,169 @@
+/* =============================================================
+   RecommendGateModal.css — popup chặn khi hồ sơ chưa đủ để gợi ý
+   Cùng ngôn ngữ thị giác cartoony với trang gợi ý:
+   viền dày 2px, bóng cứng, nền pastel, bo góc lớn.
+   ============================================================= */
+
+.rgate-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(13, 27, 62, 0.38);
+    animation: rgate-fade 0.18s ease;
+}
+
+.rgate {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    padding: 26px 26px 22px;
+    background: #FFFFFF;
+    border: 2px solid #FCD34D;
+    border-radius: 22px;
+    box-shadow: 0 6px 0 #FDE68A, 0 24px 60px rgba(13, 27, 62, 0.22);
+    font-family: var(--font-family, "Be Vietnam Pro", sans-serif);
+    animation: rgate-pop 0.2s ease;
+}
+
+.rgate__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 2px solid #E9EEF6;
+    border-radius: 10px;
+    background: #FFFFFF;
+    color: #64748B;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.rgate__close:hover {
+    background: #F1F5F9;
+    color: #0F172A;
+}
+
+.rgate__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 14px;
+    border-radius: 14px;
+    background: #FEF6DC;
+    border: 2px solid #FCD34D;
+    color: #B45309;
+}
+
+.rgate__title {
+    margin: 0 0 8px;
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.4;
+    color: #0F172A;
+}
+
+.rgate__desc {
+    margin: 0;
+    font-size: 13.5px;
+    font-weight: 500;
+    line-height: 1.7;
+    color: #475569;
+}
+
+.rgate__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 20px;
+}
+
+.rgate__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.rgate__btn--primary {
+    background: #F37021;
+    border-color: #C2540F;
+    color: #FFFFFF;
+    box-shadow: 0 4px 0 #C2540F;
+}
+
+.rgate__btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #C2540F;
+}
+
+.rgate__btn--ghost {
+    margin-left: auto;
+    background: #FFFFFF;
+    border-color: #E2E8F0;
+    color: #64748B;
+    box-shadow: 0 4px 0 #EEF2F7;
+}
+
+.rgate__btn--ghost:hover {
+    transform: translateY(-2px);
+    background: #F8FAFC;
+    box-shadow: 0 6px 0 #EEF2F7;
+}
+
+.rgate__btn:active {
+    transform: translateY(1px);
+}
+
+@keyframes rgate-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes rgate-pop {
+    from { opacity: 0; transform: translateY(10px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 520px) {
+    .rgate__actions {
+        flex-direction: column;
+    }
+
+    .rgate__btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .rgate__btn--ghost {
+        margin-left: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rgate-overlay,
+    .rgate {
+        animation: none;
+    }
+
+    .rgate__btn:hover {
+        transform: none;
+    }
+}

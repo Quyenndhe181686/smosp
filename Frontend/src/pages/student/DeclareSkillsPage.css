@@ -1,0 +1,639 @@
+/* ================================================================
+   DeclareSkillsPage.css
+   Font: Be Vietnam Pro | Brand: #034EA2 · #F37021 · #51B848
+   Prefix: sk- (Skills)
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+.sk-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    width: 100%;
+    /* Chừa chỗ cho thanh lưu lơ lửng (.sk-footer-bar) khỏi che nội dung cuối trang */
+    padding-bottom: 88px;
+}
+
+/* ── No entrance animation ── */
+.sk-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+.sk-head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+/* Nhãn bước — màu teal của bước "Kỹ năng" trong luồng khai báo hồ sơ */
+.sk-step-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    margin-bottom: 4px;
+    border-radius: 999px;
+    background: #E6FAF6;
+    color: #0D9488;
+    border: 1px solid #A7E8DE;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.sk-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 22px;
+    font-weight: 800;
+    color: #0d1b3e;
+    margin: 0;
+}
+
+/* Icon tiêu đề trong ô vuông bo tròn có viền — dùng chung ở cả 4 trang khai báo. */
+.sk-title-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: #CCFBF1;
+    border: 2.5px solid #99F6E4;
+    box-shadow: 0 3px 0 #99F6E4;
+    color: #0D9488;
+    flex-shrink: 0;
+}
+
+.sk-subtitle {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 0;
+    max-width: 760px;
+    line-height: 1.6;
+}
+
+.sk-context-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(90deg, #E6FAF6 0%, #F2FBFA 100%);
+    border: 1px solid #C4EFE8;
+    color: #0B6E66;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 13px 20px;
+    border-radius: 12px;
+}
+
+.sk-context-banner strong {
+    font-weight: 800;
+    color: #0D9488;
+}
+
+.sk-context-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #0D9488;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.18);
+    flex-shrink: 0;
+}
+
+/* ── Impact banner (results depend on this declaration) ────────── */
+.sk-impact-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #FFF4E9;
+    border: 1px solid #FBD7B8;
+    color: #9A4A0E;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    padding: 13px 20px;
+    border-radius: 12px;
+}
+
+.sk-impact-banner svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: #F37021;
+}
+
+.sk-impact-banner strong {
+    font-weight: 800;
+    color: #D95F14;
+}
+
+.sk-impact-banner-close {
+    background: transparent;
+    border: none;
+    color: #9A4A0E;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.65;
+    padding: 2px 6px;
+    margin-left: auto;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+}
+
+.sk-impact-banner-close:hover {
+    opacity: 1;
+    background: rgba(243, 112, 33, 0.12);
+}
+
+.sk-card {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    transition: none;
+}
+
+.sk-card:hover {
+    box-shadow: none;
+}
+
+/* ── Suggested-from-transcript card ──────────────────────────── */
+.sk-suggested-card {
+    border-left: 3px solid #F37021 !important;
+    padding-left: 18px !important;
+}
+
+.sk-suggested-card:hover {
+    border-left: 3px solid #F37021 !important;
+}
+
+.sk-suggested-title {
+    font-size: 14.5px;
+    font-weight: 800;
+    color: #D95F14;
+    margin: 0 0 6px;
+}
+
+.sk-suggested-desc {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: #6b7280;
+    margin: 0 0 18px;
+}
+
+/* Explanation Box */
+.sk-suggest-explanation {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #FFF8F3;
+    border-left: 2.5px solid #F37021;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #854F0B;
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.sk-suggest-explanation.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.sk-suggest-explanation-text {
+    line-height: 1.4;
+}
+
+/* ── Pills ────────────────────────────────────────────────────── */
+.sk-pill-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* ── 3 Column Grid for Cartoony Skill Tags ── */
+.sk-grid-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px 14px;
+    width: 100%;
+    margin-top: 16px;
+}
+
+@media (max-width: 1024px) {
+    .sk-grid-3col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .sk-grid-3col {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tag kỹ năng — tông xanh mòng két, kiểu cartoon: nền đặc, viền dày, bóng cứng. */
+.sk-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    height: auto;
+    padding: 10px 18px;
+    border-radius: 22px;
+    border: 2.5px solid #94A3B8;
+    background: #FFFFFF;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #1E293B;
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    box-shadow: 0 3.5px 0 #CBD5E1 !important;
+    transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease, border-color 140ms ease;
+    width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    word-break: break-word;
+    text-align: left;
+    line-height: 1.35;
+}
+
+.sk-pill:hover {
+    transform: translateY(-2px);
+    border-color: #0D9488;
+    background: #F0FDFA;
+    box-shadow: 0 5.5px 0 #99F6E4 !important;
+}
+
+/* Bấm xuống thì tag lún theo — phản hồi kiểu nút bấm vật lý. */
+.sk-pill:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 #CBD5E1 !important;
+}
+
+.sk-pill-checked {
+    background: #14B8A6 !important;
+    border: 2.5px solid #0F766E !important;
+    color: #FFFFFF !important;
+    font-weight: 800;
+    box-shadow: 0 3.5px 0 #0F766E !important;
+    transform: translateY(-2px);
+}
+
+.sk-pill-checked:hover {
+    background: #0D9488 !important;
+    box-shadow: 0 5.5px 0 #0F766E !important;
+}
+
+/* Kỹ năng được hệ thống gợi ý: viền cam + nền cam rất nhạt để nhận ra ngay trong danh sách. */
+.sk-pill-suggested {
+    display: inline-flex !important;
+    width: auto !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    padding: 0 16px !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+    border-color: #F37021;
+    background: #FFF7ED;
+    box-shadow: 0 3.5px 0 #FED7AA !important;
+}
+
+.sk-pill-suggested:hover {
+    border-color: #EA580C;
+    background: #FFEDD5;
+    box-shadow: 0 5.5px 0 #FDBA74 !important;
+}
+
+.sk-pill-suggested.sk-pill-checked {
+    background: #14B8A6 !important;
+    border: 2.5px solid #0F766E !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 3.5px 0 #0F766E !important;
+}
+
+.sk-checkbox {
+    width: 18px;
+    height: 18px;
+    border-radius: 6px;
+    border: 2.5px solid #94A3B8;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 140ms ease;
+}
+
+.sk-checkbox-on {
+    background: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+}
+
+.sk-checkbox-on::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 9px;
+    border: solid #0D9488;
+    border-width: 0 2.2px 2.2px 0;
+    transform: rotate(45deg);
+}
+
+.sk-tag-hint {
+    font-size: 10px;
+    font-weight: 800;
+    color: #FFFFFF;
+    background: #F37021;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1.5px solid #C2410C;
+}
+
+.sk-pill-checked .sk-tag-hint {
+    background: #FFFFFF;
+    color: #0F766E;
+    border-color: #99F6E4;
+}
+
+/* ── Pagination ─────────────────────────────────────────────── */
+.sk-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid transparent;
+}
+
+.sk-page-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+.sk-page-btn:hover:not(:disabled) {
+    background: transparent;
+    color: #034EA2;
+    box-shadow: none;
+}
+
+.sk-page-btn:disabled {
+    opacity: 0.4;
+    background: transparent;
+    color: #94A3B8;
+    cursor: not-allowed;
+}
+
+.sk-page-info {
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    padding: 4px 8px;
+    background: transparent;
+}
+
+/* ── List card ────────────────────────────────────────────────── */
+.sk-list-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 18px;
+}
+
+.sk-list-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0d1b3e;
+    margin: 0;
+}
+
+.sk-selected-count {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0D9488;
+}
+
+.sk-search {
+    width: 100%;
+    max-width: 320px;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 10px;
+    border: 1px solid #E6E8EF;
+    font-size: 13px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    margin-bottom: 22px;
+    outline: none;
+    transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.sk-search:focus {
+    border-color: #034EA2;
+    box-shadow: 0 0 0 3px rgba(3, 78, 162, 0.12);
+}
+
+.sk-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sk-group-title {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #98A0AC;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin: 0 0 12px;
+}
+
+.sk-empty {
+    font-size: 13px;
+    color: #98A0AC;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Thanh lưu lơ lửng: danh sách kỹ năng dài, trước đây phải cuộn hết xuống cuối mới
+   thấy nút Lưu nên dễ chọn xong rồi rời trang mà chưa lưu.
+   Dùng `fixed` chứ không phải `sticky`: sticky-bottom chỉ đẩy phần tử XUỐNG khi đã
+   cuộn qua nó, mà thanh này là phần tử cuối trang nên sẽ không bao giờ ghim.
+   Neo theo mép phải để không phải bù trừ chiều rộng sidebar (đóng/mở được). */
+.sk-footer-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    position: fixed !important;
+    right: 28px;
+    bottom: 20px;
+    z-index: 60;
+    width: auto;
+    max-width: calc(100vw - 56px);
+    margin: 0 !important;
+    padding: 9px 10px 9px 20px !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 999px !important;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18) !important;
+}
+
+.sk-footer-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1F2430;
+}
+
+.sk-footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.sk-save-ok {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #27500a;
+    background: #eaf3de;
+    padding: 8px 14px;
+    border-radius: 8px;
+}
+
+.sk-btn-primary {
+    height: 38px;
+    padding: 0 20px;
+    border-radius: 999px;
+    white-space: nowrap;
+    border: none;
+    background: linear-gradient(135deg, #14B8A6 0%, #0B7C72 100%);
+    color: #fff;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    box-shadow: 0 6px 18px rgba(13, 148, 136, 0.26);
+    transition: background 140ms ease, transform 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms ease;
+}
+
+.sk-btn-primary:hover:not(:disabled) {
+    filter: brightness(1.07);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(13, 148, 136, 0.34);
+}
+
+.sk-btn-primary:active:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.sk-btn-primary:disabled {
+    opacity: 0.7;
+    cursor: default;
+    transform: none;
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 640px) {
+    .sk-card {
+        padding: 20px;
+    }
+
+    /* Màn hẹp: viên thuốc trải ngang thay vì co lại ở góc phải */
+    .sk-footer-bar {
+        left: 14px;
+        right: 14px;
+        bottom: 12px;
+        max-width: none;
+        padding: 10px 12px 10px 16px !important;
+        border-radius: 16px !important;
+    }
+
+    .sk-footer-text {
+        font-size: 12px;
+    }
+
+    .sk-footer-actions {
+        justify-content: flex-end;
+    }
+}
+
+/* ── 3 Column Panel Layout ── */
+.sk-columns-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 20px;
+    align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+    .sk-columns-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .sk-columns-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.sk-column-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+@media (min-width: 1025px) {
+    .sk-column-card:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -8px;
+        border-right: 2px dashed #CBD5E1;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .sk-column-card:nth-child(odd):not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -8px;
+        border-right: 2px dashed #CBD5E1;
+    }
+}

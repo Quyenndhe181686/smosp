@@ -1,0 +1,562 @@
+/* MajorDetailPage.css
+   Prefix: major-
+   Hero banner unchanged. Section headings share one orange accent color
+   for visual sync. Spec cards are icon-free / badge-free — modern card
+   with a gradient top accent, decorative index number, and hover-reveal
+   arrow. Every card also fades/slides in on scroll (staggered).
+*/
+
+/* ---------------------------------------------------------------------- */
+/* Layout & Page Container                                                */
+/* ---------------------------------------------------------------------- */
+
+.major-page-container {
+    width: 100%;
+    background-color: #ffffff;
+    font-family: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #16181d;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Hero Banner — unchanged                                                 */
+/* ---------------------------------------------------------------------- */
+
+.major-banner {
+    position: relative;
+    width: 100%;
+    height: 560px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.major-banner--no-image {
+    height: auto;
+    padding: 80px 0 40px;
+}
+
+.major-banner__image-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 68%;
+    height: 100%;
+    z-index: 1;
+}
+
+.major-banner__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.major-banner__image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #e8f0fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #034ea2;
+}
+
+.major-banner__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 1) 38%,
+            rgba(255, 255, 255, 0.85) 50%,
+            rgba(255, 255, 255, 0) 100%);
+}
+
+@media (max-width: 992px) {
+    .major-banner__overlay {
+        background: linear-gradient(to right,
+                rgba(255, 255, 255, 1) 0%,
+                rgba(255, 255, 255, 0.95) 60%,
+                rgba(255, 255, 255, 0.2) 100%);
+    }
+}
+
+.major-banner__content {
+    position: relative;
+    z-index: 3;
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 56px;
+}
+
+.major-banner__eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 800;
+    color: #034ea2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+}
+
+.major-banner__title {
+    font-size: 64px;
+    font-weight: 900;
+    color: #f37021;
+    line-height: 1.08;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+    max-width: 640px;
+    letter-spacing: -1px;
+}
+
+@media (max-width: 1200px) {
+    .major-banner__title {
+        font-size: 52px;
+    }
+}
+
+@media (max-width: 768px) {
+    .major-banner__title {
+        font-size: 38px;
+    }
+
+    .major-banner__content {
+        padding: 0 24px;
+    }
+}
+
+.major-banner__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 16px;
+    color: #5b6270;
+}
+
+.major-banner__code {
+    font-weight: 800;
+    color: #034ea2;
+    background: #e8f0fa;
+    padding: 4px 14px;
+    border-radius: 6px;
+    font-size: 13.5px;
+    letter-spacing: 0.5px;
+}
+
+.major-banner__dot {
+    color: #c7cbd3;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Main Content Area                                                      */
+/* ---------------------------------------------------------------------- */
+
+.major-content {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 80px 56px 120px;
+    display: block !important;
+}
+
+@media (max-width: 768px) {
+    .major-content {
+        padding: 56px 24px 72px;
+    }
+}
+
+.major-page-container .major-section {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100%;
+    margin-bottom: 96px;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+}
+
+.major-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Both section headings share the same orange accent for visual sync */
+.major-section__heading {
+    font-size: 40px;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: -1px;
+    color: #16181d;
+}
+
+.major-section__heading--accent {
+    color: #f37021;
+}
+
+.major-section__heading--center {
+    text-align: center;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .major-section__heading {
+        font-size: 30px;
+    }
+}
+
+/* ---------------------------------------------------------------------- */
+/* "Giới thiệu ngành" — heading + description, fully centered, no box      */
+/* ---------------------------------------------------------------------- */
+
+.major-page-container .major-intro {
+    display: block !important;
+    text-align: center;
+    max-width: 840px;
+    width: 100%;
+    margin: 0 auto;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+.major-intro__text {
+    margin: 24px auto 0;
+    font-size: 18px;
+    line-height: 1.9;
+    color: #333f48;
+    white-space: pre-line;
+    text-align: center;
+}
+
+/* ---------------------------------------------------------------------- */
+/* "Các chuyên ngành" — centered heading ABOVE the grid                    */
+/* ---------------------------------------------------------------------- */
+
+.major-page-container .major-specs__heading {
+    display: block !important;
+    width: 100%;
+    text-align: center;
+    margin: 0 0 44px;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+.major-specs__subheading {
+    margin: 10px 0 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #f37021;
+    text-align: center;
+}
+
+.major-page-container .major-spec-grid {
+    display: grid !important;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+@media (max-width: 992px) {
+    .major-page-container .major-spec-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .major-page-container .major-spec-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Spec card — modern, icon-free, badge-free                               */
+/* ---------------------------------------------------------------------- */
+
+.major-spec-card {
+    position: relative;
+    overflow: hidden;
+    border: none !important;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 2px 14px rgba(16, 24, 40, 0.06);
+    padding: 34px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease;
+}
+
+/* gradient accent bar that grows in on hover */
+.major-spec-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f37021, #ffb27a);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.major-spec-card:hover::before,
+.major-spec-card:focus-visible::before {
+    transform: scaleX(1);
+}
+
+.major-spec-card:hover,
+.major-spec-card:focus-visible {
+    transform: translateY(-8px);
+    box-shadow: 0 26px 48px rgba(243, 112, 33, 0.18);
+}
+
+.major-spec-card:focus-visible {
+    outline: 2px solid #034ea2;
+    outline-offset: 3px;
+}
+
+/* large faint decorative index number in the corner */
+.major-spec-card__index {
+    position: absolute;
+    top: 8px;
+    right: 18px;
+    font-size: 56px;
+    font-weight: 900;
+    color: #16181d;
+    opacity: 0.045;
+    line-height: 1;
+    pointer-events: none;
+    transition: opacity 0.28s ease;
+}
+
+.major-spec-card:hover .major-spec-card__index {
+    opacity: 0.09;
+}
+
+.major-spec-card__code {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #034ea2;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.major-spec-card__name {
+    font-size: 20px;
+    font-weight: 900;
+    color: #16181d;
+    line-height: 1.32;
+    margin: 10px 0 0;
+}
+
+.major-spec-card__count {
+    font-size: 13px;
+    color: #5b6270;
+    margin-top: 10px;
+}
+
+.major-spec-card__link {
+    font-size: 13px;
+    font-weight: 800;
+    color: #f37021;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, gap 0.15s ease;
+}
+
+.major-spec-card:hover .major-spec-card__link,
+.major-spec-card:focus-visible .major-spec-card__link {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.major-spec-card:hover .major-spec-card__link {
+    gap: 9px;
+}
+
+.major-spec-grid__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 48px 24px;
+    color: #5b6270;
+    font-size: 15px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Academic Course Curriculum Layout (unchanged — kept for other views)    */
+/* ---------------------------------------------------------------------- */
+
+.terms-container {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+}
+
+.term-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.term-header {
+    font-size: 22px;
+    font-weight: 900;
+    color: #034ea2;
+    border-bottom: 2px solid #e8f0fa;
+    padding-bottom: 10px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 48px;
+}
+
+@media (max-width: 768px) {
+    .courses-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+.course-row {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    padding: 4px 0;
+}
+
+.course-row__code {
+    font-size: 14.5px;
+    font-weight: 800;
+    color: #16181d;
+    min-width: 90px;
+    letter-spacing: 0.2px;
+}
+
+.course-row__name {
+    font-size: 14.5px;
+    color: #4a5568;
+    line-height: 1.5;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Scroll Reveal — sections AND individual spec cards (staggered)          */
+/* ---------------------------------------------------------------------- */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* cards need their own base transform combined with the hover transform,
+   so the reveal transition only targets opacity/translateY while idle */
+.major-spec-card.reveal {
+    transform: translateY(28px);
+}
+
+.major-spec-card.reveal.revealed {
+    transform: translateY(0);
+}
+
+.major-spec-card.reveal.revealed:hover,
+.major-spec-card.reveal.revealed:focus-visible {
+    transform: translateY(-8px);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Breadcrumbs Styling                                                    */
+/* ---------------------------------------------------------------------- */
+
+.major-breadcrumb {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #5b6270;
+}
+
+.major-breadcrumb a {
+    color: #034ea2;
+    text-decoration: none;
+    transition: color 0.2s, text-decoration 0.2s;
+    font-weight: 600;
+}
+
+.major-breadcrumb a:hover {
+    color: #f37021;
+    text-decoration: underline;
+}
+
+.major-breadcrumb [aria-current="page"] {
+    color: #5b6270;
+    font-weight: 500;
+}
+
+.major-breadcrumb-sep {
+    color: #c7cbd3;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.major-report-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #4b5563;
+    border-radius: 20px;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    width: fit-content;
+}
+
+.major-report-btn:hover {
+    background: #f8fafc;
+    border-color: #f37021;
+    color: #f37021;
+}

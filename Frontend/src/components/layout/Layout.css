@@ -1,0 +1,1638 @@
+/* ================================================================
+   Layout.css — SMOSP App Shell
+   Brand: Blue #034EA2 | Orange #F37021 | Green #51B848
+   ================================================================ */
+
+/* ── Root layout ─────────────────────────────────────────────── */
+
+.smosp-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f0f2f7;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TOPBAR
+══════════════════════════════════════════════════════════════ */
+
+.smosp-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 64px;
+    background: #034EA2;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: 0 2px 16px rgba(3, 78, 162, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.smosp-topbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.smosp-topbar-logo-img {
+    height: 30px;
+    width: auto;
+    display: block;
+}
+
+.smosp-topbar-logo-text {
+    font-size: 19px;
+    font-weight: 800;
+    color: #fff;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.smosp-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.smosp-topbar-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.smosp-topbar-link {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 18px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 6px;
+    background: none;
+    border: none;
+    transition: background 150ms ease, color 150ms ease;
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    line-height: 1;
+}
+
+.smosp-topbar-link:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: #fff;
+}
+
+.smosp-topbar-link.active {
+    color: #F37021;
+    font-weight: 700;
+}
+
+/* ── Bell button ─────────────────────────────────────────────── */
+
+.smosp-topbar-bell-wrap {
+    position: relative;
+}
+
+.smosp-topbar-icon-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.88);
+    cursor: pointer;
+    transition: background 150ms ease, color 150ms ease;
+}
+
+.smosp-topbar-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.20);
+    color: #fff;
+}
+
+.smosp-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 3px;
+    background: #F37021;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+/* ── Notification dropdown ───────────────────────────────────── */
+
+.smosp-notif-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 340px;
+    background: #fff;
+    border: 1px solid #e4e6ee;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(3, 78, 162, 0.13);
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.smosp-notif-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 12px;
+    border-bottom: 1px solid #f0f2f7;
+}
+
+.smosp-notif-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0d1b3e;
+}
+
+.smosp-notif-mark-all {
+    font-size: 12px;
+    font-weight: 500;
+    color: #034EA2;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    transition: color 150ms ease;
+}
+
+.smosp-notif-mark-all:hover {
+    color: #F37021;
+}
+
+.smosp-notif-list {
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.smosp-notif-list::-webkit-scrollbar {
+    width: 3px;
+}
+
+.smosp-notif-list::-webkit-scrollbar-thumb {
+    background: #d1d5e0;
+    border-radius: 2px;
+}
+
+.smosp-notif-empty {
+    padding: 36px 16px;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+.smosp-notif-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 120ms ease;
+    border-bottom: 1px solid #f6f7fa;
+}
+
+.smosp-notif-item:last-child {
+    border-bottom: none;
+}
+
+.smosp-notif-item:hover {
+    background: #f6f7fa;
+}
+
+.smosp-notif-item.unread {
+    background: #eef4ff;
+}
+
+.smosp-notif-item.unread:hover {
+    background: #dde8fd;
+}
+
+.smosp-notif-dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    background: #F37021;
+    border-radius: 50%;
+    margin-top: 5px;
+}
+
+.smosp-notif-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.smosp-notif-msg {
+    font-size: 13px;
+    color: #1f2937;
+    line-height: 1.45;
+    margin: 0 0 4px;
+    word-break: break-word;
+}
+
+.smosp-notif-time {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+/* ── Avatar dropdown ─────────────────────────────────────────── */
+
+.smosp-topbar-avatar-wrap {
+    position: relative;
+}
+
+.smosp-topbar-avatar-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 12px 0 6px;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.92);
+    cursor: pointer;
+    transition: background 150ms ease;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.smosp-topbar-avatar-btn:hover {
+    background: rgba(255, 255, 255, 0.20);
+    color: #fff;
+}
+
+.smosp-avatar-img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+}
+
+.smosp-avatar-initials {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.smosp-avatar-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 220px;
+    background: #fff;
+    border: 1px solid #e4e6ee;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(3, 78, 162, 0.13);
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.smosp-avatar-dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px 12px;
+    background: #f6f8ff;
+    border-bottom: 1px solid #e4e6ee;
+}
+
+.smosp-avatar-dropdown-header .smosp-avatar-initials {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+    background: #034EA2;
+    flex-shrink: 0;
+}
+
+.smosp-avatar-dropdown-header .smosp-avatar-img {
+    width: 36px;
+    height: 36px;
+}
+
+.smosp-avatar-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0d1b3e;
+    margin: 0 0 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.smosp-avatar-role {
+    font-size: 11px;
+    color: #6b7280;
+    margin: 0;
+}
+
+.smosp-avatar-dropdown-divider {
+    height: 1px;
+    background: #f0f2f7;
+    margin: 0;
+}
+
+.smosp-avatar-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #374151;
+    background: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: background 120ms ease, color 120ms ease;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    box-sizing: border-box;
+}
+
+.smosp-avatar-menu-item:hover {
+    background: #f0f2f7;
+    color: #0d1b3e;
+}
+
+.smosp-avatar-menu-item.danger {
+    color: #dc2626;
+}
+
+.smosp-avatar-menu-item.danger:hover {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BODY
+══════════════════════════════════════════════════════════════ */
+
+.smosp-body {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SIDEBAR — nền xanh đậm theo brand
+══════════════════════════════════════════════════════════════ */
+
+.smosp-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    /* Gradient từ xanh đậm xuống xanh nhạt hơn 1 chút */
+    background: linear-gradient(180deg, #023f88 0%, #034EA2 40%, #0355b0 100%);
+    border-right: none;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 64px);
+    position: sticky;
+    top: 64px;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    transition: width 240ms cubic-bezier(0.4, 0, 0.2, 1), margin-left 240ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms ease;
+}
+
+.smosp-sidebar.collapsed {
+    width: 0;
+    margin-left: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.smosp-sidebar::-webkit-scrollbar {
+    width: 3px;
+}
+
+.smosp-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.20);
+    border-radius: 2px;
+}
+
+/* ── Nav ────────────────────────────────────────────────────── */
+
+.smosp-sidebar-nav {
+    flex: 1;
+    padding: 20px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.smosp-sidebar-group {
+    margin-bottom: 8px;
+}
+
+.smosp-sidebar-group-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    padding: 0 12px;
+    margin-bottom: 6px;
+    margin-top: 20px;
+}
+
+.smosp-sidebar-group:first-child .smosp-sidebar-group-label {
+    margin-top: 0;
+}
+
+.smosp-sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+    transition: background 140ms ease, color 140ms ease;
+    cursor: pointer;
+    line-height: 1.2;
+    letter-spacing: 0.005em;
+}
+
+.smosp-sidebar-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    margin-right: 4px;
+}
+
+.smosp-sidebar-item svg {
+    flex-shrink: 0;
+    display: block;
+}
+
+.smosp-sidebar-item:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: #fff;
+}
+
+.smosp-sidebar-item.active {
+    background: rgba(255, 255, 255, 0.22) !important;
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35), 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.smosp-sidebar-item.active .smosp-sidebar-item-icon {
+    color: #FFA35C !important;
+}
+
+.smosp-sidebar-item.active:hover {
+    background: rgba(255, 255, 255, 0.28) !important;
+    color: #FFFFFF !important;
+}
+
+/* ── Sidebar bottom ──────────────────────────────────────────── */
+
+.smosp-sidebar-bottom {
+    padding: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.smosp-sidebar-home-btn,
+.smosp-sidebar-logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    transition: background 140ms ease, color 140ms ease;
+}
+
+.smosp-sidebar-home-btn {
+    color: rgba(255, 255, 255, 0.80);
+}
+
+.smosp-sidebar-home-btn:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: #fff;
+}
+
+.smosp-sidebar-logout-btn {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.smosp-sidebar-logout-btn:hover {
+    background: rgba(243, 112, 33, 0.18);
+    color: #ffb480;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MAIN CONTENT
+══════════════════════════════════════════════════════════════ */
+
+.smosp-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Breadcrumb ──────────────────────────────────────────────── */
+
+.smosp-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 28px 0;
+    background: transparent;
+    border-bottom: none;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.smosp-breadcrumb-link {
+    font-size: 13px;
+    color: #034EA2;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 120ms ease;
+}
+
+.smosp-breadcrumb-link:hover {
+    color: #F37021;
+    text-decoration: underline;
+}
+
+.smosp-breadcrumb-sep {
+    font-size: 13px;
+    color: #9ca3af;
+    user-select: none;
+}
+
+.smosp-breadcrumb-current {
+    font-size: 13px;
+    color: #4b5563;
+    font-weight: 600;
+}
+
+/* ── Content area ────────────────────────────────────────────── */
+
+.smosp-content {
+    flex: 1;
+    padding: 28px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+
+/* Tablet: sidebar thu hẹp thành icon-only */
+@media (max-width: 1024px) {
+    .smosp-sidebar {
+        width: 200px;
+    }
+}
+
+@media (max-width: 860px) {
+    .smosp-sidebar {
+        width: 54px;
+    }
+
+    .smosp-sidebar-group-label {
+        display: none;
+    }
+
+    .smosp-sidebar-item {
+        justify-content: center;
+        padding: 10px 0;
+    }
+
+    /* Ẩn text, chỉ giữ icon — nhưng vì không có icon nữa, ẩn luôn text label */
+    .smosp-sidebar-item-text {
+        display: none;
+    }
+
+    .smosp-sidebar-home-btn,
+    .smosp-sidebar-logout-btn {
+        justify-content: center;
+        padding: 10px 0;
+    }
+
+    .smosp-sidebar-home-btn-text,
+    .smosp-sidebar-logout-btn-text {
+        display: none;
+    }
+
+    .smosp-content {
+        padding: 16px;
+    }
+
+    .smosp-breadcrumb {
+        padding: 10px 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .smosp-sidebar {
+        display: none;
+    }
+
+    .smosp-topbar {
+        padding: 0 16px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .smosp-topbar-links {
+        display: none;
+    }
+}
+
+/* ── Special Sidebar Recommendation Item Style ── */
+.smosp-sidebar-item-special {
+    position: relative;
+    overflow: visible !important;
+    background: linear-gradient(135deg, rgba(243, 112, 33, 0.18) 0%, rgba(243, 112, 33, 0.08) 100%) !important;
+    border: 1.5px solid #F37021 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    box-shadow: 0 0 14px rgba(243, 112, 33, 0.35), inset 0 0 10px rgba(243, 112, 33, 0.15) !important;
+    gap: 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+.smosp-sidebar-item-special .smosp-sidebar-item-icon {
+    color: #FF8C38 !important;
+    filter: drop-shadow(0 0 6px rgba(243, 112, 33, 0.8));
+}
+
+.smosp-sidebar-item-special:hover {
+    background: linear-gradient(135deg, rgba(243, 112, 33, 0.28) 0%, rgba(243, 112, 33, 0.14) 100%) !important;
+    border-color: #FF9447 !important;
+    color: #fff !important;
+    box-shadow: 0 0 20px rgba(243, 112, 33, 0.6), inset 0 0 12px rgba(243, 112, 33, 0.25) !important;
+    transform: translateY(-1px);
+}
+
+.smosp-sidebar-item-special.active {
+    background: linear-gradient(135deg, #F37021 0%, #FF8533 100%) !important;
+    border-color: #FFFFFF !important;
+    color: #FFFFFF !important;
+    font-weight: 800 !important;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4), 0 0 24px rgba(243, 112, 33, 0.9), 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+}
+
+.smosp-sidebar-item-special.active .smosp-sidebar-item-icon {
+    color: #FFFFFF !important;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) !important;
+}
+
+.smosp-sidebar-item-special.active .smosp-sidebar-item-text {
+    color: #FFFFFF !important;
+}
+
+/* ── Sidebar Status Badges (Done tích xanh / Missing ký hiệu) ── */
+.smosp-sidebar-status-badge {
+    margin-left: auto;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.smosp-sidebar-status-badge--done {
+    background: #51B848;
+    color: #ffffff;
+    box-shadow: 0 0 8px rgba(81, 184, 72, 0.45);
+}
+
+.smosp-sidebar-status-badge--missing {
+    width: 30px;
+    height: 30px;
+    background: #EF4444;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.45);
+    animation: smosp-missing-blink 2s infinite ease-in-out;
+}
+
+.smosp-sidebar-status-badge--missing svg {
+    width: 24px;
+    height: 24px;
+}
+
+@keyframes smosp-missing-blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.45;
+    }
+}
+
+.smosp-sidebar-item-missing .smosp-sidebar-item-text {
+    font-weight: 600;
+}
+
+/* ── Global Student Modern Textured Gradient Background ── */
+.smosp-layout--student .smosp-main {
+    position: relative;
+    overflow: hidden;
+    background-color: #f6f8fd !important;
+    background-image:
+        /* Brand Blue soft glow in top right */
+        radial-gradient(circle at 85% 15%, rgba(3, 78, 162, 0.08) 0%, transparent 45%),
+        /* Brand Orange soft glow in bottom left */
+        radial-gradient(circle at 15% 85%, rgba(243, 112, 33, 0.07) 0%, transparent 45%),
+        /* Brand Green soft glow in top left */
+        radial-gradient(circle at 20% 20%, rgba(81, 184, 72, 0.05) 0%, transparent 35%),
+        /* Brand Purple/Pink/Blue accent glow in bottom right */
+        radial-gradient(circle at 80% 80%, rgba(170, 59, 255, 0.04) 0%, transparent 40%),
+        /* Modern Tech Grid Lines */
+        linear-gradient(rgba(3, 78, 162, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(3, 78, 162, 0.015) 1px, transparent 1px),
+        /* Larger accent grid lines */
+        linear-gradient(rgba(243, 112, 33, 0.008) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(243, 112, 33, 0.008) 2px, transparent 2px) !important;
+    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px, 200px 200px, 200px 200px !important;
+    background-attachment: fixed !important;
+}
+
+/* ── Content on top of background shapes ── */
+.smosp-breadcrumb,
+.smosp-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Background decoration layer ── */
+.smosp-bg-decorations {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.decor-shape {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.decor-blob-1 {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(3, 78, 162, 0.14) 0%, rgba(3, 78, 162, 0) 70%);
+    filter: blur(50px);
+    top: -100px;
+    right: -100px;
+    animation: float-blob-1 25s ease-in-out infinite alternate;
+}
+
+.decor-blob-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(243, 112, 33, 0.10) 0%, rgba(243, 112, 33, 0) 70%);
+    filter: blur(60px);
+    bottom: -150px;
+    left: -150px;
+    animation: float-blob-2 30s ease-in-out infinite alternate;
+}
+
+.decor-blob-3 {
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(81, 184, 72, 0.08) 0%, rgba(81, 184, 72, 0) 70%);
+    filter: blur(40px);
+    top: 35%;
+    left: 20%;
+    animation: float-blob-3 22s ease-in-out infinite alternate;
+}
+
+.decor-blob-4 {
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle, rgba(170, 59, 255, 0.07) 0%, rgba(170, 59, 255, 0) 70%);
+    filter: blur(45px);
+    top: 10%;
+    left: 45%;
+    animation: float-blob-1 28s ease-in-out infinite alternate-reverse;
+}
+
+.decor-blob-5 {
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(3, 78, 162, 0.08) 0%, rgba(3, 78, 162, 0) 70%);
+    filter: blur(50px);
+    bottom: 10%;
+    right: 15%;
+    animation: float-blob-2 26s ease-in-out infinite alternate-reverse;
+}
+
+.decor-ring-1 {
+    width: 180px;
+    height: 180px;
+    border: 1.5px dashed rgba(3, 78, 162, 0.12);
+    top: 15%;
+    left: 10%;
+    animation: spin-and-pulse 45s linear infinite;
+}
+
+.decor-ring-2 {
+    width: 260px;
+    height: 260px;
+    border: 1px solid rgba(243, 112, 33, 0.06);
+    bottom: 20%;
+    right: 8%;
+    animation: spin-and-pulse-reverse 60s linear infinite;
+}
+
+.decor-ring-3 {
+    width: 120px;
+    height: 120px;
+    border: 2px dashed rgba(81, 184, 72, 0.08);
+    top: 50%;
+    right: 35%;
+    animation: spin-and-pulse 35s linear infinite reverse;
+}
+
+.decor-ring-4 {
+    width: 320px;
+    height: 320px;
+    border: 1px dashed rgba(170, 59, 255, 0.05);
+    bottom: 5%;
+    left: 30%;
+    animation: spin-and-pulse 70s linear infinite;
+}
+
+.decor-plus {
+    position: absolute;
+    font-family: monospace;
+    font-size: 28px;
+    font-weight: 300;
+    user-select: none;
+}
+
+.decor-plus-1 {
+    color: rgba(3, 78, 162, 0.20);
+    top: 12%;
+    right: 35%;
+    animation: float-plus 15s ease-in-out infinite alternate;
+}
+
+.decor-plus-2 {
+    color: rgba(243, 112, 33, 0.18);
+    bottom: 40%;
+    left: 15%;
+    animation: float-plus-delayed 18s ease-in-out infinite alternate;
+}
+
+.decor-plus-3 {
+    color: rgba(81, 184, 72, 0.15);
+    top: 60%;
+    right: 20%;
+    animation: float-plus 22s ease-in-out infinite alternate;
+}
+
+.decor-plus-4 {
+    color: rgba(170, 59, 255, 0.18);
+    top: 30%;
+    left: 25%;
+    animation: float-plus-delayed 20s ease-in-out infinite alternate;
+}
+
+.decor-plus-5 {
+    color: rgba(3, 78, 162, 0.15);
+    bottom: 15%;
+    right: 40%;
+    animation: float-plus 16s ease-in-out infinite alternate-reverse;
+}
+
+.decor-plus-6 {
+    color: rgba(243, 112, 33, 0.12);
+    top: 80%;
+    left: 45%;
+    animation: float-plus-delayed 25s ease-in-out infinite alternate;
+}
+
+
+
+/* ── Keyframe Animations ── */
+@keyframes float-blob-1 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(-50px, 40px) scale(1.1);
+    }
+}
+
+@keyframes float-blob-2 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(60px, -40px) scale(1.05);
+    }
+}
+
+@keyframes float-blob-3 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(-30px, -30px) scale(1.15);
+    }
+}
+
+@keyframes spin-and-pulse {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.08);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 0.7;
+    }
+}
+
+@keyframes spin-and-pulse-reverse {
+    0% {
+        transform: rotate(360deg) scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.12);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.5;
+    }
+}
+
+@keyframes float-plus {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-20px) rotate(45deg);
+    }
+}
+
+@keyframes float-plus-delayed {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(25px) rotate(-60deg);
+    }
+}
+
+@keyframes pulse-dot {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: scale(1.3);
+        opacity: 0.95;
+    }
+}
+
+/* ── Glassmorphic Floating Cards/Pills ── */
+.decor-glass {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 8px 32px 0 rgba(3, 78, 162, 0.03);
+}
+
+.decor-glass-1 {
+    width: 140px;
+    height: 70px;
+    border-radius: 35px;
+    top: 20%;
+    right: 18%;
+    animation: float-diagonal-1 30s ease-in-out infinite alternate;
+}
+
+.decor-glass-2 {
+    width: 90px;
+    height: 90px;
+    border-radius: 20px;
+    bottom: 35%;
+    left: 20%;
+    animation: float-diagonal-2 25s ease-in-out infinite alternate;
+}
+
+.decor-glass-3 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    top: 55%;
+    left: 45%;
+    animation: float-rotational 20s ease-in-out infinite alternate;
+}
+
+/* ── Tech Square Outlines ── */
+.decor-square {
+    position: absolute;
+    border: 1px solid transparent;
+}
+
+.decor-square-1 {
+    width: 32px;
+    height: 32px;
+    border-color: rgba(3, 78, 162, 0.18);
+    top: 40%;
+    right: 25%;
+    animation: float-rotational 18s ease-in-out infinite alternate;
+}
+
+.decor-square-2 {
+    width: 20px;
+    height: 20px;
+    border-color: rgba(243, 112, 33, 0.15);
+    bottom: 25%;
+    right: 30%;
+    animation: float-diagonal-1 22s ease-in-out infinite alternate-reverse;
+}
+
+.decor-square-3 {
+    width: 16px;
+    height: 16px;
+    border-color: rgba(81, 184, 72, 0.15);
+    top: 75%;
+    left: 12%;
+    animation: float-rotational 24s ease-in-out infinite alternate-reverse;
+}
+
+
+
+/* ── Additional Movement Keyframes ── */
+@keyframes float-diagonal-1 {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(-30px, 40px) rotate(90deg);
+    }
+
+    100% {
+        transform: translate(40px, -20px) rotate(180deg);
+    }
+}
+
+@keyframes float-diagonal-2 {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(0.9);
+    }
+
+    50% {
+        transform: translate(50px, 30px) rotate(-120deg) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-20px, -50px) rotate(-240deg) scale(1);
+    }
+}
+
+@keyframes float-rotational {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-15px, -15px) rotate(360deg);
+    }
+}
+
+/* ── Academic Floating Icons CSS ── */
+.decor-academic {
+    position: absolute;
+    color: rgba(3, 78, 162, 0.12);
+    transition: color 0.3s ease;
+}
+
+.decor-academic svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.decor-academic-book {
+    width: 64px;
+    height: 64px;
+    top: 30%;
+    left: 8%;
+    animation: float-diagonal-2 24s ease-in-out infinite alternate;
+}
+
+.decor-academic-cap {
+    width: 58px;
+    height: 58px;
+    top: 15%;
+    right: 28%;
+    color: rgba(243, 112, 33, 0.12);
+    animation: float-diagonal-1 28s ease-in-out infinite alternate;
+}
+
+.decor-academic-computer {
+    width: 60px;
+    height: 60px;
+    bottom: 35%;
+    right: 15%;
+    color: rgba(81, 184, 72, 0.12);
+    animation: float-rotational 22s ease-in-out infinite alternate;
+}
+
+.decor-academic-search {
+    width: 48px;
+    height: 48px;
+    bottom: 15%;
+    left: 25%;
+    color: rgba(170, 59, 255, 0.12);
+    animation: float-diagonal-2 26s ease-in-out infinite alternate-reverse;
+}
+
+/* Academic icons color in dark mode */
+
+
+/* ── Content Manager Sidebar Filter Tree ── */
+.filter-tree-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.filter-tree-title {
+    font-size: 11px;
+    font-weight: 800;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid #f1f5f9;
+}
+
+.filter-tree-major {
+    margin-bottom: 12px;
+}
+
+@keyframes float-blob-3 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(-30px, -30px) scale(1.15);
+    }
+}
+
+@keyframes spin-and-pulse {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.08);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 0.7;
+    }
+}
+
+@keyframes spin-and-pulse-reverse {
+    0% {
+        transform: rotate(360deg) scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.12);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.5;
+    }
+}
+
+@keyframes float-plus {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-20px) rotate(45deg);
+    }
+}
+
+@keyframes float-plus-delayed {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(25px) rotate(-60deg);
+    }
+}
+
+@keyframes pulse-dot {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: scale(1.3);
+        opacity: 0.95;
+    }
+}
+
+/* ── Glassmorphic Floating Cards/Pills ── */
+.decor-glass {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 8px 32px 0 rgba(3, 78, 162, 0.03);
+}
+
+.decor-glass-1 {
+    width: 140px;
+    height: 70px;
+    border-radius: 35px;
+    top: 20%;
+    right: 18%;
+    animation: float-diagonal-1 30s ease-in-out infinite alternate;
+}
+
+.decor-glass-2 {
+    width: 90px;
+    height: 90px;
+    border-radius: 20px;
+    bottom: 35%;
+    left: 20%;
+    animation: float-diagonal-2 25s ease-in-out infinite alternate;
+}
+
+.decor-glass-3 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    top: 55%;
+    left: 45%;
+    animation: float-rotational 20s ease-in-out infinite alternate;
+}
+
+/* ── Tech Square Outlines ── */
+.decor-square {
+    position: absolute;
+    border: 1px solid transparent;
+}
+
+.decor-square-1 {
+    width: 32px;
+    height: 32px;
+    border-color: rgba(3, 78, 162, 0.18);
+    top: 40%;
+    right: 25%;
+    animation: float-rotational 18s ease-in-out infinite alternate;
+}
+
+.decor-square-2 {
+    width: 20px;
+    height: 20px;
+    border-color: rgba(243, 112, 33, 0.15);
+    bottom: 25%;
+    right: 30%;
+    animation: float-diagonal-1 22s ease-in-out infinite alternate-reverse;
+}
+
+.decor-square-3 {
+    width: 16px;
+    height: 16px;
+    border-color: rgba(81, 184, 72, 0.15);
+    top: 75%;
+    left: 12%;
+    animation: float-rotational 24s ease-in-out infinite alternate-reverse;
+}
+
+
+
+/* ── Additional Movement Keyframes ── */
+@keyframes float-diagonal-1 {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(-30px, 40px) rotate(90deg);
+    }
+
+    100% {
+        transform: translate(40px, -20px) rotate(180deg);
+    }
+}
+
+@keyframes float-diagonal-2 {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(0.9);
+    }
+
+    50% {
+        transform: translate(50px, 30px) rotate(-120deg) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-20px, -50px) rotate(-240deg) scale(1);
+    }
+}
+
+@keyframes float-rotational {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-15px, -15px) rotate(360deg);
+    }
+}
+
+/* ── Academic Floating Icons CSS ── */
+.decor-academic {
+    position: absolute;
+    color: rgba(3, 78, 162, 0.12);
+    transition: color 0.3s ease;
+}
+
+.decor-academic svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.decor-academic-book {
+    width: 64px;
+    height: 64px;
+    top: 30%;
+    left: 8%;
+    animation: float-diagonal-2 24s ease-in-out infinite alternate;
+}
+
+.decor-academic-cap {
+    width: 58px;
+    height: 58px;
+    top: 15%;
+    right: 28%;
+    color: rgba(243, 112, 33, 0.12);
+    animation: float-diagonal-1 28s ease-in-out infinite alternate;
+}
+
+.decor-academic-computer {
+    width: 60px;
+    height: 60px;
+    bottom: 35%;
+    right: 15%;
+    color: rgba(81, 184, 72, 0.12);
+    animation: float-rotational 22s ease-in-out infinite alternate;
+}
+
+.decor-academic-search {
+    width: 48px;
+    height: 48px;
+    bottom: 15%;
+    left: 25%;
+    color: rgba(170, 59, 255, 0.12);
+    animation: float-diagonal-2 26s ease-in-out infinite alternate-reverse;
+}
+
+/* Academic icons color in dark mode */
+
+
+/* ── Content Manager Sidebar Filter Tree ── */
+.filter-tree-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.filter-tree-title {
+    font-size: 11px;
+    font-weight: 800;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid #f1f5f9;
+}
+
+.filter-tree-major {
+    margin-bottom: 12px;
+}
+
+.filter-tree-major-name {
+    font-size: 11px;
+    font-weight: 800;
+    color: #F37021;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    padding-left: 4px;
+}
+
+.filter-tree-spec-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-left: 4px;
+}
+
+.filter-tree-spec-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.filter-tree-spec-btn:hover {
+    background: #f1f5f9;
+    color: #034EA2;
+}
+
+.filter-tree-spec-btn.active {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.filter-tree-ns-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-left: 14px;
+    border-left: 1px dashed #cbd5e1;
+    padding-left: 10px;
+    margin-top: 2px;
+    margin-bottom: 6px;
+}
+
+.filter-tree-ns-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.filter-tree-ns-btn:hover {
+    background: #f8fafc;
+    color: #F37021;
+}
+
+.filter-tree-ns-btn.active {
+    background: #fff1e8;
+    color: #c2410c;
+    font-weight: 700;
+}
+
+.filter-tree-loading {
+    font-size: 12px;
+    color: #94a3b8;
+    padding: 8px;
+    text-align: center;
+}
+
+/* ── Selection highlights for copy-paste catalog tree filter ── */
+.cc-major-head.sel,
+.cc-spec-head.sel,
+.cc-ns-row.sel {
+    background: #edf4ff !important;
+    border-radius: 6px;
+}
+
+.cc-spec-head.sel .cc-spec-label,
+.cc-ns-row.sel .cc-ns-label {
+    color: #034EA2 !important;
+    font-weight: 700 !important;
+}
+
+.cc-chevron {
+    user-select: none;
+}

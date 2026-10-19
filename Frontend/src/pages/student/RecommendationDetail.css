@@ -1,0 +1,1038 @@
+/* =============================================================
+   RecommendationDetail.css — Trang chi tiết gợi ý CNH
+   Cùng ngôn ngữ "cartoony" với StudentRoadmap + RecommendationResultPage:
+     viền dày 2px · bóng cứng (0 Npx 0) · nền pastel · bo góc lớn
+   ============================================================= */
+
+.msd-page {
+    --c-orange: #F37021;
+    --c-orange-soft: #FFF0E6;
+    --c-orange-line: #FCD9B8;
+    --c-orange-deep: #C2540F;
+    --c-blue: #034EA2;
+    --c-blue-soft: #E6EEF9;
+    --c-blue-line: #C3D8F2;
+    --c-blue-deep: #023880;
+    --c-green: #51B848;
+    --c-green-soft: #EBF8EA;
+    --c-green-line: #BBE7B5;
+    --c-green-deep: #2F7A28;
+    --c-violet: #7C3AED;
+    --c-violet-soft: #F1EBFE;
+    --c-violet-line: #D6C6FB;
+    --c-violet-deep: #5B21B6;
+    --c-teal: #0EA5A5;
+    --c-teal-soft: #E4F7F7;
+    --c-teal-line: #A7E4E4;
+    --c-teal-deep: #0B7A7A;
+    --ink: #0F172A;
+    --ink-soft: #64748B;
+    --line: #E2E8F0;
+
+    min-height: 100vh;
+    background-color: transparent;
+    font-family: var(--font-family, "Be Vietnam Pro", sans-serif);
+    color: var(--ink);
+}
+
+.msd-page *,
+.msd-page *::before,
+.msd-page *::after {
+    box-sizing: border-box;
+}
+
+.msd-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 28px;
+}
+
+.msd-content {
+    padding: 24px 0 64px;
+}
+
+/* Scroll Reveal Animation */
+.msd-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.msd-reveal.msd-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════
+   HERO — đang xem chuyên ngành hẹp nào
+═══════════════════════════════════════════ */
+.msd-hero {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    flex-wrap: wrap;
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFF9F4 100%);
+    border: 2.5px solid var(--c-orange);
+    border-radius: 22px;
+    box-shadow: 0 6px 0 #FBD3B4;
+    padding: 22px 24px;
+    margin-bottom: 26px;
+}
+
+.msd-hero__main {
+    flex: 1;
+    min-width: 280px;
+}
+
+.msd-hero__chips {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.msd-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: 3px 11px;
+    border: 2px solid transparent;
+    white-space: nowrap;
+}
+
+.msd-chip--rank {
+    color: #B4740A;
+    background: #FEF6DC;
+    border-color: #FCD34D;
+}
+
+.msd-chip--spec {
+    color: var(--c-blue-deep);
+    background: var(--c-blue-soft);
+    border-color: var(--c-blue-line);
+}
+
+.msd-hero__title {
+    margin: 0 0 9px;
+    font-size: 25px;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.22;
+    letter-spacing: -0.4px;
+}
+
+.msd-hero__code {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #64748B;
+    background: #F1F5F9;
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    padding: 2px 9px;
+    letter-spacing: 0.6px;
+}
+
+.msd-hero__actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.msd-hero__ring {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    padding: 16px 24px;
+    background: var(--c-orange-soft);
+    border: 2px solid var(--c-orange-line);
+    border-radius: 20px;
+    box-shadow: 0 4px 0 #FBE3CC;
+}
+
+.msd-hero__ring-label {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--c-orange-deep);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+/* ── Nút chung ── */
+.msd-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 11px 19px;
+    border-radius: 13px;
+    border: 2px solid transparent;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.msd-btn--primary {
+    color: #FFFFFF;
+    background: var(--c-blue);
+    border-color: var(--c-blue);
+    box-shadow: 0 4px 0 var(--c-blue-deep);
+}
+
+.msd-btn--primary:hover {
+    transform: translateY(-2px);
+    background: #0A5CB8;
+    box-shadow: 0 6px 0 var(--c-blue-deep);
+}
+
+.msd-btn--ghost {
+    color: var(--c-orange-deep);
+    background: #FFFFFF;
+    border-color: var(--c-orange-line);
+    box-shadow: 0 4px 0 #FBE3CC;
+}
+
+.msd-btn--ghost:hover {
+    transform: translateY(-2px);
+    background: var(--c-orange-soft);
+    box-shadow: 0 6px 0 #FBE3CC;
+}
+
+.msd-btn:active {
+    transform: translateY(1px);
+}
+
+.msd-btn svg {
+    flex-shrink: 0;
+}
+
+/* ── Match ring ── */
+.match-ring {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.match-ring__arc {
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.match-ring__center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.match-ring__center strong {
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+}
+
+.match-ring__center span {
+    font-weight: 800;
+    color: #94A3B8;
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ═══════════════════════════════════════════
+   KHUNG SECTION
+═══════════════════════════════════════════ */
+.msd-section {
+    margin-bottom: 26px;
+}
+
+.msd-section__title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--ink);
+}
+
+/* Icon chip vuông bo tròn đứng trước tiêu đề — dùng biến để đổi tông theo section */
+.msd-section__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 11px;
+    background: var(--sec-soft, var(--c-blue-soft));
+    border: 2px solid var(--sec-line, var(--c-blue-line));
+    color: var(--sec-color, var(--c-blue));
+    flex-shrink: 0;
+}
+
+.msd-section__desc {
+    margin: 0 0 14px 44px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    font-weight: 500;
+}
+
+.msd-section__title + .msd-score-grid,
+.msd-section__title + .msd-market-grid,
+.msd-section__title + .msd-gap-grid {
+    margin-top: 14px;
+}
+
+/* ═══════════════════════════════════════════
+   CƠ HỘI NGHỀ NGHIỆP LIÊN QUAN
+═══════════════════════════════════════════ */
+.msd-ai-card.msd-jobs-card {
+    background: linear-gradient(135deg, #F4FBFB 0%, #FFFFFF 60%);
+    border-color: var(--c-teal-line);
+    box-shadow: 0 5px 0 #D2EFEF;
+}
+
+.msd-job-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.msd-chip--job {
+    color: var(--c-teal-deep);
+    background: var(--c-teal-soft);
+    border-color: var(--c-teal-line);
+    text-transform: none;
+    text-decoration: none;
+    padding: 7px 13px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.msd-chip--job:hover {
+    transform: translateY(-2px);
+    background: #D8F0F0;
+    box-shadow: 0 4px 0 #B5E3E3;
+}
+
+/* ═══════════════════════════════════════════
+   FLOATING RANK DRAWER #1 (BÊN PHẢI MÀN HÌNH)
+   Bảng xếp hạng chuyên ngành hẹp — di chuột vào tự xổ ra
+═══════════════════════════════════════════ */
+.msd-floating-rank {
+    position: fixed;
+    right: 0;
+    top: 35%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+}
+
+/* Handle (tab nhỏ lòi ra bên phải) — có badge số hạng hiện tại bên dưới icon */
+.msd-floating-rank__handle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    width: 32px;
+    min-height: 44px;
+    padding: 8px 0;
+    background: var(--c-blue);
+    color: #FFFFFF;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+}
+
+.msd-floating-rank:hover .msd-floating-rank__handle {
+    background: #0A5CB8;
+}
+
+.msd-floating-rank__handle-rank {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+}
+
+/* Body (panel xổ ra khi hover) */
+.msd-floating-rank__body {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    background: #FFFFFF;
+    border: 2px solid var(--c-blue-line);
+    border-right: none;
+    border-radius: 14px 0 0 14px;
+    box-shadow: -4px 2px 16px rgba(0,0,0,0.10);
+    padding: 0;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.25s ease,
+                padding 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.msd-floating-rank:hover .msd-floating-rank__body {
+    width: 280px;
+    opacity: 1;
+    padding: 14px 16px;
+}
+
+.msd-floating-rank__title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0 0 10px;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: 0.3px;
+}
+
+/* Ô tìm kiếm trong thanh xếp hạng */
+.msd-floating-rank__search {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: #F8FAFC;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    padding: 7px 10px;
+    margin-bottom: 10px;
+    color: #94A3B8;
+}
+
+.msd-floating-rank__search input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    width: 100%;
+}
+
+.msd-floating-rank__search input::placeholder {
+    color: #94A3B8;
+    font-weight: 500;
+}
+
+.msd-floating-rank__empty {
+    font-size: 11.5px;
+    color: #94A3B8;
+    text-align: center;
+    padding: 12px 0;
+    margin: 0;
+}
+
+/* Danh sách: chiều cao cố định + thanh cuộn riêng (không đẩy tràn khung khi
+   danh sách dài, VD sau này 1 chuyên ngành có rất nhiều chuyên ngành hẹp) */
+.msd-floating-rank__list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-height: 360px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.msd-floating-rank__list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.msd-floating-rank__list::-webkit-scrollbar-track {
+    background: #F1F5F9;
+    border-radius: 999px;
+}
+
+.msd-floating-rank__list::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 999px;
+}
+
+.msd-floating-rank__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 10px;
+    border: 2px solid var(--line);
+    background: #FFFFFF;
+    cursor: pointer;
+    transition: transform 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.msd-floating-rank__item:hover {
+    transform: translateX(-3px);
+    border-color: var(--c-blue-line);
+    box-shadow: 0 2px 0 #DCE7F5;
+}
+
+.msd-floating-rank__item--active {
+    background: #FFFBF7;
+    border-color: var(--c-orange);
+    cursor: default;
+}
+
+.msd-floating-rank__item--active:hover {
+    transform: none;
+    border-color: var(--c-orange);
+    box-shadow: none;
+}
+
+.msd-floating-rank__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: var(--c-blue-soft);
+    border: 1.5px solid var(--c-blue-line);
+    color: var(--c-blue-deep);
+    font-size: 10px;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.msd-floating-rank__item--active .msd-floating-rank__num {
+    background: var(--c-orange);
+    border-color: var(--c-orange);
+    color: #FFFFFF;
+}
+
+.msd-floating-rank__name {
+    flex: 1;
+    min-width: 0;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--ink);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.msd-floating-rank__pct {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ═══════════════════════════════════════════
+   FLOATING NAV #2 (BÊN PHẢI, NGAY DƯỚI THANH XẾP HẠNG)
+   Điều hướng nhanh tới từng khối trong trang — cùng cơ chế hover-xổ-ra
+═══════════════════════════════════════════ */
+.msd-floating-nav {
+    position: fixed;
+    right: 0;
+    top: calc(35% + 130px);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+}
+
+.msd-floating-nav__handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    min-height: 40px;
+    background: var(--c-teal-deep);
+    color: #FFFFFF;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+}
+
+.msd-floating-nav:hover .msd-floating-nav__handle {
+    background: #0A6666;
+}
+
+.msd-floating-nav__body {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    background: #FFFFFF;
+    border: 2px solid var(--c-teal-line);
+    border-right: none;
+    border-radius: 14px 0 0 14px;
+    box-shadow: -4px 2px 16px rgba(0,0,0,0.10);
+    padding: 0;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.25s ease,
+                padding 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.msd-floating-nav:hover .msd-floating-nav__body {
+    width: 220px;
+    opacity: 1;
+    padding: 14px 16px;
+}
+
+.msd-floating-nav__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 2px solid var(--line);
+    background: #FFFFFF;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: transform 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.msd-floating-nav__item:last-child {
+    margin-bottom: 0;
+}
+
+.msd-floating-nav__item:hover {
+    transform: translateX(-3px);
+    border-color: var(--c-teal-line);
+    box-shadow: 0 2px 0 #D2EFEF;
+}
+
+.msd-floating-nav__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    background: var(--c-teal-soft);
+    color: var(--c-teal-deep);
+    flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════
+   CỐ VẤN AI
+═══════════════════════════════════════════ */
+.msd-ai-card {
+    background: linear-gradient(135deg, #FBF9FF 0%, #FFFFFF 60%);
+    border: 2px solid var(--c-violet-line);
+    border-radius: 20px;
+    box-shadow: 0 5px 0 #E7DDFC;
+    padding: 20px 22px;
+}
+
+.msd-ai-card .msd-section__title {
+    margin-bottom: 14px;
+}
+
+.msd-ai-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #334155;
+    white-space: pre-line;
+    background: #FFFFFF;
+    border: 2px solid #EFE9FB;
+    border-radius: 16px;
+    padding: 16px 18px;
+}
+
+.msd-ai-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.msd-ai-skeleton span {
+    height: 14px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #EDE7FB 25%, #F8F5FE 50%, #EDE7FB 75%);
+    background-size: 200% 100%;
+    animation: msd-shimmer 1.2s ease-in-out infinite;
+}
+
+.msd-ai-skeleton span:nth-child(2) {
+    width: 88%;
+}
+
+.msd-ai-skeleton span:nth-child(3) {
+    width: 72%;
+}
+
+.msd-ai-skeleton p {
+    margin: 4px 0 0;
+    font-size: 12.5px;
+    font-style: italic;
+    color: #94A3B8;
+}
+
+@keyframes msd-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ═══════════════════════════════════════════
+   ĐIỂM SỐ THÀNH PHẦN
+═══════════════════════════════════════════ */
+.msd-score-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.msd-score-card {
+    background: var(--score-soft, #FFFFFF);
+    border: 2px solid var(--score-line, var(--line));
+    border-radius: 18px;
+    box-shadow: 0 4px 0 var(--score-line, #EDF1F7);
+    padding: 16px 18px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.msd-score-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 0 var(--score-line, #EDF1F7);
+}
+
+.msd-score-card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.msd-score-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    background: #FFFFFF;
+    border: 2px solid var(--score-line, var(--line));
+    color: var(--score-color, var(--c-blue));
+    flex-shrink: 0;
+}
+
+/* Chip trọng số: cho biết tiêu chí này chiếm bao nhiêu % trong công thức tính điểm */
+.msd-score-card__weight {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--score-deep, var(--c-blue-deep));
+    background: #FFFFFF;
+    border: 2px solid var(--score-line, var(--line));
+    border-radius: 999px;
+    padding: 1px 9px;
+    white-space: nowrap;
+}
+
+.msd-score-card__label {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    color: var(--score-deep, #475569);
+    margin-bottom: 6px;
+}
+
+.msd-score-card__value {
+    display: block;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--score-color, var(--c-blue));
+    line-height: 1.1;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.msd-score-card__value span {
+    font-size: 12px;
+    font-weight: 800;
+    color: #94A3B8;
+    margin-left: 2px;
+}
+
+.msd-score-card__track {
+    height: 9px;
+    border-radius: 999px;
+    background: #FFFFFF;
+    border: 1.5px solid var(--score-line, var(--line));
+    overflow: hidden;
+}
+
+.msd-score-card__fill {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--score-color, var(--c-blue));
+    transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══════════════════════════════════════════
+   TÍN HIỆU THỊ TRƯỜNG
+═══════════════════════════════════════════ */
+.msd-market-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+}
+
+.msd-market-card {
+    background: #FFFFFF;
+    border: 2px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 4px 0 #EDF1F7;
+    padding: 16px 18px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.msd-market-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--c-teal-line);
+    box-shadow: 0 7px 0 #DDF0F0;
+}
+
+.msd-market-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 11px;
+    background: var(--c-teal-soft);
+    border: 2px solid var(--c-teal-line);
+    color: var(--c-teal-deep);
+    margin-bottom: 10px;
+}
+
+.msd-market-card__label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    color: #475569;
+    margin-bottom: 6px;
+}
+
+.msd-market-card__row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.msd-market-card__row strong {
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.4px;
+}
+
+.msd-market-card__sub {
+    display: block;
+    font-size: 11.5px;
+    color: #94A3B8;
+    font-weight: 500;
+    margin-top: 6px;
+    line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════
+   PHÂN TÍCH KỸ NĂNG
+═══════════════════════════════════════════ */
+.msd-gap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 18px;
+}
+
+.msd-gap-panel {
+    border-radius: 20px;
+    border: 2px solid;
+    padding: 18px 20px;
+}
+
+.msd-gap-panel--have {
+    background: var(--c-green-soft);
+    border-color: var(--c-green-line);
+    box-shadow: 0 5px 0 #D6F0D2;
+}
+
+.msd-gap-panel--missing {
+    background: var(--c-orange-soft);
+    border-color: var(--c-orange-line);
+    box-shadow: 0 5px 0 #FBE3CC;
+}
+
+.msd-gap-panel__head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 800;
+    margin-bottom: 14px;
+}
+
+.msd-gap-panel--have .msd-gap-panel__head {
+    color: var(--c-green-deep);
+}
+
+.msd-gap-panel--missing .msd-gap-panel__head {
+    color: var(--c-orange-deep);
+}
+
+.msd-gap-panel__count {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 800;
+    background: #FFFFFF;
+    border-radius: 999px;
+    padding: 2px 10px;
+    border: 2px solid currentColor;
+}
+
+.msd-gap-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.msd-skill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 13px;
+    border-radius: 999px;
+    background: #FFFFFF;
+    border: 2px solid;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.msd-skill-tag--have {
+    color: var(--c-green-deep);
+    border-color: var(--c-green-line);
+    box-shadow: 0 3px 0 #D6F0D2;
+}
+
+.msd-skill-tag--missing {
+    color: var(--c-orange-deep);
+    border-color: var(--c-orange-line);
+    box-shadow: 0 3px 0 #FBE3CC;
+}
+
+.msd-skill-tag:hover {
+    transform: translateY(-2px);
+}
+
+.msd-skill-tag--have:hover {
+    box-shadow: 0 5px 0 #D6F0D2;
+}
+
+.msd-skill-tag--missing:hover {
+    box-shadow: 0 5px 0 #FBE3CC;
+}
+
+.msd-gap-empty {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ink-soft);
+}
+
+.msd-empty-note {
+    background: #F8FAFC;
+    border: 2px dashed #CBD5E1;
+    border-radius: 18px;
+    padding: 20px 22px;
+    color: var(--ink-soft);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 960px) {
+    .msd-score-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .msd-floating-rank {
+        display: none;
+    }
+
+    .msd-floating-nav {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .msd-container {
+        padding: 0 16px;
+    }
+
+    .msd-hero {
+        padding: 18px;
+    }
+
+    .msd-hero__title {
+        font-size: 21px;
+    }
+
+    .msd-hero__ring {
+        align-self: center;
+    }
+
+    .msd-btn {
+        width: 100%;
+    }
+
+    .msd-score-grid,
+    .msd-market-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .msd-section__desc {
+        margin-left: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .msd-reveal,
+    .msd-score-card,
+    .msd-market-card,
+    .msd-skill-tag,
+    .msd-btn,
+    .msd-score-card__fill,
+    .match-ring__arc {
+        animation: none;
+        transition: none;
+    }
+}

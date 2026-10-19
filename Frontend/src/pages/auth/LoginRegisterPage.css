@@ -1,0 +1,178 @@
+/* =========================================================
+   LoginPage.css — chỉ chứa layout đặc thù của trang login.
+   Tất cả button/input/badge/card style đã có trong global.css.
+   ========================================================= */
+
+.lp-root {
+  min-height: 100vh;
+  background-color: var(--secondary);
+  background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.lp-card {
+  display: flex;
+  width: 100%;
+  max-width: 880px;
+  min-height: 520px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(2,30,80,.45);
+}
+
+/* ── Left panel ── */
+.lp-left {
+  width: 300px;
+  flex-shrink: 0;
+
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px),
+    linear-gradient(
+      135deg,
+      #0057d9 0%,
+      #0047b3 40%,
+      #1891fc 100%
+    );
+
+  background-size: 22px 22px, cover;
+
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.lp-left::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; right: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(243,112,33,.20) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.lp-headline {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+.lp-headline em { font-style: normal; color: var(--accent); }
+
+.lp-feature-card {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px;
+  padding: 16px 18px;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+.lp-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255,255,255,.72);
+  padding: 4px 0;
+}
+.lp-feature-num {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: rgba(81,184,72,.18);
+  border: 1px solid rgba(81,184,72,.35);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.lp-copy {
+  margin-top: auto;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: rgba(255,255,255,.28);
+  position: relative; z-index: 1;
+}
+.lp-logo-text {
+  font-size: 20px;
+  font-weight: 200;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  
+}
+/* ── Right panel ── */
+.lp-right {
+  flex: 1;
+  background: var(--surface);
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.lp-close {
+  position: absolute; top: 20px; right: 20px;
+  width: 32px; height: 32px; border-radius: 50%;
+  border: none; background: var(--bg);
+  color: var(--text-secondary); font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.lp-close:hover { background: var(--surface-alt); }
+
+/* Divider "HOẶC" dùng ::before ::after thay vì 2 div */
+.lp-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 16px 0;
+  color: var(--text-muted);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.lp-divider::before,
+.lp-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+/* Label row có link bên phải */
+.lp-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+/* Google button — outline riêng, khác .btn */
+.lp-google-btn {
+  width: 100%; height: 48px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-size: 14px; font-weight: 600; color: var(--text-primary);
+  transition: border-color .15s, box-shadow .15s;
+}
+.lp-google-btn:hover:not(:disabled) {
+  border-color: var(--text-muted);
+  box-shadow: 0 2px 8px rgba(3,78,162,.08);
+}
+.lp-google-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+@media (max-width: 680px) {
+  .lp-left { display: none; }
+  .lp-card { max-width: 440px; }
+  .lp-right { padding: 32px 24px; }
+}
+
+.lp-footer-note {
+  margin-top: 24px;
+  text-align: center;
+}

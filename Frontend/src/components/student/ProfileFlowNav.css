@@ -1,0 +1,1166 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+/* ================================================================
+   Luồng khai báo hồ sơ sinh viên
+   Thông tin cá nhân ➔ Bảng điểm ➔ Kỹ năng ➔ Sở thích
+   Mỗi bước 1 màu nhấn, dùng lại trên cả 4 trang.
+   ================================================================ */
+.pf-top-nav,
+.pf-stepper,
+.pf-flownav,
+.pf-alert {
+    --pf-indigo: #4F46E5;
+    --pf-indigo-soft: #EEF0FF;
+    --pf-orange: #EA6A16;
+    --pf-orange-soft: #FFF3E9;
+    --pf-teal: #0D9488;
+    --pf-teal-soft: #E6FAF6;
+    --pf-pink: #DB2777;
+    --pf-pink-soft: #FDF0F6;
+    --pf-ink: #0F172A;
+    --pf-muted: #64748B;
+    --pf-line: #E7EAF2;
+    font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    box-sizing: border-box;
+}
+
+.pf-top-nav *,
+.pf-stepper *,
+.pf-flownav *,
+.pf-alert * {
+    box-sizing: border-box;
+}
+
+/* ---------------- 4 Ô Điều Hướng Luồng Hồ Sơ (Top Nav) ---------------- */
+.pf-top-nav {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.pf-boxes-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    width: 100%;
+}
+
+.pf-nav-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #FFFFFF;
+    border: 1.5px solid #E6E8EF;
+    border-radius: 14px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+    user-select: none;
+    outline: none;
+}
+
+.pf-nav-box:hover {
+    border-color: #034EA2;
+    background: #F8FAFC;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(3, 78, 162, 0.08);
+}
+
+.pf-box-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 800;
+    background: #F1F3F8;
+    color: #8A93A3;
+    border: 2px solid #E2E6EF;
+    transition: all 0.2s ease;
+}
+
+.pf-box-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.pf-box-label {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #1F2430;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pf-box-state {
+    font-size: 11px;
+    font-weight: 600;
+    color: #8A93A3;
+}
+
+/* --- Trạng thái Đã khai báo (Done - Tích chọn) --- */
+.pf-nav-box--done .pf-box-badge {
+    background: #51B848;
+    border-color: #51B848;
+    color: #FFFFFF;
+    box-shadow: 0 3px 8px rgba(81, 184, 72, 0.25);
+}
+
+.pf-nav-box--done .pf-box-state {
+    color: #51B848;
+    font-weight: 700;
+}
+
+/* --- Trạng thái Đang mở/điền (Current Active) --- */
+.pf-nav-box--current {
+    border-color: #034EA2;
+    background: #F0F5FF;
+    box-shadow: 0 4px 14px rgba(3, 78, 162, 0.12);
+}
+
+.pf-nav-box--current .pf-box-label {
+    color: #034EA2;
+    font-weight: 800;
+}
+
+.pf-nav-box--current .pf-box-state {
+    color: #034EA2;
+    font-weight: 700;
+}
+
+.pf-nav-box--current:not(.pf-nav-box--done) .pf-box-badge {
+    background: #034EA2;
+    border-color: #034EA2;
+    color: #FFFFFF;
+}
+
+@media (max-width: 1024px) {
+    .pf-boxes-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pf-boxes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .pf-nav-box {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .pf-box-label {
+        font-size: 12.5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pf-boxes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------------- Stepper ---------------- */
+.pf-stepper {
+    background:
+        linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(234, 106, 22, 0.04) 38%, rgba(13, 148, 136, 0.04) 68%, rgba(219, 39, 119, 0.05) 100%),
+        #FFFFFF;
+    border: 1.5px solid var(--pf-line);
+    border-radius: 18px;
+    padding: 16px 20px 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.045);
+}
+
+.pf-stepper--loading {
+    opacity: 0.72;
+}
+
+.pf-stepper-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--pf-line);
+}
+
+.pf-stepper-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.pf-stepper-eyebrow {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, var(--pf-indigo) 0%, var(--pf-orange) 45%, var(--pf-pink) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.pf-stepper-caption {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--pf-muted);
+}
+
+.pf-stepper-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.pf-stepper-count {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--pf-ink);
+    white-space: nowrap;
+}
+
+.pf-stepper-bar {
+    width: 132px;
+    height: 7px;
+    border-radius: 999px;
+    background: #EDF0F6;
+    overflow: hidden;
+}
+
+.pf-stepper-bar-fill {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--pf-indigo) 0%, var(--pf-orange) 40%, var(--pf-teal) 70%, var(--pf-pink) 100%);
+    transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------------- Từng bước ---------------- */
+.pf-steps {
+    display: flex;
+    align-items: stretch;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pf-step {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Đường nối giữa 2 bước — tô đậm khi bước phía trước đã xong */
+.pf-step-connector {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 2.5px;
+    margin-top: -1px;
+    border-radius: 999px;
+    background: #E3E7EF;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.pf-step--done .pf-step-connector,
+.pf-step--current .pf-step-connector {
+    background: linear-gradient(90deg, #C7D2FE 0%, currentColor 100%);
+}
+
+.pf-step-link {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    padding: 12px 12px;
+    border-radius: 14px;
+    text-decoration: none;
+    background: transparent;
+    transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.pf-step-link:hover {
+    background: #F7F8FC;
+    transform: translateY(-1px);
+}
+
+.pf-step-badge {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12.5px;
+    font-weight: 800;
+    background: #FFFFFF;
+    color: #94A3B8;
+    border: 2px solid #DDE2EC;
+    transition: all 0.2s ease;
+}
+
+.pf-step-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.pf-step-label {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #334155;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pf-step-state {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #9AA5B8;
+    white-space: nowrap;
+}
+
+/* màu nhấn theo từng bước */
+.pf-step--indigo {
+    color: var(--pf-indigo);
+}
+
+.pf-step--orange {
+    color: var(--pf-orange);
+}
+
+.pf-step--teal {
+    color: var(--pf-teal);
+}
+
+.pf-step--pink {
+    color: var(--pf-pink);
+}
+
+/* đã hoàn thành */
+.pf-step--done .pf-step-badge {
+    background: currentColor;
+    border-color: currentColor;
+    color: #FFFFFF;
+    box-shadow: 0 3px 8px rgba(15, 23, 42, 0.16);
+}
+
+.pf-step--done .pf-step-label {
+    color: var(--pf-ink);
+}
+
+.pf-step--done .pf-step-state {
+    color: currentColor;
+}
+
+/* bước đang đứng */
+.pf-step--current .pf-step-link {
+    background: #FFFFFF;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.08);
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+}
+
+.pf-step--current .pf-step-badge {
+    background: currentColor;
+    border-color: currentColor;
+    color: #FFFFFF;
+    animation: pf-badge-pulse 2.2s ease-out infinite;
+}
+
+.pf-step--current .pf-step-label {
+    color: var(--pf-ink);
+    font-weight: 800;
+}
+
+.pf-step--current .pf-step-state {
+    color: currentColor;
+    font-weight: 700;
+}
+
+@keyframes pf-badge-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.42);
+    }
+
+    70% {
+        box-shadow: 0 0 0 9px rgba(79, 70, 229, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+    }
+}
+
+/* bước bị khóa mềm (bước trước chưa xong) */
+.pf-step--locked .pf-step-link {
+    opacity: 0.62;
+}
+
+.pf-step--locked .pf-step-badge {
+    background: #F1F3F8;
+    border-style: dashed;
+    color: #94A3B8;
+}
+
+/* ---------------- Điều hướng tuần tự cuối trang ---------------- */
+.pf-flownav {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding: 14px 18px;
+    background: #FFFFFF;
+    border: 1.5px solid var(--pf-line);
+    border-radius: 16px;
+    box-shadow: 0 3px 14px rgba(15, 23, 42, 0.04);
+}
+
+.pf-flownav-side {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+}
+
+.pf-flownav-side--end {
+    justify-content: flex-end;
+}
+
+.pf-flownav-mid {
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.pf-flownav-hint {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--pf-muted);
+}
+
+.pf-flownav-hint strong {
+    color: var(--pf-ink);
+    font-weight: 700;
+}
+
+.pf-flownav-hint--ok {
+    color: #0F766E;
+    font-weight: 600;
+}
+
+.pf-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border-radius: 10px;
+    border: 1.5px solid var(--pf-line);
+    background: #FFFFFF;
+    color: #334155;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.18s ease;
+}
+
+.pf-nav-btn-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.pf-nav-btn-text small {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.65;
+}
+
+.pf-nav-btn--ghost:hover {
+    border-color: #C3CAD9;
+    background: #F7F8FC;
+    transform: translateX(-2px);
+}
+
+.pf-nav-btn--next {
+    color: #FFFFFF;
+    border-color: transparent;
+}
+
+.pf-nav-btn--next:hover {
+    transform: translateX(2px);
+    filter: brightness(1.06);
+}
+
+.pf-nav-btn--indigo {
+    background: linear-gradient(135deg, #6366F1 0%, #4338CA 100%);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.32);
+}
+
+.pf-nav-btn--orange {
+    background: linear-gradient(135deg, #F58634 0%, #D95E0D 100%);
+    box-shadow: 0 4px 12px rgba(234, 106, 22, 0.32);
+}
+
+.pf-nav-btn--teal {
+    background: linear-gradient(135deg, #14B8A6 0%, #0B7C72 100%);
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.32);
+}
+
+.pf-nav-btn--pink {
+    background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
+    box-shadow: 0 4px 12px rgba(219, 39, 119, 0.32);
+}
+
+/* ---------------- Cảnh báo thiếu bước trước ---------------- */
+.pf-alert {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding: 14px 18px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+    border: 1.5px solid;
+}
+
+.pf-alert-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    background: #FFFFFF;
+}
+
+.pf-alert-body {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.pf-alert-title {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--pf-ink);
+}
+
+.pf-alert-text {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #55617A;
+    line-height: 1.5;
+}
+
+.pf-alert-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 10px;
+    padding: 9px 15px;
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.pf-alert-btn:hover {
+    filter: brightness(1.07);
+    transform: translateX(2px);
+}
+
+.pf-alert-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.pf-alert-close-btn {
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    color: currentColor;
+    opacity: 0.6;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+}
+
+.pf-alert-close-btn:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.pf-alert--indigo {
+    background: var(--pf-indigo-soft);
+    border-color: #C7CBFB;
+}
+
+.pf-alert--indigo .pf-alert-icon {
+    color: var(--pf-indigo);
+}
+
+.pf-alert--indigo .pf-alert-btn {
+    background: linear-gradient(135deg, #6366F1 0%, #4338CA 100%);
+}
+
+.pf-alert--orange {
+    background: var(--pf-orange-soft);
+    border-color: #FBC79B;
+}
+
+.pf-alert--orange .pf-alert-icon {
+    color: var(--pf-orange);
+}
+
+.pf-alert--orange .pf-alert-btn {
+    background: linear-gradient(135deg, #F58634 0%, #D95E0D 100%);
+}
+
+.pf-alert--teal {
+    background: var(--pf-teal-soft);
+    border-color: #A7E8DE;
+}
+
+.pf-alert--teal .pf-alert-icon {
+    color: var(--pf-teal);
+}
+
+.pf-alert--teal .pf-alert-btn {
+    background: linear-gradient(135deg, #14B8A6 0%, #0B7C72 100%);
+}
+
+.pf-alert--pink {
+    background: var(--pf-pink-soft);
+    border-color: #F9C0DA;
+}
+
+.pf-alert--pink .pf-alert-icon {
+    color: var(--pf-pink);
+}
+
+.pf-alert--pink .pf-alert-btn {
+    background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 1024px) {
+    .pf-step-state {
+        display: none;
+    }
+
+    .pf-step-link {
+        padding: 10px 8px;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 760px) {
+    .pf-steps {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .pf-step {
+        flex: 1 1 46%;
+    }
+
+    .pf-step-connector {
+        display: none;
+    }
+
+    .pf-stepper-progress {
+        width: 100%;
+    }
+
+    .pf-stepper-bar {
+        flex: 1;
+        width: auto;
+    }
+
+    .pf-flownav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pf-flownav-side,
+    .pf-flownav-side--end {
+        justify-content: stretch;
+    }
+
+    .pf-nav-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .pf-flownav-mid {
+        order: -1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pf-step-link,
+    .pf-nav-btn,
+    .pf-alert-btn,
+    .pf-stepper-bar-fill {
+        transition: none !important;
+    }
+
+    .pf-step--current .pf-step-badge {
+        animation: none !important;
+    }
+}
+
+.pf-alert--teal {
+    background: var(--pf-teal-soft);
+    border-color: #A7E8DE;
+}
+
+.pf-alert--teal .pf-alert-icon {
+    color: var(--pf-teal);
+}
+
+.pf-alert--teal .pf-alert-btn {
+    background: linear-gradient(135deg, #14B8A6 0%, #0B7C72 100%);
+}
+
+.pf-alert--pink {
+    background: var(--pf-pink-soft);
+    border-color: #F9C0DA;
+}
+
+.pf-alert--pink .pf-alert-icon {
+    color: var(--pf-pink);
+}
+
+.pf-alert--pink .pf-alert-btn {
+    background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 1024px) {
+    .pf-step-state {
+        display: none;
+    }
+
+    .pf-step-link {
+        padding: 10px 8px;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 760px) {
+    .pf-steps {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .pf-step {
+        flex: 1 1 46%;
+    }
+
+    .pf-step-connector {
+        display: none;
+    }
+
+    .pf-stepper-progress {
+        width: 100%;
+    }
+
+    .pf-stepper-bar {
+        flex: 1;
+        width: auto;
+    }
+
+    .pf-flownav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pf-flownav-side,
+    .pf-flownav-side--end {
+        justify-content: stretch;
+    }
+
+    .pf-nav-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .pf-flownav-mid {
+        order: -1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pf-step-link,
+    .pf-nav-btn,
+    .pf-alert-btn,
+    .pf-stepper-bar-fill {
+        transition: none !important;
+    }
+
+    .pf-step--current .pf-step-badge {
+        animation: none !important;
+    }
+}
+
+/* ---------------- Thông báo góc trên bên phải (Fixed top: 100px) ---------------- */
+.pf-toast {
+    position: fixed;
+    top: 100px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    font-weight: 600;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.18);
+    animation: pf-toast-slide-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 420px;
+    color: #FFFFFF;
+}
+
+@keyframes pf-toast-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.pf-toast--success {
+    background: #51B848;
+    border: 1px solid #439E3B;
+}
+
+.pf-toast--error {
+    background: #E14F4F;
+    border: 1px solid #C93B3B;
+}
+
+.pf-toast--info {
+    background: #034EA2;
+    border: 1px solid #023B7A;
+}
+
+.pf-toast-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pf-toast-msg {
+    flex: 1;
+    min-width: 0;
+    line-height: 1.4;
+}
+
+.pf-toast-close {
+    background: transparent;
+    border: none;
+    color: currentColor;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.85;
+    padding: 0 0 0 8px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+.pf-toast-close:hover {
+    opacity: 1;
+}
+
+/* ---------------- Thông báo 1 dòng chữ đỏ + link xanh dương gạch chân ---------------- */
+.pf-incomplete-notice {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #E14F4F;
+    margin-top: 8px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.pf-incomplete-link {
+    color: #034EA2 !important;
+    text-decoration: underline !important;
+    font-weight: 700 !important;
+    transition: color 0.15s ease;
+}
+
+.pf-incomplete-link:hover {
+    color: #023B7A !important;
+}
+
+/* ---------------- Ô Gợi ý Chuyên ngành (Nằm cùng hàng với các bước hồ sơ) ---------------- */
+.pf-nav-box--recommend {
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- Trạng thái Chưa đủ dữ liệu (Màu xám) --- */
+.pf-nav-box--rec-disabled {
+    background: #F8FAFC;
+    border: 1.5px dashed #CBD5E1;
+    cursor: not-allowed;
+    opacity: 0.72;
+    box-shadow: none;
+}
+
+.pf-nav-box--rec-disabled:hover {
+    background: #F8FAFC;
+    border-color: #CBD5E1;
+    transform: none;
+    box-shadow: none;
+}
+
+.pf-nav-box--rec-disabled .pf-box-badge {
+    background: #E2E8F0;
+    border-color: #CBD5E1;
+    color: #94A3B8;
+}
+
+.pf-nav-box--rec-disabled .pf-box-label {
+    color: #64748B;
+    font-weight: 600;
+}
+
+.pf-nav-box--rec-disabled .pf-box-state {
+    color: #94A3B8;
+    font-weight: 500;
+}
+
+/* --- Trạng thái ĐỦ DỮ LIỆU ĐỂ GỢI Ý (Nổi bật, sáng xung quanh ô) --- */
+.pf-nav-box--rec-active {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFF9F3 50%, #FFF3E7 100%);
+    border: 1.5px solid #F37021;
+    cursor: pointer;
+    box-shadow: 
+        0 0 0 1px rgba(243, 112, 33, 0.4),
+        0 0 14px rgba(243, 112, 33, 0.45),
+        0 0 28px rgba(243, 112, 33, 0.22),
+        0 4px 14px rgba(243, 112, 33, 0.12);
+    animation: pf-rec-pulse-glow 2.4s ease-in-out infinite alternate;
+    z-index: 2;
+}
+
+@keyframes pf-rec-pulse-glow {
+    0% {
+        border-color: #F37021;
+        box-shadow: 
+            0 0 0 1px rgba(243, 112, 33, 0.35),
+            0 0 12px rgba(243, 112, 33, 0.35),
+            0 0 22px rgba(243, 112, 33, 0.15),
+            0 2px 8px rgba(15, 23, 42, 0.05);
+    }
+    50% {
+        border-color: #FF8533;
+        box-shadow: 
+            0 0 0 2px rgba(243, 112, 33, 0.75),
+            0 0 22px rgba(243, 112, 33, 0.7),
+            0 0 38px rgba(255, 138, 61, 0.38),
+            0 4px 16px rgba(243, 112, 33, 0.22);
+    }
+    100% {
+        border-color: #F37021;
+        box-shadow: 
+            0 0 0 1px rgba(243, 112, 33, 0.35),
+            0 0 12px rgba(243, 112, 33, 0.35),
+            0 0 22px rgba(243, 112, 33, 0.15),
+            0 2px 8px rgba(15, 23, 42, 0.05);
+    }
+}
+
+.pf-nav-box--rec-active:hover {
+    background: linear-gradient(135deg, #FFF2E2 0%, #FFFFFF 100%);
+    border-color: #E0590F;
+    transform: translateY(-2.5px);
+    box-shadow: 
+        0 0 0 2.5px #F37021,
+        0 0 26px rgba(243, 112, 33, 0.85),
+        0 0 48px rgba(243, 112, 33, 0.45),
+        0 8px 24px rgba(243, 112, 33, 0.28);
+}
+
+.pf-nav-box--rec-active .pf-box-badge {
+    background: linear-gradient(135deg, #F37021 0%, #E0590F 100%);
+    border-color: #F37021;
+    color: #FFFFFF;
+    box-shadow: 0 3px 10px rgba(243, 112, 33, 0.45);
+    animation: pf-rec-sparkle-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pf-rec-sparkle-pulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% {
+        transform: scale(1.08);
+        filter: brightness(1.15);
+    }
+}
+
+.pf-nav-box--rec-active .pf-box-label {
+    color: #C2410C;
+    font-weight: 800;
+}
+
+.pf-nav-box--rec-active .pf-box-state {
+    color: #EA580C;
+    font-weight: 700;
+}
+
+/* Mũi tên điều hướng trong ô Gợi ý */
+.pf-rec-arrow-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pf-nav-box--rec-disabled .pf-rec-arrow-wrap {
+    color: #94A3B8;
+    opacity: 0.45;
+}
+
+.pf-nav-box--rec-active .pf-rec-arrow-wrap {
+    background: rgba(243, 112, 33, 0.12);
+    color: #EA580C;
+}
+
+.pf-nav-box--rec-active:hover .pf-rec-arrow-wrap {
+    transform: translateX(3px);
+    background: #F37021;
+    color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(243, 112, 33, 0.38);
+}
+
+/* Vệt sáng quét ngang qua ô khi đã kích hoạt */
+.pf-nav-box--rec-active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -70%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.65) 50%, transparent 100%);
+    transform: skewX(-22deg);
+    pointer-events: none;
+    border-radius: inherit;
+    animation: pf-rec-box-sheen 3.6s ease-in-out infinite;
+}
+
+/* --- Khi đang ở chính trang Gợi ý chuyên ngành (Current) --- */
+.pf-nav-box--recommend.pf-nav-box--current {
+    background: linear-gradient(135deg, #FFF5EB 0%, #FFFFFF 100%) !important;
+    border: 2px solid #F37021 !important;
+    box-shadow: 
+        0 0 0 3px rgba(243, 112, 33, 0.25),
+        0 0 24px rgba(243, 112, 33, 0.45),
+        0 4px 16px rgba(243, 112, 33, 0.18) !important;
+}
+
+.pf-nav-box--recommend.pf-nav-box--current .pf-box-badge {
+    background: #F37021 !important;
+    border-color: #F37021 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 3px 10px rgba(243, 112, 33, 0.45) !important;
+}
+
+.pf-nav-box--recommend.pf-nav-box--current .pf-box-label {
+    color: #C2410C !important;
+    font-weight: 800 !important;
+}
+
+.pf-nav-box--recommend.pf-nav-box--current .pf-box-state {
+    color: #EA580C !important;
+    font-weight: 700 !important;
+}
+
+.pf-nav-box--recommend.pf-nav-box--current .pf-rec-arrow-wrap {
+    background: #F37021 !important;
+    color: #FFFFFF !important;
+}
+
+@keyframes pf-rec-box-sheen {
+    0% { left: -70%; }
+    35%, 100% { left: 140%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pf-nav-box--rec-active {
+        animation: none !important;
+    }
+    .pf-nav-box--rec-active::before {
+        display: none !important;
+    }
+    .pf-nav-box--rec-active .pf-box-badge {
+        animation: none !important;
+    }
+}

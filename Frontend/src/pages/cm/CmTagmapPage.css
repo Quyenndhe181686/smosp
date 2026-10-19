@@ -1,0 +1,520 @@
+/* ============================================================
+   CmTagmapPage.css — tiền tố tm-
+
+   Dùng token dùng chung của cm-ui.css. Nút, tag, dropdown và thông
+   báo lấy từ hệ thống chung: .cm-btn-*, .cm-tag-*, CmSelect, CmToast.
+   ============================================================ */
+
+.tm-page {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    padding: 20px 24px 32px;
+    font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+    color: var(--cm-ink);
+    background: var(--cm-surface-alt);
+    min-height: 100vh;
+}
+
+.tm-card {
+    padding: 16px 18px;
+    background: var(--cm-surface);
+    border: 1px solid var(--cm-border);
+    border-radius: 14px;
+}
+
+/* Bảng ánh xạ bên trái, biểu mẫu thêm mới bên phải.
+   minmax(0, …) để bảng dài không đẩy cột phải tràn ra ngoài. */
+.tm-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(300px, 3fr);
+    gap: 14px;
+    align-items: start;
+}
+
+@media (max-width: 1080px) {
+    .tm-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tm-panel-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--cm-ink);
+}
+
+/* ── Đầu khối danh sách ── */
+.tm-entries-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--cm-border);
+}
+
+.tm-entries-titles {
+    min-width: 0;
+}
+
+.tm-legend {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 8px 0 0;
+}
+
+.tm-legend-text {
+    margin-right: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--cm-text-soft);
+}
+
+.tm-entry-stats {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+/* ── Gợi ý suy ra từ môn học ──
+   Kỹ năng của môn trong combo và của môn tiên quyết (thuộc chuyên ngành) mà ánh
+   xạ còn thiếu. Nền vàng nhạt để phân biệt với bảng ánh xạ đã lưu bên dưới. */
+.tm-suggest {
+    margin-bottom: 14px;
+    padding: 12px 14px;
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-radius: var(--cm-radius-sm);
+}
+
+.tm-suggest-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.tm-suggest-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #92400E;
+}
+
+.tm-suggest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 10px 0 8px;
+    padding: 0;
+    list-style: none;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.tm-suggest-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.tm-suggest-name {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--cm-ink);
+}
+
+.tm-suggest-reason {
+    min-width: 0;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--cm-text-soft);
+}
+
+/* ── Bảng ── */
+.tm-table-wrap {
+    overflow-x: auto;
+}
+
+.tm-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tm-table thead th {
+    padding: 9px 10px;
+    border-bottom: 1.5px solid var(--cm-border);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.tm-table tbody td {
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--cm-line);
+    font-size: 12.5px;
+    color: var(--cm-text);
+    vertical-align: middle;
+}
+
+.tm-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tm-table tbody tr:hover td {
+    background: var(--cm-surface-sunken);
+}
+
+.tm-entry-name {
+    font-weight: 600;
+    color: var(--cm-ink);
+}
+
+.tm-th-right,
+.tm-td-right,
+.tm-th-center,
+.tm-td-center {
+    text-align: center;
+}
+
+.tm-weight-input,
+.tm-input-num {
+    width: 84px;
+    padding: 6px 9px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--cm-ink);
+    outline: none;
+    transition: border-color var(--cm-ease), box-shadow var(--cm-ease);
+}
+
+.tm-input-num {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tm-weight-input:focus,
+.tm-input-num:focus {
+    border-color: var(--cm-blue);
+    box-shadow: var(--cm-ring);
+}
+
+.tm-weight-input:disabled {
+    background: #f6f7f9;
+    color: var(--cm-muted);
+    cursor: not-allowed;
+}
+
+.tm-empty-cell,
+.tm-placeholder {
+    padding: 32px 12px;
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--cm-muted);
+}
+
+/* ══════════════════════════════════════════
+   Biểu mẫu thêm ánh xạ
+   ══════════════════════════════════════════ */
+.tm-form-panel {
+    position: sticky;
+    top: 88px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+@media (max-width: 1080px) {
+    .tm-form-panel {
+        position: static;
+    }
+}
+
+.tm-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.tm-add-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.tm-add-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.tm-hint {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--cm-text-soft);
+}
+
+.tm-hint--warn {
+    font-weight: 600;
+    color: var(--cm-warn);
+    text-align: center;
+}
+
+/* Chọn nguồn: kỹ năng hay sở thích */
+.tm-type-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: var(--cm-radius-sm);
+    overflow: hidden;
+}
+
+.tm-type-opt {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: none;
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cm-text-soft);
+    cursor: pointer;
+    transition: background var(--cm-ease), color var(--cm-ease);
+}
+
+.tm-type-opt:hover:not(.is-on) {
+    background: var(--cm-blue-tint);
+    color: var(--cm-blue);
+}
+
+.tm-type-opt.is-on {
+    background: var(--cm-blue);
+    color: #fff;
+}
+
+/* Mục đang chọn */
+.tm-picked {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 8px 7px 11px;
+    border: 1px solid rgba(3, 78, 162, 0.28);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-blue-tint);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cm-blue-deep);
+}
+
+.tm-picked svg {
+    flex-shrink: 0;
+}
+
+.tm-picked-name {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tm-picked-clear {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    background: none;
+    color: var(--cm-danger-strong);
+    cursor: pointer;
+    transition: background var(--cm-ease);
+}
+
+.tm-picked-clear:hover {
+    background: var(--cm-danger-bg);
+}
+
+/* Ô tìm kiếm */
+.tm-search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.tm-search-icon {
+    position: absolute;
+    left: 10px;
+    color: var(--cm-muted);
+    pointer-events: none;
+}
+
+.tm-search-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px 8px 32px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 12.5px;
+    color: var(--cm-ink);
+    outline: none;
+    transition: border-color var(--cm-ease), box-shadow var(--cm-ease);
+}
+
+.tm-search-input:focus {
+    border-color: var(--cm-blue);
+    box-shadow: var(--cm-ring);
+}
+
+.tm-search-input::placeholder {
+    color: var(--cm-muted);
+}
+
+/* Danh sách lựa chọn */
+.tm-option-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--cm-border);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface);
+}
+
+.tm-option-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tm-option-list::-webkit-scrollbar-thumb {
+    background: var(--cm-border-strong);
+    border-radius: 4px;
+}
+
+.tm-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 11px;
+    border: none;
+    border-bottom: 1px solid var(--cm-line);
+    background: none;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--cm-text);
+    text-align: left;
+    cursor: pointer;
+    transition: background var(--cm-ease), color var(--cm-ease);
+}
+
+.tm-option:last-child {
+    border-bottom: none;
+}
+
+.tm-option:hover {
+    background: var(--cm-hover);
+    color: var(--cm-ink);
+}
+
+.tm-option.is-selected {
+    background: var(--cm-blue-tint);
+    color: var(--cm-blue);
+    font-weight: 700;
+}
+
+.tm-option-name {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tm-option-cue {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    flex-shrink: 0;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--cm-success);
+}
+
+.tm-option.is-selected .tm-option-cue {
+    color: var(--cm-blue);
+}
+
+.tm-option-empty {
+    padding: 14px 10px;
+    font-size: 11.5px;
+    color: var(--cm-muted);
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* ── Xác nhận gỡ ánh xạ (DEF_66) + link thử lại (DEF_67) ── */
+.tm-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 20px;
+}
+.tm-modal {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px;
+    max-width: 440px;
+    width: 100%;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.28);
+}
+.tm-modal-title { font-size: 16px; font-weight: 800; color: #B91C1C; margin: 0 0 10px; }
+.tm-modal-text { font-size: 13.5px; line-height: 1.6; color: #334155; margin: 0 0 18px; }
+.tm-modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
+.tm-link-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    text-decoration: underline;
+    font-weight: 700;
+    cursor: pointer;
+}

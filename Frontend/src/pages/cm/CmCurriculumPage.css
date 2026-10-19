@@ -1,0 +1,599 @@
+/* ================================================================
+   CmCurriculumPage.css — tiền tố curr-
+
+   Dùng token dùng chung của cm-ui.css. Nút, tag và thông báo lấy từ
+   hệ thống chung: .cm-btn-*, .cm-tag-*, CmToast.
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+.curr-page {
+    width: 100%;
+    padding: 20px 24px 28px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: var(--cm-ink);
+    background: var(--cm-surface-alt);
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Thống kê bên trái, các kỳ bên phải. Chiều cao trừ thanh điều hướng,
+   khối tiêu đề trang và thanh lọc. */
+.curr-wrap {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) minmax(0, 3fr);
+    height: calc(100vh - 290px);
+    min-height: 480px;
+    border: 1px solid var(--cm-border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--cm-surface);
+}
+
+@media (max-width: 1000px) {
+    .curr-wrap {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 0;
+    }
+
+    .curr-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--cm-border);
+    }
+
+    .curr-term-scroll {
+        max-height: 640px;
+    }
+}
+
+/* ══ Trái: thống kê ══ */
+.curr-sidebar {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 16px;
+    border-right: 1px solid var(--cm-border);
+    background: var(--cm-surface-alt);
+    overflow-y: auto;
+}
+
+.curr-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.curr-stat-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 12px;
+    border: 1px solid var(--cm-border);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface);
+}
+
+.curr-stat-label {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--cm-text-soft);
+}
+
+.curr-stat-val {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--cm-ink);
+    white-space: nowrap;
+}
+
+.curr-stat-val.blue {
+    color: var(--cm-blue);
+}
+
+.curr-dnd-hint {
+    margin: 14px 0 0;
+    padding: 10px 12px;
+    border: 1px dashed var(--cm-border-strong);
+    border-radius: var(--cm-radius-sm);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--cm-text-soft);
+}
+
+/* ══ Phải: các kỳ ══ */
+.curr-main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.curr-main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--cm-border);
+}
+
+.curr-main-eyebrow {
+    margin-bottom: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.curr-main-title {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--cm-ink);
+}
+
+.curr-term-scroll {
+    flex: 1;
+    min-height: 0;
+    padding: 16px 18px 22px;
+    overflow-y: auto;
+}
+
+.curr-terms {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ── Thẻ kỳ học ── */
+.curr-term-card {
+    padding: 13px 15px;
+    border: 1px solid var(--cm-border);
+    border-radius: 12px;
+    background: var(--cm-surface);
+    transition: border-color var(--cm-ease), background var(--cm-ease);
+}
+
+/* Đích thả khi kéo môn — viền màu thương hiệu, nền nhạt */
+.curr-term-card--dragover {
+    border-color: var(--cm-blue);
+    background: var(--cm-blue-tint);
+}
+
+/* Khối môn loại trừ: đỏ toàn khối để không nhầm với các kỳ học thường */
+.curr-term-card--excluded {
+    border-color: var(--cm-danger-border);
+    background: #fffafb;
+}
+
+.curr-term-card--excluded .curr-term-num,
+.curr-term-card--excluded .curr-course-code,
+.curr-term-card--excluded .curr-course-remove {
+    color: var(--cm-danger-strong);
+}
+
+.curr-term-card--excluded .curr-course-row {
+    border-color: var(--cm-danger-border);
+    background: var(--cm-surface);
+}
+
+.curr-term-card--excluded .curr-add-term-btn {
+    border-color: var(--cm-danger-border);
+    color: var(--cm-danger);
+}
+
+.curr-term-card--excluded .curr-add-term-btn:hover {
+    background: var(--cm-danger-bg);
+    border-color: var(--cm-danger-strong);
+    color: var(--cm-danger-strong);
+}
+
+.curr-term-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--cm-line);
+}
+
+.curr-term-num {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--cm-ink);
+}
+
+.curr-term-count {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--cm-text-soft);
+}
+
+/* ── Môn học trong kỳ ── */
+.curr-course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.curr-course-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 10px;
+    border: 1px solid var(--cm-border);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface-alt);
+    cursor: grab;
+    transition: border-color var(--cm-ease), background var(--cm-ease), opacity var(--cm-ease);
+}
+
+.curr-course-row:hover {
+    border-color: var(--cm-border-strong);
+    background: var(--cm-hover);
+}
+
+.curr-course-row--dragging {
+    opacity: 0.4;
+    cursor: grabbing;
+}
+
+.curr-course-row-left {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+}
+
+.curr-course-row-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.curr-drag-handle {
+    display: flex;
+    flex-shrink: 0;
+    color: var(--cm-muted);
+    cursor: grab;
+}
+
+.curr-course-code {
+    flex-shrink: 0;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: var(--cm-blue);
+}
+
+.curr-course-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12.5px;
+    color: var(--cm-text);
+}
+
+.curr-course-note {
+    flex-shrink: 0;
+    margin-left: 4px;
+    font-size: 11px;
+    font-style: italic;
+    color: var(--cm-muted);
+}
+
+.curr-course-credits {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--cm-text-soft);
+    white-space: nowrap;
+}
+
+.curr-course-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    border-radius: 6px;
+    background: none;
+    color: var(--cm-muted);
+    cursor: pointer;
+    transition: background var(--cm-ease), color var(--cm-ease);
+}
+
+.curr-course-remove:hover {
+    background: var(--cm-danger-bg);
+    color: var(--cm-danger-strong);
+}
+
+.curr-course-empty {
+    padding: 14px 12px;
+    border: 1px dashed var(--cm-border);
+    border-radius: var(--cm-radius-sm);
+    text-align: center;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--cm-muted);
+}
+
+.curr-course-empty--dragover {
+    border-color: var(--cm-blue);
+    background: var(--cm-blue-soft);
+    color: var(--cm-blue);
+}
+
+.curr-add-term-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    border: 1px dashed var(--cm-border-strong);
+    border-radius: var(--cm-radius-sm);
+    background: none;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cm-text-soft);
+    cursor: pointer;
+    transition: background var(--cm-ease), border-color var(--cm-ease), color var(--cm-ease);
+}
+
+.curr-add-term-btn:hover {
+    background: var(--cm-blue-tint);
+    border-color: var(--cm-blue);
+    color: var(--cm-blue);
+}
+
+/* Khi đang kéo thì nút không được nuốt sự kiện thả */
+.curr-add-term-btn--no-pointer {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.curr-ns-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 48px 20px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--cm-text-soft);
+}
+
+.curr-ns-empty-icon {
+    display: flex;
+    color: var(--cm-ink);
+    opacity: 0.2;
+}
+
+/* ══ Hộp thoại chọn môn ══ */
+.curr-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(13, 27, 62, 0.4);
+    backdrop-filter: blur(2px);
+    animation: currFade 140ms ease;
+}
+
+@keyframes currFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.curr-popup {
+    display: flex;
+    flex-direction: column;
+    width: min(520px, 100%);
+    max-height: min(560px, calc(100vh - 40px));
+    border-radius: 16px;
+    background: var(--cm-surface);
+    box-shadow: var(--cm-shadow-pop);
+    overflow: hidden;
+}
+
+.curr-popup-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-shrink: 0;
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid var(--cm-border);
+}
+
+.curr-popup-eyebrow {
+    margin-bottom: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.curr-popup-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--cm-ink);
+}
+
+.curr-popup-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: none;
+    border-radius: 7px;
+    background: none;
+    color: var(--cm-text-soft);
+    cursor: pointer;
+    transition: background var(--cm-ease), color var(--cm-ease);
+}
+
+.curr-popup-close:hover {
+    background: var(--cm-hover);
+    color: var(--cm-ink);
+}
+
+.curr-popup-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    flex-shrink: 0;
+    padding: 14px 20px 0;
+}
+
+.curr-popup-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.curr-popup-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.curr-popup-search {
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+    margin: 14px 20px 0;
+    padding: 9px 12px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 12.5px;
+    color: var(--cm-ink);
+    outline: none;
+    transition: border-color var(--cm-ease), box-shadow var(--cm-ease);
+}
+
+/* Biến thể nằm trong .curr-popup-field — lề đã do khối cha lo */
+.curr-popup-search--inline {
+    width: 100%;
+    margin: 0;
+}
+
+.curr-popup-search:focus {
+    border-color: var(--cm-blue);
+    box-shadow: var(--cm-ring);
+}
+
+.curr-popup-search::placeholder {
+    color: var(--cm-muted);
+}
+
+.curr-popup-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-height: 0;
+    padding: 14px 20px 20px;
+    overflow-y: auto;
+}
+
+.curr-popup-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 12px;
+    border: 1px solid var(--cm-border);
+    border-left: 3px solid var(--cm-blue);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface-alt);
+    cursor: pointer;
+    transition: background var(--cm-ease), border-color var(--cm-ease);
+}
+
+.curr-popup-item:hover {
+    background: var(--cm-blue-tint);
+}
+
+.curr-popup-item--exclude {
+    border-left-color: var(--cm-danger-strong);
+}
+
+.curr-popup-item--exclude:hover {
+    background: var(--cm-danger-bg);
+}
+
+.curr-popup-item--exclude .curr-popup-item-code {
+    color: var(--cm-danger-strong);
+}
+
+.curr-popup-item-info {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    min-width: 0;
+}
+
+.curr-popup-item-code {
+    flex-shrink: 0;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: var(--cm-blue);
+}
+
+.curr-popup-item-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12.5px;
+    color: var(--cm-text);
+}
+
+.curr-popup-item-credits {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--cm-text-soft);
+}
+
+.curr-popup-empty {
+    padding: 28px 12px;
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--cm-muted);
+}

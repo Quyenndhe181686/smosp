@@ -1,0 +1,286 @@
+/* ================================================================
+   CmInterestsPage.css — tiền tố ci-
+
+   Dùng token dùng chung của cm-ui.css. Nút, tag, dropdown và thông
+   báo lấy từ hệ thống chung: .cm-btn-*, .cm-tag-*, CmSelect, CmToast.
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+.ci-page {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    padding: 20px 24px 40px;
+    font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+    color: var(--cm-ink);
+    background: var(--cm-surface-alt);
+    min-height: 100vh;
+}
+
+.ci-card {
+    padding: 14px 16px;
+    background: var(--cm-surface);
+    border: 1px solid var(--cm-border);
+    border-radius: 14px;
+}
+
+/* Bảng bên trái, biểu mẫu bên phải. minmax(0,…) để bảng rộng không
+   ép cột biểu mẫu tràn ra ngoài khung. */
+.ci-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 340px);
+    gap: 14px;
+    align-items: start;
+}
+
+@media (max-width: 1080px) {
+    .ci-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ci-main {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+}
+
+/* ── Thanh công cụ ── */
+.ci-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.ci-search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 200px;
+}
+
+.ci-search-icon {
+    position: absolute;
+    left: 11px;
+    color: var(--cm-muted);
+    pointer-events: none;
+}
+
+.ci-search {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 12px 8px 33px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 12.5px;
+    color: var(--cm-ink);
+    outline: none;
+    transition: border-color var(--cm-ease), box-shadow var(--cm-ease);
+}
+
+.ci-search:focus {
+    border-color: var(--cm-blue);
+    box-shadow: var(--cm-ring);
+}
+
+.ci-search::placeholder {
+    color: var(--cm-muted);
+}
+
+.ci-filter-group {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.ci-chip {
+    padding: 6px 13px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: 999px;
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--cm-text-soft);
+    cursor: pointer;
+    transition: background var(--cm-ease), border-color var(--cm-ease), color var(--cm-ease);
+}
+
+.ci-chip:hover {
+    background: var(--cm-blue-tint);
+    border-color: var(--cm-blue);
+    color: var(--cm-blue);
+}
+
+.ci-chip.is-active {
+    background: var(--cm-blue);
+    border-color: var(--cm-blue);
+    color: #fff;
+}
+
+/* ── Bảng ── */
+.ci-table-card {
+    padding: 6px 16px 14px;
+}
+
+.ci-table-wrap {
+    overflow-x: auto;
+}
+
+.ci-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ci-table thead th {
+    padding: 10px 10px 8px;
+    border-bottom: 1.5px solid var(--cm-border);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.ci-table tbody td {
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--cm-line);
+    font-size: 12.5px;
+    color: var(--cm-text);
+    vertical-align: middle;
+}
+
+.ci-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.ci-table tbody tr:hover td {
+    background: var(--cm-surface-sunken);
+}
+
+/* Hàng đã tắt để chìm hẳn — nhìn lướt là biết mục nào không còn dùng */
+.ci-row-inactive .ci-name-cell {
+    color: var(--cm-muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--cm-border-strong);
+}
+
+.ci-name-cell {
+    font-weight: 600;
+    color: var(--cm-ink);
+}
+
+.ci-muted {
+    font-size: 11.5px;
+    color: var(--cm-text-soft);
+    white-space: nowrap;
+}
+
+.ci-th-right,
+.ci-td-right,
+.ci-th-center,
+.ci-td-center {
+    text-align: center;
+}
+
+.ci-empty {
+    padding: 32px 12px !important;
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--cm-muted);
+}
+
+/* ── Biểu mẫu ── */
+.ci-form-panel {
+    position: sticky;
+    top: 88px;
+}
+
+@media (max-width: 1080px) {
+    .ci-form-panel {
+        position: static;
+    }
+}
+
+.ci-form {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.ci-form-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--cm-border);
+}
+
+.ci-form-title {
+    margin: 0;
+    font-size: 14.5px;
+    font-weight: 800;
+    color: var(--cm-ink);
+}
+
+.ci-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ci-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--cm-text);
+}
+
+.ci-required {
+    color: var(--cm-danger-strong);
+}
+
+.ci-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 11px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 12.5px;
+    color: var(--cm-ink);
+    outline: none;
+    transition: border-color var(--cm-ease), box-shadow var(--cm-ease);
+}
+
+.ci-input:focus {
+    border-color: var(--cm-blue);
+    box-shadow: var(--cm-ring);
+}
+
+.ci-input::placeholder {
+    color: var(--cm-muted);
+}
+
+.ci-form-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+    padding-top: 13px;
+    border-top: 1px solid var(--cm-border);
+}
+
+.ci-btn-half {
+    flex: 1;
+}

@@ -1,0 +1,757 @@
+/* ================================================================
+   PersonalInfoPage.css
+   Font: Be Vietnam Pro | Brand: #034EA2 · #F37021 · #51B848
+   Prefix: pi- (Personal Info)
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+.pi-page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    width: 100%;
+}
+
+.pi-head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.pi-step-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    margin-bottom: 4px;
+    border-radius: 999px;
+    background: #EEF0FF;
+    color: #4F46E5;
+    border: 1px solid #C7CBFB;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.pi-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 22px;
+    font-weight: 800;
+    color: #0d1b3e;
+    margin: 0;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+/* Icon tiêu đề trong ô vuông bo tròn có viền — dùng chung ở cả 4 trang khai báo. */
+.pi-title-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: #E0E7FF;
+    border: 2.5px solid #C7D2FE;
+    box-shadow: 0 3px 0 #C7D2FE;
+    color: #4F46E5;
+    flex-shrink: 0;
+}
+
+.pi-subtitle {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 0;
+    max-width: 720px;
+    line-height: 1.6;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+/* ── Cảnh báo trùng khớp thông tin cá nhân với bảng điểm ── */
+.pi-match-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #FFF8F0;
+    border: 1.5px solid #FBD7B8;
+    border-radius: 14px;
+    padding: 13px 18px;
+    box-shadow: 0 2px 8px rgba(243, 112, 33, 0.05);
+}
+
+.pi-match-warning-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: #FFE8D6;
+    color: #F37021;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.pi-match-warning-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.pi-match-warning-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: #C2410C;
+    line-height: 1.4;
+}
+
+.pi-match-warning-text {
+    font-size: 12.5px;
+    color: #7C2D12;
+    line-height: 1.55;
+    font-weight: 500;
+}
+
+.pi-match-warning-text strong {
+    font-weight: 800;
+    color: #9A3412;
+}
+
+.pi-match-warning-close {
+    background: transparent;
+    border: none;
+    color: #C2410C;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.65;
+    padding: 2px 6px;
+    margin-left: auto;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+}
+
+.pi-match-warning-close:hover {
+    opacity: 1;
+    background: rgba(243, 112, 33, 0.12);
+}
+
+/* ── Layout ─────────────────────────────────────────────────── */
+.pi-layout {
+    display: block;
+    width: 100%;
+}
+
+.pi-card {
+    background: #fff;
+    border: 0.5px solid #e4e6ee;
+    border-radius: 16px;
+    padding: 28px 32px;
+    box-shadow: 0 2px 14px rgba(16, 24, 40, 0.04);
+    transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.26s ease, border-color 0.26s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pi-card:hover {
+    border-color: #B5D4F4;
+    box-shadow: 0 18px 36px rgba(3, 78, 162, 0.08);
+}
+
+/* ── Form 2-column grid ────────────────────────────────────────── */
+.pi-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    margin-bottom: 24px;
+}
+
+.pi-form-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+/* ── Chuyên ngành hẹp (CNH) section ────────────────────────────── */
+.pi-narrow-spec-section {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #E6E8EF;
+}
+
+.pi-narrow-spec-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 12px;
+}
+
+.pi-cnh-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1.5px solid #E6E8EF;
+    border-radius: 12px;
+    background: #FFFFFF;
+    cursor: pointer;
+    transition: all 160ms ease;
+    user-select: none;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.pi-cnh-box:hover {
+    border-color: #034EA2;
+    background: #F8FAFC;
+}
+
+.pi-cnh-box.selected {
+    border-color: #034EA2;
+    background: #F0F5FF;
+    box-shadow: 0 0 0 1px #034EA2;
+}
+
+.pi-cnh-checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 1.5px solid #C7CBFB;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: all 160ms ease;
+}
+
+.pi-cnh-box.selected .pi-cnh-checkbox {
+    background: #034EA2;
+    border-color: #034EA2;
+    color: #fff;
+}
+
+.pi-cnh-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    flex: 1;
+}
+
+.pi-cnh-name {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #1F2430;
+    line-height: 1.4;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.pi-cnh-code {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #707684;
+}
+
+.pi-cnh-desc {
+    font-size: 12px;
+    color: #6B7280;
+    margin: 2px 0 0;
+    line-height: 1.45;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.pi-narrow-spec-notice {
+    padding: 12px 16px;
+    background: #F6F7FB;
+    border-radius: 10px;
+    font-size: 12.5px;
+    color: #6B7280;
+    margin-top: 10px;
+    border: 1px dashed #E6E8EF;
+}
+
+.pi-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    width: 100%;
+}
+
+.pi-field-full {
+    margin-bottom: 22px;
+    min-width: 0;
+    width: 100%;
+}
+
+.pi-label {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #1F2430;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.pi-required {
+    color: #E14F4F;
+}
+
+.pi-hint {
+    font-size: 11px;
+    color: #98A0AC;
+    margin-top: -2px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    word-break: break-word;
+}
+
+.pi-input,
+.pi-select {
+    height: 44px;
+    padding: 0 14px;
+    border-radius: 10px;
+    border: 1px solid #E6E8EF;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #1F2430;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background: #fff;
+    outline: none;
+    transition: border-color 140ms ease, box-shadow 140ms ease;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pi-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23707684' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 34px;
+    cursor: pointer;
+}
+
+.pi-input:focus,
+.pi-select:focus {
+    border-color: #034EA2;
+    box-shadow: 0 0 0 3px rgba(3, 78, 162, 0.12);
+}
+
+.pi-input-disabled {
+    background: #F6F7FB;
+    color: #707684;
+    cursor: not-allowed;
+}
+
+.pi-select:disabled {
+    background: #F6F7FB;
+    color: #98A0AC;
+    cursor: not-allowed;
+}
+
+.pi-input-error {
+    border-color: #E14F4F;
+}
+
+.pi-input-error:focus {
+    box-shadow: 0 0 0 3px rgba(225, 79, 79, 0.14);
+}
+
+.pi-error-msg {
+    font-size: 11.5px;
+    color: #E14F4F;
+    font-weight: 600;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+/* ── Disclaimer (BR-23) ───────────────────────────────────────── */
+.pi-disclaimer {
+    display: flex;
+    gap: 14px;
+    background: #FEF1E8;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-top: 8px;
+}
+
+.pi-disclaimer-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #F37021;
+    color: #fff;
+    font-weight: 800;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pi-disclaimer-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #D95F14;
+    margin: 0 0 4px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.pi-disclaimer-text {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.6;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+/* ── Actions ──────────────────────────────────────────────────── */
+.pi-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.pi-save-ok {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #51B848;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.pi-btn-ghost,
+.pi-btn-primary {
+    height: 44px;
+    padding: 0 22px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    transition: background 140ms ease, transform 120ms ease, border-color 140ms ease;
+}
+
+.pi-btn-ghost {
+    background: #fff;
+    color: #1F2430;
+    border: 1px solid #E6E8EF;
+}
+
+.pi-btn-ghost:hover {
+    background: #F6F7FB;
+    transform: translateY(-1px);
+}
+
+.pi-btn-primary {
+    background: #F37021;
+    color: #fff;
+    border: none;
+    box-shadow: 0 6px 18px rgba(243, 112, 33, 0.22);
+    transition: background 140ms ease, transform 140ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 140ms ease;
+}
+
+.pi-btn-primary:hover:not(:disabled) {
+    background: #D95F14;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(243, 112, 33, 0.32);
+}
+
+.pi-btn-primary:active:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.pi-btn-primary:disabled {
+    opacity: 0.7;
+    cursor: default;
+    transform: none;
+}
+
+.pi-btn-ghost:active,
+.pi-btn-primary:active {
+    transform: translateY(0);
+}
+
+/* ── Aside ────────────────────────────────────────────────────── */
+.pi-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.pi-aside-card {
+    padding: 24px 24px;
+}
+
+.pi-aside-title {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #0d1b3e;
+    margin: 0 0 14px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.pi-aside-text {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.7;
+    margin: 0 0 10px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.pi-aside-text:last-child {
+    margin-bottom: 0;
+}
+
+.pi-aside-current strong {
+    color: #034EA2;
+}
+
+.pi-aside-desc {
+    font-size: 11.5px;
+    color: #8A93A3;
+    line-height: 1.6;
+    margin: -8px 0 14px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+/* ── Checklist 4 bước, nối liền bằng đường dọc theo thứ tự khai báo ── */
+.pi-checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.pi-checklist li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 10px;
+    border-radius: 12px;
+    font-size: 12.5px;
+    font-weight: 600;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    transition: background 180ms ease;
+}
+
+.pi-checklist li:hover {
+    background: #F7F8FC;
+}
+
+/* đường nối dọc giữa các bước */
+.pi-checklist li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 23px;
+    top: 39px;
+    bottom: -4px;
+    width: 2px;
+    border-radius: 999px;
+    background: #E6E8EF;
+}
+
+.pi-checklist li.pi-check-done:not(:last-child)::after {
+    background: currentColor;
+    opacity: 0.35;
+}
+
+.pi-check-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.pi-check-texts {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.pi-check-name {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #1F2430;
+}
+
+.pi-check-state {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #A2AAB8;
+}
+
+.pi-check-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    color: #98A0AC;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    flex-shrink: 0;
+    transition: all 200ms ease;
+}
+
+.pi-check-link:hover {
+    color: currentColor;
+    transform: translateX(3px);
+}
+
+.pi-check-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11.5px;
+    font-weight: 800;
+    background: #FFFFFF;
+    color: #A2AAB8;
+    border: 2px solid #E6E8EF;
+    z-index: 1;
+    transition: all 200ms ease;
+}
+
+/* màu nhấn theo bước — khớp với stepper dùng chung */
+.pi-check--indigo {
+    color: #4F46E5;
+}
+
+.pi-check--orange {
+    color: #EA6A16;
+}
+
+.pi-check--teal {
+    color: #0D9488;
+}
+
+.pi-check--pink {
+    color: #DB2777;
+}
+
+.pi-check-done .pi-check-dot {
+    background: currentColor;
+    border-color: currentColor;
+    color: #fff;
+    font-size: 0;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.16);
+}
+
+.pi-check-done .pi-check-dot::after {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2.4px 2.4px 0;
+    transform: rotate(45deg);
+}
+
+.pi-check-done .pi-check-state {
+    color: currentColor;
+}
+
+.pi-check-current {
+    background: #F7F8FC;
+}
+
+.pi-check-current .pi-check-dot {
+    border-color: currentColor;
+    color: currentColor;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+.pi-check-current .pi-check-name {
+    font-weight: 800;
+}
+
+.pi-check-todo .pi-check-name {
+    color: #6B7280;
+}
+
+/* CTA "bước tiếp theo" ở cuối aside */
+.pi-aside-cta {
+    display: block;
+    margin-top: 16px;
+    padding: 11px 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6366F1 0%, #4338CA 100%);
+    color: #FFFFFF;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.28);
+    transition: all 180ms ease;
+}
+
+.pi-aside-cta:hover {
+    filter: brightness(1.07);
+    transform: translateY(-1px);
+}
+
+.pi-aside-cta--ok {
+    background: #E6FAF6;
+    border: 1px solid #A7E8DE;
+    color: #0F766E;
+    box-shadow: none;
+    line-height: 1.55;
+    cursor: default;
+}
+
+.pi-aside-cta--ok:hover {
+    filter: none;
+    transform: none;
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .pi-form-grid,
+    .pi-narrow-spec-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .pi-card {
+        padding: 22px 20px;
+    }
+}

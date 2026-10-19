@@ -1,0 +1,788 @@
+/* ============================================================
+   CmDashboard.css
+
+   Dùng token màu dùng chung của cm-ui.css (nạp kèm CmPagination /
+   CmSelect). Nguyên tắc màu trên trang này:
+     - Nền và khung luôn trung tính; màu chỉ dùng để phân loại mức độ.
+     - Đỏ = phải xử lý ngay, cam = cần chú ý, tím = thiếu cấu hình,
+       lam = thông tin, lục = ổn.
+     - Không có tag xám: mỗi tag mang đúng màu ngữ nghĩa của nó.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+.cmd-page {
+  padding: 24px 28px 64px;
+  width: 100%;
+  font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+  color: var(--cm-ink, #0d1b3e);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  background-color: var(--cm-surface-alt, #fafafa);
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.cmd-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--cm-border);
+}
+
+.cmd-header-title {
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--cm-ink);
+  margin: 0 0 4px;
+  letter-spacing: -0.015em;
+}
+
+.cmd-header-sub {
+  font-size: 13px;
+  color: var(--cm-text-soft);
+  margin: 0;
+}
+
+.cmd-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cmd-refresh-time {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--cm-muted);
+  white-space: nowrap;
+}
+
+/* ── Zone ── */
+.cmd-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cmd-sec-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cm-text);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.cmd-sec-title svg {
+  color: var(--cm-blue);
+}
+
+/* ============================================================
+   Cảnh báo — mức độ đọc được ngay từ màu và nhãn
+   ============================================================ */
+.cmd-alert-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cmd-alert {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 18px 13px 20px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Vạch màu bên trái — tín hiệu mức độ đọc được cả khi lướt nhanh */
+.cmd-alert-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+.cmd-alert-icon {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.cmd-alert-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.cmd-alert-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+/* Nhãn mức độ: viết hoa, nền đặc, tương phản cao */
+.cmd-alert-level {
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.cmd-alert-title {
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.cmd-alert-detail {
+  margin: 3px 0 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.45;
+  opacity: 0.85;
+}
+
+.cmd-alert-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: filter var(--cm-ease);
+}
+
+.cmd-alert-cta:hover {
+  filter: brightness(1.1);
+}
+
+/* Mức KHẨN CẤP — đỏ */
+.cmd-alert--critical {
+  background: var(--cm-danger-bg);
+  border: 1px solid var(--cm-danger-border);
+  color: #7f1d1d;
+}
+
+.cmd-alert--critical .cmd-alert-bar,
+.cmd-alert--critical .cmd-alert-level,
+.cmd-alert--critical .cmd-alert-cta {
+  background: var(--cm-danger-strong);
+}
+
+.cmd-alert--critical .cmd-alert-icon {
+  color: var(--cm-danger-strong);
+}
+
+/* Mức CẦN CHÚ Ý — cam */
+.cmd-alert--warning {
+  background: var(--cm-warn-bg);
+  border: 1px solid var(--cm-warn-border);
+  color: #7c3a06;
+}
+
+.cmd-alert--warning .cmd-alert-bar,
+.cmd-alert--warning .cmd-alert-level,
+.cmd-alert--warning .cmd-alert-cta {
+  background: var(--cm-warn);
+}
+
+.cmd-alert--warning .cmd-alert-icon {
+  color: var(--cm-warn);
+}
+
+/* ============================================================
+   Thẻ số liệu
+   ============================================================ */
+.cmd-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .cmd-stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.cmd-stat-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px 16px 21px;
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color var(--cm-ease), box-shadow var(--cm-ease);
+}
+
+.cmd-stat-card:hover {
+  border-color: var(--cm-border-strong);
+  box-shadow: 0 2px 10px rgba(13, 27, 62, 0.06);
+}
+
+.cmd-stat-rail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--stat-color);
+}
+
+.cmd-stat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.cmd-stat-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--cm-text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cmd-stat-value {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--stat-color);
+}
+
+.cmd-stat-value.is-loading {
+  color: var(--cm-border-strong);
+}
+
+/* Ô icon nền nhạt cùng tông với con số — cân bằng, không lấn át */
+.cmd-stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--stat-bg);
+  color: var(--stat-color);
+}
+
+.cmd-stat-card--blue {
+  --stat-color: #034EA2;
+  --stat-bg: #e6f1fb;
+}
+
+.cmd-stat-card--purple {
+  --stat-color: #6d28d9;
+  --stat-bg: #f3e8ff;
+}
+
+.cmd-stat-card--teal {
+  --stat-color: #0f766e;
+  --stat-bg: #d9f2ef;
+}
+
+.cmd-stat-card--orange {
+  --stat-color: #c45a0a;
+  --stat-bg: #fff1e2;
+}
+
+/* ============================================================
+   Card
+   ============================================================ */
+.cmd-card {
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border);
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+
+.cmd-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 1000px) {
+  .cmd-row-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cmd-card-head {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.cmd-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+.cmd-card-icon--blue {
+  background: var(--cm-blue-soft);
+  color: var(--cm-blue);
+}
+
+.cmd-card-icon--purple {
+  background: #f3e8ff;
+  color: var(--cm-purple);
+}
+
+.cmd-card-icon--orange {
+  background: #fff1e2;
+  color: var(--cm-warn);
+}
+
+.cmd-card-icon--warning {
+  background: var(--cm-warn-bg);
+  color: var(--cm-warn);
+}
+
+.cmd-card-icon--danger {
+  background: var(--cm-danger-bg);
+  color: var(--cm-danger-strong);
+}
+
+.cmd-card-titles {
+  flex: 1;
+  min-width: 200px;
+}
+
+.cmd-card-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--cm-ink);
+  margin: 0 0 2px;
+}
+
+.cmd-card-sub {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cm-text-soft);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.cmd-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+/* Con số đếm — mang màu mức độ thay vì nền xám trung tính */
+.cmd-count {
+  min-width: 42px;
+  padding: 4px 12px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.cmd-count--danger {
+  background: var(--cm-danger-bg);
+  border-color: var(--cm-danger-border);
+  color: var(--cm-danger-strong);
+}
+
+.cmd-count--warning {
+  background: var(--cm-warn-bg);
+  border-color: var(--cm-warn-border);
+  color: var(--cm-warn);
+}
+
+.cmd-count--success {
+  background: var(--cm-success-bg);
+  border-color: var(--cm-success-border);
+  color: var(--cm-success);
+}
+
+.cmd-count--info,
+.cmd-count--neutral {
+  background: var(--cm-blue-soft);
+  border-color: rgba(3, 78, 162, 0.18);
+  color: var(--cm-blue-deep);
+}
+
+/* ============================================================
+   Nút
+   ============================================================ */
+.cmd-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 15px;
+  border: 1px solid var(--cm-blue);
+  border-radius: var(--cm-radius-sm);
+  background: var(--cm-blue);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--cm-ease), border-color var(--cm-ease);
+}
+
+.cmd-btn-primary:hover {
+  background: var(--cm-blue-dark);
+  border-color: var(--cm-blue-dark);
+}
+
+.cmd-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border: 1px solid var(--cm-border-strong);
+  border-radius: var(--cm-radius-sm);
+  background: var(--cm-surface);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--cm-text);
+  cursor: pointer;
+  transition: background var(--cm-ease), border-color var(--cm-ease), color var(--cm-ease);
+}
+
+.cmd-btn-ghost:hover:not(:disabled) {
+  background: var(--cm-blue-tint);
+  border-color: var(--cm-blue);
+  color: var(--cm-blue);
+}
+
+.cmd-btn-ghost:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Cụm Duyệt / Từ chối / Xem — hai hành động đối lập nên phải khác màu rõ rệt */
+.cmd-row-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.cmd-spin {
+  animation: cmdSpin 0.8s linear infinite;
+}
+
+@keyframes cmdSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================
+   Danh sách
+   ============================================================ */
+.cmd-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cmd-list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 13px;
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-radius);
+  background: var(--cm-surface-alt);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--cm-ease), border-color var(--cm-ease);
+}
+
+.cmd-list-row:hover {
+  background: var(--cm-blue-tint);
+  border-color: rgba(3, 78, 162, 0.28);
+}
+
+.cmd-list-row.is-static {
+  cursor: default;
+}
+
+.cmd-list-row.is-static:hover {
+  background: var(--cm-surface-alt);
+  border-color: var(--cm-border);
+}
+
+.cmd-list-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cmd-list-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cm-ink);
+}
+
+.cmd-list-sub {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--cm-text-soft);
+}
+
+.cmd-code-tag {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  width: 110px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.cmd-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.cmd-tags .cm-tag {
+  min-width: 110px;
+  width: 110px;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.cmd-row-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--cm-blue);
+}
+
+/* ============================================================
+   Chênh lệch trọng số: 0.85 → 1.10  +0.25
+   ============================================================ */
+.cmd-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.cmd-delta-from {
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--cm-hover);
+  color: var(--cm-text-soft);
+}
+
+.cmd-delta-arrow {
+  color: var(--cm-muted);
+}
+
+.cmd-delta-to {
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--cm-blue-soft);
+  border: 1px solid rgba(3, 78, 162, 0.18);
+  color: var(--cm-blue-deep);
+}
+
+.cmd-delta-diff {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.cmd-delta-diff--up {
+  background: var(--cm-success-bg);
+  border-color: var(--cm-success-border);
+  color: var(--cm-success);
+}
+
+.cmd-delta-diff--down {
+  background: var(--cm-danger-bg);
+  border-color: var(--cm-danger-border);
+  color: var(--cm-danger);
+}
+
+/* ============================================================
+   Bộ lọc
+   ============================================================ */
+.cmd-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--cm-border);
+}
+
+/* ============================================================
+   Bảng
+   ============================================================ */
+.cmd-table-wrap {
+  overflow-x: auto;
+}
+
+.cmd-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.cmd-table thead th {
+  padding: 8px 10px;
+  border-bottom: 1.5px solid var(--cm-border);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--cm-text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.cmd-table tbody td {
+  padding: 11px 10px;
+  border-bottom: 1px solid var(--cm-line);
+  color: var(--cm-text);
+  vertical-align: middle;
+}
+
+.cmd-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.cmd-table tbody tr:hover td {
+  background: var(--cm-surface-sunken);
+}
+
+.cmd-table .cmd-list-sub {
+  display: block;
+}
+
+.cmd-th-right,
+.cmd-td-right {
+  text-align: right;
+}
+
+/* ============================================================
+   Trạng thái rỗng & khung chờ
+   ============================================================ */
+.cmd-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px;
+  border-radius: var(--cm-radius);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.cmd-empty--neutral {
+  background: var(--cm-surface-alt);
+  border: 1px dashed var(--cm-border);
+  color: var(--cm-text-soft);
+}
+
+.cmd-empty--success {
+  background: var(--cm-success-bg);
+  border: 1px solid var(--cm-success-border);
+  color: var(--cm-success);
+}
+
+.cmd-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cmd-skeleton-row {
+  height: 42px;
+  border-radius: var(--cm-radius);
+  background: linear-gradient(90deg, #f1f3f7 25%, #e7eaf1 37%, #f1f3f7 63%);
+  background-size: 400% 100%;
+  animation: cmdShimmer 1.3s ease-in-out infinite;
+}
+
+@keyframes cmdShimmer {
+  from {
+    background-position: 100% 50%;
+  }
+
+  to {
+    background-position: 0 50%;
+  }
+}
+
+/* ── Phân trang ── */
+/* Bọc CmPagination — thắng .cmp--bare nhờ specificity 2 class */
+.cmd-pagination.cmp {
+  margin-top: 12px;
+}

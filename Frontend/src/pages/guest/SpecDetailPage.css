@@ -1,0 +1,92 @@
+@import "./MajorDetailPage.css";
+
+/* SpecDetailPage Specific Styling */
+
+.spec-status-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 450px;
+    gap: 16px;
+}
+
+.spec-status-text {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.spec-status-btn {
+    padding: 10px 20px;
+    background: #f37021;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.major-banner-link {
+    color: #034ea2;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.major-banner-link:hover {
+    text-decoration: underline;
+}
+
+.spec-roadmap-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #034ea2 0%, #002d62 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(3, 78, 162, 0.2);
+}
+
+.spec-roadmap-btn:hover {
+    background: linear-gradient(135deg, #f37021 0%, #d25a12 100%);
+    box-shadow: 0 4px 16px rgba(243, 112, 33, 0.4);
+    transform: translateY(-2px);
+}
+
+.spec-roadmap-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.spec-roadmap-btn:hover svg {
+    transform: rotate(15deg) scale(1.1);
+}
+
+.spec-report-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #4b5563;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.spec-report-btn:hover {
+    background: #f8fafc;
+    border-color: #f37021;
+    color: #f37021;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(243, 112, 33, 0.15);
+}
+
+

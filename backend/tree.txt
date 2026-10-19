@@ -1,0 +1,1058 @@
+Folder PATH listing for volume Windows-SSD
+Volume serial number is 000000EB 7C01:500D
+C:.
+|   .gitattributes
+|   .gitignore
+|   CLAUDE .md
+|   mvnw
+|   mvnw.cmd
+|   pom.xml
+|   tree.txt
+|   
++---.idea
+|       compiler.xml
+|       encodings.xml
+|       jarRepositories.xml
+|       misc.xml
+|       vcs.xml
+|       workspace.xml
+|       
++---.mvn
+|   \---wrapper
+|           maven-wrapper.properties
+|           
++---docs
+|       ERD.md
+|       SMOSP_AC_NAC_v2.md
+|       SMOSP_API.md
+|       SMOSP_BR_BV_DC.md
+|       SMOSP_UC_SUMMARY_BE.md
+|       
++---src
+|   +---main
+|   |   +---java
+|   |   |   \---com
+|   |   |       \---sep490_g47
+|   |   |           \---smosp
+|   |   |               |   SmospApplication.java
+|   |   |               |   
+|   |   |               +---account
+|   |   |               |   +---controller
+|   |   |               |   |       AccountController.java
+|   |   |               |   |       AdminContentErrorReportController.java
+|   |   |               |   |       CmContentErrorReportController.java
+|   |   |               |   |       ContentErrorReportController.java
+|   |   |               |   |       NotificationController.java
+|   |   |               |   |       
+|   |   |               |   +---dto
+|   |   |               |   |   |   ProcessReportRequestDTO.java
+|   |   |               |   |   |   
+|   |   |               |   |   +---request
+|   |   |               |   |   |       ContentErrorReportRequest.java
+|   |   |               |   |   |       DeleteReportRequest.java
+|   |   |               |   |   |       FcmTokenRequest.java
+|   |   |               |   |   |       ProcessReportRequest.java
+|   |   |               |   |   |       UpdateContentErrorReportRequest.java
+|   |   |               |   |   |       UpdatePreferencesRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   \---response
+|   |   |               |   |           ErrorReportResponse.java
+|   |   |               |   |           MeResponse.java
+|   |   |               |   |           NotificationResponse.java
+|   |   |               |   |           
+|   |   |               |   +---entity
+|   |   |               |   |       ContentErrorReport.java
+|   |   |               |   |       Notification.java
+|   |   |               |   |       
+|   |   |               |   +---enums
+|   |   |               |   |       ReportEntityType.java
+|   |   |               |   |       ReportStatus.java
+|   |   |               |   |       
+|   |   |               |   +---repository
+|   |   |               |   |       ContentErrorReportRepository.java
+|   |   |               |   |       NotificationRepository.java
+|   |   |               |   |       
+|   |   |               |   \---service
+|   |   |               |           AccountService.java
+|   |   |               |           AccountServiceImpl.java
+|   |   |               |           ContentErrorReportService.java
+|   |   |               |           ContentErrorReportServiceImpl.java
+|   |   |               |           NotificationService.java
+|   |   |               |           NotificationServiceImpl.java
+|   |   |               |           
+|   |   |               +---auth
+|   |   |               |   +---controller
+|   |   |               |   |       AuthController.java
+|   |   |               |   |       
+|   |   |               |   +---dto
+|   |   |               |   |   +---request
+|   |   |               |   |   |       ChangePasswordRequest.java
+|   |   |               |   |   |       GoogleLoginRequest.java
+|   |   |               |   |   |       LoginRequest.java
+|   |   |               |   |   |       LogoutRequest.java
+|   |   |               |   |   |       NewPasswordRequest.java
+|   |   |               |   |   |       PasswordResetRequest.java
+|   |   |               |   |   |       RefreshTokenRequest.java
+|   |   |               |   |   |       RegisterRequest.java
+|   |   |               |   |   |       ResendVerifyEmailRequest.java
+|   |   |               |   |   |       VerifyEmailRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   \---response
+|   |   |               |   |           AuthResponse.java
+|   |   |               |   |           MessageResponse.java
+|   |   |               |   |           
+|   |   |               |   +---entity
+|   |   |               |   |       EmailVerificationToken.java
+|   |   |               |   |       OauthIdentity.java
+|   |   |               |   |       PasswordResetToken.java
+|   |   |               |   |       RefreshToken.java
+|   |   |               |   |       Role.java
+|   |   |               |   |       UserAccount.java
+|   |   |               |   |       
+|   |   |               |   +---exception
+|   |   |               |   |       AccountLockedException.java
+|   |   |               |   |       AuthBusinessException.java
+|   |   |               |   |       TokenExpiredException.java
+|   |   |               |   |       
+|   |   |               |   +---repository
+|   |   |               |   |       EmailVerificationTokenRepository.java
+|   |   |               |   |       OauthIdentityRepository.java
+|   |   |               |   |       PasswordResetTokenRepository.java
+|   |   |               |   |       RefreshTokenRepository.java
+|   |   |               |   |       RoleRepository.java
+|   |   |               |   |       UserAccountRepository.java
+|   |   |               |   |       
+|   |   |               |   +---security
+|   |   |               |   |       CustomUserDetails.java
+|   |   |               |   |       
+|   |   |               |   +---service
+|   |   |               |   |       AuthService.java
+|   |   |               |   |       AuthServiceImpl.java
+|   |   |               |   |       EmailService.java
+|   |   |               |   |       JwtService.java
+|   |   |               |   |       
+|   |   |               |   \---utils
+|   |   |               |           HashUtil.java
+|   |   |               |           
+|   |   |               +---catalog
+|   |   |               |   +---controller
+|   |   |               |   |       PublicCatalogController.java
+|   |   |               |   |       
+|   |   |               |   +---dto
+|   |   |               |   |   +---request
+|   |   |               |   |   |       CatalogSearchRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   \---response
+|   |   |               |   |           CatalogSearchResponse.java
+|   |   |               |   |           NarrowSpecDetailResponse.java
+|   |   |               |   |           
+|   |   |               |   \---service
+|   |   |               |       |   PublicCatalogService.java
+|   |   |               |       |   
+|   |   |               |       \---impl
+|   |   |               |               PublicCatalogServiceImpl.java
+|   |   |               |               
+|   |   |               +---common
+|   |   |               |   +---config
+|   |   |               |   |       CloudinaryConfig.java
+|   |   |               |   |       DataSeeder.java
+|   |   |               |   |       FirebaseConfig.java
+|   |   |               |   |       OpenApiConfig.java
+|   |   |               |   |       SecurityConfig.java
+|   |   |               |   |       
+|   |   |               |   +---dto
+|   |   |               |   |   \---response
+|   |   |               |   |           BaseResponse.java
+|   |   |               |   |           
+|   |   |               |   +---entity
+|   |   |               |   |       BaseEntity.java
+|   |   |               |   |       
+|   |   |               |   +---exception
+|   |   |               |   |       GlobalExceptionHandler.java
+|   |   |               |   |       
+|   |   |               |   \---security
+|   |   |               |           JwtAuthFilter.java
+|   |   |               |           UserDetailsServiceImpl.java
+|   |   |               |           
+|   |   |               +---course
+|   |   |               |   +---controller
+|   |   |               |   |       CmCourseController.java
+|   |   |               |   |       CmResourceController.java
+|   |   |               |   |       PublicCourseController.java
+|   |   |               |   |       
+|   |   |               |   +---dto
+|   |   |               |   |   +---request
+|   |   |               |   |   |       CourseRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   \---response
+|   |   |               |   |           CourseDetailResponse.java
+|   |   |               |   |           CourseResponse.java
+|   |   |               |   |           LearningResourceResponse.java
+|   |   |               |   |           
+|   |   |               |   +---entity
+|   |   |               |   |       Course.java
+|   |   |               |   |       CoursePrerequisite.java
+|   |   |               |   |       LearningResource.java
+|   |   |               |   |       
+|   |   |               |   +---enums
+|   |   |               |   |       CourseType.java
+|   |   |               |   |       ResourceType.java
+|   |   |               |   |       
+|   |   |               |   +---repository
+|   |   |               |   |       CourseRepository.java
+|   |   |               |   |       LearningResourceRepository.java
+|   |   |               |   |       
+|   |   |               |   +---service
+|   |   |               |   |       CourseService.java
+|   |   |               |   |       CourseServiceImpl.java
+|   |   |               |   |       LearningResourceService.java
+|   |   |               |   |       
+|   |   |               |   \---util
+|   |   |               |           CourseConstants.java
+|   |   |               |           
+|   |   |               +---interest
+|   |   |               |   +---controller
+|   |   |               |   |       CmInterestController.java
+|   |   |               |   |       
+|   |   |               |   +---dto
+|   |   |               |   |   +---request
+|   |   |               |   |   |       InterestOptionRequest.java
+|   |   |               |   |   |       StatusUpdateRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   \---response
+|   |   |               |   |           InterestOptionResponse.java
+|   |   |               |   |           
+|   |   |               |   +---entity
+|   |   |               |   |       InterestOption.java
+|   |   |               |   |       
+|   |   |               |   +---repository
+|   |   |               |   |       InterestOptionRepository.java
+|   |   |               |   |       
+|   |   |               |   \---service
+|   |   |               |           InterestOptionService.java
+|   |   |               |           InterestOptionServiceImpl.java
+|   |   |               |           
+|   |   |               +---major
+|   |   |               |   +---controller
+|   |   |               |   |       CmMajorController.java
+|   |   |               |   |       
+|   |   |               |   +---dto
+|   |   |               |   |   +---request
+|   |   |               |   |   |       MajorRequest.java
+|   |   |               |   |   |       StatusUpdateRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   \---response
+|   |   |               |   |           MajorResponse.java
+|   |   |               |   |           
+|   |   |               |   +---entity
+|   |   |               |   |       Major.java
+|   |   |               |   |       
+|   |   |               |   +---repository
+|   |   |               |   |       MajorRepository.java
+|   |   |               |   |       
+|   |   |               |   \---service
+|   |   |               |           MajorImageService.java
+|   |   |               |           MajorService.java
+|   |   |               |           MajorServiceImpl.java
+|   |   |               |           
+|   |   |               +---narrowspec
+|   |   |               |   +---controller
+|   |   |               |   |       CmNarrowSpecController.java
+|   |   |               |   |       NarrowSpecWeightConfigController.java
+|   |   |               |   |       PublicNarrowSpecController.java
+|   |   |               |   |       
+|   |   |               |   +---dto
+|   |   |               |   |   +---request
+|   |   |               |   |   |       NarrowSpecRequest.java
+|   |   |               |   |   |       NsCourseRequest.java
+|   |   |               |   |   |       NsExcludedCourseRequest.java
+|   |   |               |   |   |       PublishRequest.java
+|   |   |               |   |   |       WeightConfigUpdateRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   \---response
+|   |   |               |   |           NarrowSpecResponse.java
+|   |   |               |   |           NsCourseResponse.java
+|   |   |               |   |           NsExcludedCourseResponse.java
+|   |   |               |   |           WeightConfigAuditResponse.java
+|   |   |               |   |           WeightConfigResponse.java
+|   |   |               |   |           
+|   |   |               |   +---entity
+|   |   |               |   |       NarrowSpecialization.java
+|   |   |               |   |       NarrowSpecWeightConfig.java
+|   |   |               |   |       NarrowSpecWeightConfigAudit.java
+|   |   |               |   |       NsCourse.java
+|   |   |               |   |       NsExcludedCourse.java
+|   |   |               |   |       
+|   |   |               |   +---repository
+|   |   |               |   |       NarrowSpecRepository.java
+|   |   |               |   |       NarrowSpecWeightConfigAuditRepository.java
+|   |   |               |   |       NarrowSpecWeightConfigRepository.java
+|   |   |               |   |       NsCourseRepository.java
+|   |   |               |   |       NsExcludedCourseRepository.java
+|   |   |               |   |       
+|   |   |               |   +---service
+|   |   |               |   |   |   NarrowSpecService.java
+|   |   |               |   |   |   NarrowSpecWeightConfigService.java
+|   |   |               |   |   |   
+|   |   |               |   |   \---impl
+|   |   |               |   |           NarrowSpecServiceImpl.java
+|   |   |               |   |           NarrowSpecWeightConfigServiceImpl.java
+|   |   |               |   |           
+|   |   |               |   \---util
+|   |   |               |           NarrowSpecConstants.java
+|   |   |               |           
+|   |   |               +---roadmap
+|   |   |               |   +---controller
+|   |   |               |   |       StudentRoadmapController.java
+|   |   |               |   |       
+|   |   |               |   +---dto
+|   |   |               |   |   +---request
+|   |   |               |   |   |       CloneRoadmapRequest.java
+|   |   |               |   |   |       RenameRoadmapRequest.java
+|   |   |               |   |   |       UpdateNoteRequest.java
+|   |   |               |   |   |       UpdateProgressRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   \---response
+|   |   |               |   |           PersonalRoadmapDetailResponse.java
+|   |   |               |   |           PersonalRoadmapItemDetailResponse.java
+|   |   |               |   |           PersonalRoadmapSummaryResponse.java
+|   |   |               |   |           PersonalTermGroup.java
+|   |   |               |   |           RoadmapItemResponse.java
+|   |   |               |   |           RoadmapResponse.java
+|   |   |               |   |           TermGroup.java
+|   |   |               |   |           
+|   |   |               |   +---entity
+|   |   |               |   |       PersonalRoadmap.java
+|   |   |               |   |       PersonalRoadmapItem.java
+|   |   |               |   |       RoadmapBookmark.java
+|   |   |               |   |       RoadmapNote.java
+|   |   |               |   |       
+|   |   |               |   +---repository
+|   |   |               |   |       PersonalRoadmapItemRepository.java
+|   |   |               |   |       PersonalRoadmapRepository.java
+|   |   |               |   |       RoadmapBookmarkRepository.java
+|   |   |               |   |       RoadmapNoteRepository.java
+|   |   |               |   |       
+|   |   |               |   \---service
+|   |   |               |       |   StudentRoadmapService.java
+|   |   |               |       |   
+|   |   |               |       \---impl
+|   |   |               |               StudentRoadmapServiceImpl.java
+|   |   |               |               
+|   |   |               +---skill
+|   |   |               |   +---controller
+|   |   |               |   |       CmSkillController.java
+|   |   |               |   |       
+|   |   |               |   +---dto
+|   |   |               |   |   +---request
+|   |   |               |   |   |       SkillAliasUpdateRequest.java
+|   |   |               |   |   |       SkillCourseMapRequest.java
+|   |   |               |   |   |       SkillRequest.java
+|   |   |               |   |   |       StatusUpdateRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   \---response
+|   |   |               |   |           SkillResponse.java
+|   |   |               |   |           
+|   |   |               |   +---entity
+|   |   |               |   |       CourseSkillMap.java
+|   |   |               |   |       Skill.java
+|   |   |               |   |       SkillAlias.java
+|   |   |               |   |       
+|   |   |               |   +---repository
+|   |   |               |   |       CourseSkillMapRepository.java
+|   |   |               |   |       SkillAliasRepository.java
+|   |   |               |   |       SkillRepository.java
+|   |   |               |   |       
+|   |   |               |   \---service
+|   |   |               |           SkillService.java
+|   |   |               |           SkillServiceImpl.java
+|   |   |               |           
+|   |   |               +---specialization
+|   |   |               |   +---controller
+|   |   |               |   |       CmSpecializationController.java
+|   |   |               |   |       
+|   |   |               |   +---dto
+|   |   |               |   |   +---request
+|   |   |               |   |   |       SpecCourseRequest.java
+|   |   |               |   |   |       SpecializationRequest.java
+|   |   |               |   |   |       StatusUpdateRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   \---response
+|   |   |               |   |           SpecCourseResponse.java
+|   |   |               |   |           SpecializationResponse.java
+|   |   |               |   |           
+|   |   |               |   +---entity
+|   |   |               |   |       SpecCourse.java
+|   |   |               |   |       Specialization.java
+|   |   |               |   |       
+|   |   |               |   +---repository
+|   |   |               |   |       SpecCourseRepository.java
+|   |   |               |   |       SpecializationRepository.java
+|   |   |               |   |       
+|   |   |               |   \---service
+|   |   |               |           SpecializationImageService.java
+|   |   |               |           SpecializationService.java
+|   |   |               |           SpecializationServiceImpl.java
+|   |   |               |           
+|   |   |               +---student
+|   |   |               |   +---controller
+|   |   |               |   |       StudentProfileController.java
+|   |   |               |   |       
+|   |   |               |   +---dto
+|   |   |               |   |   +---request
+|   |   |               |   |   |       UpdateStudentProfileRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   \---response
+|   |   |               |   |           StudentProfileResponse.java
+|   |   |               |   |           
+|   |   |               |   +---entity
+|   |   |               |   |       StudentInterest.java
+|   |   |               |   |       StudentProfile.java
+|   |   |               |   |       StudentSkill.java
+|   |   |               |   |       
+|   |   |               |   +---repository
+|   |   |               |   |       StudentInterestRepository.java
+|   |   |               |   |       StudentProfileRepository.java
+|   |   |               |   |       StudentSkillRepository.java
+|   |   |               |   |       
+|   |   |               |   \---service
+|   |   |               |       |   StudentDeclarationService.java
+|   |   |               |       |   StudentProfileService.java
+|   |   |               |       |   
+|   |   |               |       \---impl
+|   |   |               |               StudentDeclarationServiceImpl.java
+|   |   |               |               StudentProfileServiceImpl.java
+|   |   |               |               
+|   |   |               +---tagmap
+|   |   |               |   +---dto
+|   |   |               |   |   +---request
+|   |   |               |   |   |       TagMapEntryRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   \---response
+|   |   |               |   |           TagMapResponse.java
+|   |   |               |   |           
+|   |   |               |   +---entity
+|   |   |               |   |       TagMap.java
+|   |   |               |   |       
+|   |   |               |   +---repository
+|   |   |               |   |       TagMapRepository.java
+|   |   |               |   |       
+|   |   |               |   \---service
+|   |   |               |           TagMapService.java
+|   |   |               |           TagMapServiceImpl.java
+|   |   |               |           
+|   |   |               \---transcript
+|   |   |                   +---controller
+|   |   |                   |       AdminTranscriptPresetController.java
+|   |   |                   |       StudentTranscriptController.java
+|   |   |                   |       
+|   |   |                   +---dto
+|   |   |                   |   +---request
+|   |   |                   |   |       TranscriptMappingPresetRequest.java
+|   |   |                   |   |       
+|   |   |                   |   \---response
+|   |   |                   |           StudentCourseGradeResponse.java
+|   |   |                   |           TranscriptMappingPresetResponse.java
+|   |   |                   |           TranscriptResponse.java
+|   |   |                   |           
+|   |   |                   +---entity
+|   |   |                   |       AdminActionLog.java
+|   |   |                   |       CourseGradeStatus.java
+|   |   |                   |       StudentCourseGrade.java
+|   |   |                   |       Transcript.java
+|   |   |                   |       TranscriptMappingPreset.java
+|   |   |                   |       
+|   |   |                   +---repository
+|   |   |                   |       AdminActionLogRepository.java
+|   |   |                   |       StudentCourseGradeRepository.java
+|   |   |                   |       TranscriptMappingPresetRepository.java
+|   |   |                   |       TranscriptRepository.java
+|   |   |                   |       
+|   |   |                   \---service
+|   |   |                       |   TranscriptParserService.java
+|   |   |                       |   TranscriptPresetService.java
+|   |   |                       |   TranscriptService.java
+|   |   |                       |   
+|   |   |                       \---impl
+|   |   |                               TranscriptParserServiceImpl.java
+|   |   |                               TranscriptPresetServiceImpl.java
+|   |   |                               TranscriptServiceImpl.java
+|   |   |                               
+|   |   \---resources
+|   |       |   application.yml
+|   |       |   firebase-service-account.json
+|   |       |   
+|   |       +---db
+|   |       |   \---migration
+|   |       +---static
+|   |       \---templates
+|   \---test
+|       \---java
+|           \---com
+|               \---sep490_g47
+|                   \---smosp
+|                       |   SmospApplicationTests.java
+|                       |   
+|                       +---common
+|                       |   \---security
+|                       |           JwtAuthFilterTest.java
+|                       |           
+|                       +---course
+|                       |   +---controller
+|                       |   \---service
+|                       \---major
+|                           +---controller
+|                           |       CmMajorControllerTest.java
+|                           |       
+|                           \---service
+|                                   MajorServiceImplTest.java
+|                                   
+\---target
+    +---classes
+    |   |   application.yml
+    |   |   firebase-service-account.json
+    |   |   
+    |   \---com
+    |       \---sep490_g47
+    |           \---smosp
+    |               |   SmospApplication.class
+    |               |   
+    |               +---account
+    |               |   +---controller
+    |               |   |       AccountController.class
+    |               |   |       AdminContentErrorReportController.class
+    |               |   |       CmContentErrorReportController.class
+    |               |   |       ContentErrorReportController.class
+    |               |   |       NotificationController.class
+    |               |   |       
+    |               |   +---dto
+    |               |   |   |   ProcessReportRequestDTO.class
+    |               |   |   |   
+    |               |   |   +---request
+    |               |   |   |       ContentErrorReportRequest.class
+    |               |   |   |       DeleteReportRequest.class
+    |               |   |   |       FcmTokenRequest.class
+    |               |   |   |       ProcessReportRequest.class
+    |               |   |   |       UpdateContentErrorReportRequest.class
+    |               |   |   |       UpdatePreferencesRequest.class
+    |               |   |   |       
+    |               |   |   \---response
+    |               |   |           ErrorReportResponse$ErrorReportResponseBuilder.class
+    |               |   |           ErrorReportResponse$ErrorReportResponseBuilderImpl.class
+    |               |   |           ErrorReportResponse.class
+    |               |   |           MeResponse$MeResponseBuilder.class
+    |               |   |           MeResponse$MeResponseBuilderImpl.class
+    |               |   |           MeResponse.class
+    |               |   |           NotificationResponse$NotificationResponseBuilder.class
+    |               |   |           NotificationResponse$NotificationResponseBuilderImpl.class
+    |               |   |           NotificationResponse.class
+    |               |   |           
+    |               |   +---entity
+    |               |   |       ContentErrorReport$ContentErrorReportBuilder.class
+    |               |   |       ContentErrorReport.class
+    |               |   |       Notification$NotificationBuilder.class
+    |               |   |       Notification.class
+    |               |   |       
+    |               |   +---enums
+    |               |   |       ReportEntityType.class
+    |               |   |       ReportStatus.class
+    |               |   |       
+    |               |   +---repository
+    |               |   |       ContentErrorReportRepository.class
+    |               |   |       NotificationRepository.class
+    |               |   |       
+    |               |   \---service
+    |               |           AccountService.class
+    |               |           AccountServiceImpl.class
+    |               |           ContentErrorReportService.class
+    |               |           ContentErrorReportServiceImpl.class
+    |               |           NotificationService.class
+    |               |           NotificationServiceImpl.class
+    |               |           
+    |               +---auth
+    |               |   +---controller
+    |               |   |       AuthController.class
+    |               |   |       
+    |               |   +---dto
+    |               |   |   +---request
+    |               |   |   |       ChangePasswordRequest.class
+    |               |   |   |       GoogleLoginRequest.class
+    |               |   |   |       LoginRequest.class
+    |               |   |   |       LogoutRequest.class
+    |               |   |   |       NewPasswordRequest.class
+    |               |   |   |       PasswordResetRequest.class
+    |               |   |   |       RefreshTokenRequest.class
+    |               |   |   |       RegisterRequest.class
+    |               |   |   |       ResendVerifyEmailRequest.class
+    |               |   |   |       VerifyEmailRequest.class
+    |               |   |   |       
+    |               |   |   \---response
+    |               |   |           AuthResponse$AuthResponseBuilder.class
+    |               |   |           AuthResponse.class
+    |               |   |           MessageResponse.class
+    |               |   |           
+    |               |   +---entity
+    |               |   |       EmailVerificationToken$EmailVerificationTokenBuilder.class
+    |               |   |       EmailVerificationToken.class
+    |               |   |       OauthIdentity$OauthIdentityBuilder.class
+    |               |   |       OauthIdentity.class
+    |               |   |       PasswordResetToken$PasswordResetTokenBuilder.class
+    |               |   |       PasswordResetToken.class
+    |               |   |       RefreshToken$RefreshTokenBuilder.class
+    |               |   |       RefreshToken.class
+    |               |   |       Role$RoleBuilder.class
+    |               |   |       Role.class
+    |               |   |       UserAccount$UserAccountBuilder.class
+    |               |   |       UserAccount.class
+    |               |   |       
+    |               |   +---exception
+    |               |   |       AccountLockedException.class
+    |               |   |       AuthBusinessException.class
+    |               |   |       TokenExpiredException.class
+    |               |   |       
+    |               |   +---repository
+    |               |   |       EmailVerificationTokenRepository.class
+    |               |   |       OauthIdentityRepository.class
+    |               |   |       PasswordResetTokenRepository.class
+    |               |   |       RefreshTokenRepository.class
+    |               |   |       RoleRepository.class
+    |               |   |       UserAccountRepository.class
+    |               |   |       
+    |               |   +---security
+    |               |   |       CustomUserDetails.class
+    |               |   |       
+    |               |   +---service
+    |               |   |       AuthService.class
+    |               |   |       AuthServiceImpl.class
+    |               |   |       EmailService.class
+    |               |   |       JwtService.class
+    |               |   |       
+    |               |   \---utils
+    |               |           HashUtil.class
+    |               |           
+    |               +---catalog
+    |               |   +---controller
+    |               |   |       PublicCatalogController.class
+    |               |   |       
+    |               |   +---dto
+    |               |   |   +---request
+    |               |   |   |       CatalogSearchRequest$CatalogSearchRequestBuilder.class
+    |               |   |   |       CatalogSearchRequest.class
+    |               |   |   |       
+    |               |   |   \---response
+    |               |   |           CatalogSearchResponse$CatalogSearchResponseBuilder.class
+    |               |   |           CatalogSearchResponse.class
+    |               |   |           NarrowSpecDetailResponse$NarrowSpecDetailResponseBuilder.class
+    |               |   |           NarrowSpecDetailResponse.class
+    |               |   |           
+    |               |   \---service
+    |               |       |   PublicCatalogService.class
+    |               |       |   
+    |               |       \---impl
+    |               |               PublicCatalogServiceImpl.class
+    |               |               
+    |               +---common
+    |               |   +---config
+    |               |   |       CloudinaryConfig.class
+    |               |   |       DataSeeder.class
+    |               |   |       FirebaseConfig.class
+    |               |   |       OpenApiConfig.class
+    |               |   |       SecurityConfig.class
+    |               |   |       
+    |               |   +---dto
+    |               |   |   \---response
+    |               |   |           BaseResponse$BaseResponseBuilder.class
+    |               |   |           BaseResponse.class
+    |               |   |           
+    |               |   +---entity
+    |               |   |       BaseEntity.class
+    |               |   |       
+    |               |   +---exception
+    |               |   |       GlobalExceptionHandler.class
+    |               |   |       
+    |               |   \---security
+    |               |           JwtAuthFilter.class
+    |               |           UserDetailsServiceImpl.class
+    |               |           
+    |               +---course
+    |               |   +---controller
+    |               |   |       CmCourseController.class
+    |               |   |       CmResourceController.class
+    |               |   |       PublicCourseController.class
+    |               |   |       
+    |               |   +---dto
+    |               |   |   +---request
+    |               |   |   |       CourseRequest.class
+    |               |   |   |       
+    |               |   |   \---response
+    |               |   |           CourseDetailResponse$CourseDetailResponseBuilder.class
+    |               |   |           CourseDetailResponse$CourseDetailResponseBuilderImpl.class
+    |               |   |           CourseDetailResponse.class
+    |               |   |           CourseResponse$CourseResponseBuilder.class
+    |               |   |           CourseResponse$CourseResponseBuilderImpl.class
+    |               |   |           CourseResponse.class
+    |               |   |           LearningResourceResponse$LearningResourceResponseBuilder.class
+    |               |   |           LearningResourceResponse$LearningResourceResponseBuilderImpl.class
+    |               |   |           LearningResourceResponse.class
+    |               |   |           
+    |               |   +---entity
+    |               |   |       Course$CourseBuilder.class
+    |               |   |       Course.class
+    |               |   |       CoursePrerequisite$CoursePrerequisiteBuilder.class
+    |               |   |       CoursePrerequisite.class
+    |               |   |       LearningResource$LearningResourceBuilder.class
+    |               |   |       LearningResource.class
+    |               |   |       
+    |               |   +---enums
+    |               |   |       CourseType.class
+    |               |   |       ResourceType.class
+    |               |   |       
+    |               |   +---repository
+    |               |   |       CourseRepository.class
+    |               |   |       LearningResourceRepository.class
+    |               |   |       
+    |               |   +---service
+    |               |   |       CourseService.class
+    |               |   |       CourseServiceImpl.class
+    |               |   |       LearningResourceService.class
+    |               |   |       
+    |               |   \---util
+    |               |           CourseConstants.class
+    |               |           
+    |               +---interest
+    |               |   +---controller
+    |               |   |       CmInterestController.class
+    |               |   |       
+    |               |   +---dto
+    |               |   |   +---request
+    |               |   |   |       InterestOptionRequest.class
+    |               |   |   |       StatusUpdateRequest.class
+    |               |   |   |       
+    |               |   |   \---response
+    |               |   |           InterestOptionResponse$InterestOptionResponseBuilder.class
+    |               |   |           InterestOptionResponse$InterestOptionResponseBuilderImpl.class
+    |               |   |           InterestOptionResponse.class
+    |               |   |           
+    |               |   +---entity
+    |               |   |       InterestOption$InterestOptionBuilder.class
+    |               |   |       InterestOption.class
+    |               |   |       
+    |               |   +---repository
+    |               |   |       InterestOptionRepository.class
+    |               |   |       
+    |               |   \---service
+    |               |           InterestOptionService.class
+    |               |           InterestOptionServiceImpl.class
+    |               |           
+    |               +---major
+    |               |   +---controller
+    |               |   |       CmMajorController.class
+    |               |   |       
+    |               |   +---dto
+    |               |   |   +---request
+    |               |   |   |       MajorRequest.class
+    |               |   |   |       StatusUpdateRequest.class
+    |               |   |   |       
+    |               |   |   \---response
+    |               |   |           MajorResponse$MajorResponseBuilder.class
+    |               |   |           MajorResponse$MajorResponseBuilderImpl.class
+    |               |   |           MajorResponse.class
+    |               |   |           
+    |               |   +---entity
+    |               |   |       Major$MajorBuilder.class
+    |               |   |       Major.class
+    |               |   |       
+    |               |   +---repository
+    |               |   |       MajorRepository.class
+    |               |   |       
+    |               |   \---service
+    |               |           MajorImageService.class
+    |               |           MajorService.class
+    |               |           MajorServiceImpl.class
+    |               |           
+    |               +---narrowspec
+    |               |   +---controller
+    |               |   |       CmNarrowSpecController.class
+    |               |   |       NarrowSpecWeightConfigController.class
+    |               |   |       PublicNarrowSpecController.class
+    |               |   |       
+    |               |   +---dto
+    |               |   |   +---request
+    |               |   |   |       NarrowSpecRequest.class
+    |               |   |   |       NsCourseRequest.class
+    |               |   |   |       NsExcludedCourseRequest$NsExcludedCourseRequestBuilder.class
+    |               |   |   |       NsExcludedCourseRequest.class
+    |               |   |   |       PublishRequest.class
+    |               |   |   |       WeightConfigUpdateRequest.class
+    |               |   |   |       
+    |               |   |   \---response
+    |               |   |           NarrowSpecResponse$NarrowSpecResponseBuilder.class
+    |               |   |           NarrowSpecResponse$NarrowSpecResponseBuilderImpl.class
+    |               |   |           NarrowSpecResponse.class
+    |               |   |           NsCourseResponse$NsCourseResponseBuilder.class
+    |               |   |           NsCourseResponse.class
+    |               |   |           NsExcludedCourseResponse$NsExcludedCourseResponseBuilder.class
+    |               |   |           NsExcludedCourseResponse.class
+    |               |   |           WeightConfigAuditResponse$WeightConfigAuditResponseBuilder.class
+    |               |   |           WeightConfigAuditResponse.class
+    |               |   |           WeightConfigResponse$WeightConfigResponseBuilder.class
+    |               |   |           WeightConfigResponse.class
+    |               |   |           
+    |               |   +---entity
+    |               |   |       NarrowSpecialization$NarrowSpecializationBuilder.class
+    |               |   |       NarrowSpecialization.class
+    |               |   |       NarrowSpecWeightConfig$NarrowSpecWeightConfigBuilder.class
+    |               |   |       NarrowSpecWeightConfig.class
+    |               |   |       NarrowSpecWeightConfigAudit$NarrowSpecWeightConfigAuditBuilder.class
+    |               |   |       NarrowSpecWeightConfigAudit.class
+    |               |   |       NsCourse$NsCourseBuilder.class
+    |               |   |       NsCourse.class
+    |               |   |       NsExcludedCourse$NsExcludedCourseBuilder.class
+    |               |   |       NsExcludedCourse.class
+    |               |   |       
+    |               |   +---repository
+    |               |   |       NarrowSpecRepository.class
+    |               |   |       NarrowSpecWeightConfigAuditRepository.class
+    |               |   |       NarrowSpecWeightConfigRepository.class
+    |               |   |       NsCourseRepository.class
+    |               |   |       NsExcludedCourseRepository.class
+    |               |   |       
+    |               |   +---service
+    |               |   |   |   NarrowSpecService.class
+    |               |   |   |   NarrowSpecWeightConfigService.class
+    |               |   |   |   
+    |               |   |   \---impl
+    |               |   |           NarrowSpecServiceImpl.class
+    |               |   |           NarrowSpecWeightConfigServiceImpl.class
+    |               |   |           
+    |               |   \---util
+    |               |           NarrowSpecConstants.class
+    |               |           
+    |               +---roadmap
+    |               |   +---controller
+    |               |   |       StudentRoadmapController.class
+    |               |   |       
+    |               |   +---dto
+    |               |   |   +---request
+    |               |   |   |       CloneRoadmapRequest.class
+    |               |   |   |       RenameRoadmapRequest.class
+    |               |   |   |       UpdateNoteRequest.class
+    |               |   |   |       UpdateProgressRequest.class
+    |               |   |   |       
+    |               |   |   \---response
+    |               |   |           PersonalRoadmapDetailResponse$PersonalRoadmapDetailResponseBuilder.class
+    |               |   |           PersonalRoadmapDetailResponse.class
+    |               |   |           PersonalRoadmapItemDetailResponse$PersonalRoadmapItemDetailResponseBuilder.class
+    |               |   |           PersonalRoadmapItemDetailResponse.class
+    |               |   |           PersonalRoadmapSummaryResponse$PersonalRoadmapSummaryResponseBuilder.class
+    |               |   |           PersonalRoadmapSummaryResponse.class
+    |               |   |           PersonalTermGroup$PersonalTermGroupBuilder.class
+    |               |   |           PersonalTermGroup.class
+    |               |   |           RoadmapItemResponse$RoadmapItemResponseBuilder.class
+    |               |   |           RoadmapItemResponse.class
+    |               |   |           RoadmapResponse$RoadmapResponseBuilder.class
+    |               |   |           RoadmapResponse.class
+    |               |   |           TermGroup$TermGroupBuilder.class
+    |               |   |           TermGroup.class
+    |               |   |           
+    |               |   +---entity
+    |               |   |       PersonalRoadmap$PersonalRoadmapBuilder.class
+    |               |   |       PersonalRoadmap.class
+    |               |   |       PersonalRoadmapItem$PersonalRoadmapItemBuilder.class
+    |               |   |       PersonalRoadmapItem.class
+    |               |   |       RoadmapBookmark$RoadmapBookmarkBuilder.class
+    |               |   |       RoadmapBookmark.class
+    |               |   |       RoadmapNote$RoadmapNoteBuilder.class
+    |               |   |       RoadmapNote.class
+    |               |   |       
+    |               |   +---repository
+    |               |   |       PersonalRoadmapItemRepository.class
+    |               |   |       PersonalRoadmapRepository.class
+    |               |   |       RoadmapBookmarkRepository.class
+    |               |   |       RoadmapNoteRepository.class
+    |               |   |       
+    |               |   \---service
+    |               |       |   StudentRoadmapService.class
+    |               |       |   
+    |               |       \---impl
+    |               |               StudentRoadmapServiceImpl.class
+    |               |               
+    |               +---skill
+    |               |   +---controller
+    |               |   |       CmSkillController.class
+    |               |   |       
+    |               |   +---dto
+    |               |   |   +---request
+    |               |   |   |       SkillAliasUpdateRequest.class
+    |               |   |   |       SkillCourseMapRequest.class
+    |               |   |   |       SkillRequest.class
+    |               |   |   |       StatusUpdateRequest.class
+    |               |   |   |       
+    |               |   |   \---response
+    |               |   |           SkillResponse$SkillResponseBuilder.class
+    |               |   |           SkillResponse$SkillResponseBuilderImpl.class
+    |               |   |           SkillResponse.class
+    |               |   |           
+    |               |   +---entity
+    |               |   |       CourseSkillMap$CourseSkillMapBuilder.class
+    |               |   |       CourseSkillMap.class
+    |               |   |       Skill$SkillBuilder.class
+    |               |   |       Skill.class
+    |               |   |       SkillAlias$SkillAliasBuilder.class
+    |               |   |       SkillAlias.class
+    |               |   |       
+    |               |   +---repository
+    |               |   |       CourseSkillMapRepository.class
+    |               |   |       SkillAliasRepository.class
+    |               |   |       SkillRepository.class
+    |               |   |       
+    |               |   \---service
+    |               |           SkillService.class
+    |               |           SkillServiceImpl.class
+    |               |           
+    |               +---specialization
+    |               |   +---controller
+    |               |   |       CmSpecializationController.class
+    |               |   |       
+    |               |   +---dto
+    |               |   |   +---request
+    |               |   |   |       SpecCourseRequest.class
+    |               |   |   |       SpecializationRequest$SpecializationRequestBuilder.class
+    |               |   |   |       SpecializationRequest.class
+    |               |   |   |       StatusUpdateRequest$StatusUpdateRequestBuilder.class
+    |               |   |   |       StatusUpdateRequest.class
+    |               |   |   |       
+    |               |   |   \---response
+    |               |   |           SpecCourseResponse$SpecCourseResponseBuilder.class
+    |               |   |           SpecCourseResponse.class
+    |               |   |           SpecializationResponse$SpecializationResponseBuilder.class
+    |               |   |           SpecializationResponse$SpecializationResponseBuilderImpl.class
+    |               |   |           SpecializationResponse.class
+    |               |   |           
+    |               |   +---entity
+    |               |   |       SpecCourse$SpecCourseBuilder.class
+    |               |   |       SpecCourse.class
+    |               |   |       Specialization$SpecializationBuilder.class
+    |               |   |       Specialization.class
+    |               |   |       
+    |               |   +---repository
+    |               |   |       SpecCourseRepository.class
+    |               |   |       SpecializationRepository.class
+    |               |   |       
+    |               |   \---service
+    |               |           SpecializationImageService.class
+    |               |           SpecializationService.class
+    |               |           SpecializationServiceImpl.class
+    |               |           
+    |               +---student
+    |               |   +---controller
+    |               |   |       StudentProfileController.class
+    |               |   |       
+    |               |   +---dto
+    |               |   |   +---request
+    |               |   |   |       UpdateStudentProfileRequest$UpdateStudentProfileRequestBuilder.class
+    |               |   |   |       UpdateStudentProfileRequest.class
+    |               |   |   |       
+    |               |   |   \---response
+    |               |   |           StudentProfileResponse$StudentProfileResponseBuilder.class
+    |               |   |           StudentProfileResponse.class
+    |               |   |           
+    |               |   +---entity
+    |               |   |       StudentInterest$StudentInterestBuilder.class
+    |               |   |       StudentInterest.class
+    |               |   |       StudentProfile$StudentProfileBuilder.class
+    |               |   |       StudentProfile.class
+    |               |   |       StudentSkill$StudentSkillBuilder.class
+    |               |   |       StudentSkill.class
+    |               |   |       
+    |               |   +---repository
+    |               |   |       StudentInterestRepository.class
+    |               |   |       StudentProfileRepository.class
+    |               |   |       StudentSkillRepository.class
+    |               |   |       
+    |               |   \---service
+    |               |       |   StudentDeclarationService.class
+    |               |       |   StudentProfileService.class
+    |               |       |   
+    |               |       \---impl
+    |               |               StudentDeclarationServiceImpl.class
+    |               |               StudentProfileServiceImpl.class
+    |               |               
+    |               +---tagmap
+    |               |   +---dto
+    |               |   |   +---request
+    |               |   |   |       TagMapEntryRequest.class
+    |               |   |   |       
+    |               |   |   \---response
+    |               |   |           TagMapResponse$TagMapResponseBuilder.class
+    |               |   |           TagMapResponse$TagMapResponseBuilderImpl.class
+    |               |   |           TagMapResponse.class
+    |               |   |           
+    |               |   +---entity
+    |               |   |       TagMap$TagMapBuilder.class
+    |               |   |       TagMap.class
+    |               |   |       
+    |               |   +---repository
+    |               |   |       TagMapRepository.class
+    |               |   |       
+    |               |   \---service
+    |               |           TagMapService.class
+    |               |           TagMapServiceImpl.class
+    |               |           
+    |               \---transcript
+    |                   +---controller
+    |                   |       AdminTranscriptPresetController.class
+    |                   |       StudentTranscriptController.class
+    |                   |       
+    |                   +---dto
+    |                   |   +---request
+    |                   |   |       TranscriptMappingPresetRequest$TranscriptMappingPresetRequestBuilder.class
+    |                   |   |       TranscriptMappingPresetRequest.class
+    |                   |   |       
+    |                   |   \---response
+    |                   |           StudentCourseGradeResponse$StudentCourseGradeResponseBuilder.class
+    |                   |           StudentCourseGradeResponse.class
+    |                   |           TranscriptMappingPresetResponse$TranscriptMappingPresetResponseBuilder.class
+    |                   |           TranscriptMappingPresetResponse.class
+    |                   |           TranscriptResponse$TranscriptResponseBuilder.class
+    |                   |           TranscriptResponse.class
+    |                   |           
+    |                   +---entity
+    |                   |       AdminActionLog$AdminActionLogBuilder.class
+    |                   |       AdminActionLog.class
+    |                   |       CourseGradeStatus.class
+    |                   |       StudentCourseGrade$StudentCourseGradeBuilder.class
+    |                   |       StudentCourseGrade.class
+    |                   |       Transcript$TranscriptBuilder.class
+    |                   |       Transcript.class
+    |                   |       TranscriptMappingPreset$TranscriptMappingPresetBuilder.class
+    |                   |       TranscriptMappingPreset.class
+    |                   |       
+    |                   +---repository
+    |                   |       AdminActionLogRepository.class
+    |                   |       StudentCourseGradeRepository.class
+    |                   |       TranscriptMappingPresetRepository.class
+    |                   |       TranscriptRepository.class
+    |                   |       
+    |                   \---service
+    |                       |   TranscriptParserService$ParsedGradeDTO$ParsedGradeDTOBuilder.class
+    |                       |   TranscriptParserService$ParsedGradeDTO.class
+    |                       |   TranscriptParserService.class
+    |                       |   TranscriptPresetService.class
+    |                       |   TranscriptService.class
+    |                       |   
+    |                       \---impl
+    |                               TranscriptParserServiceImpl$1.class
+    |                               TranscriptParserServiceImpl.class
+    |                               TranscriptPresetServiceImpl.class
+    |                               TranscriptServiceImpl.class
+    |                               
+    +---generated-sources
+    |   \---annotations
+    \---maven-status
+        \---maven-compiler-plugin
+            \---compile
+                \---default-compile
+                        createdFiles.lst
+                        inputFiles.lst
+                        

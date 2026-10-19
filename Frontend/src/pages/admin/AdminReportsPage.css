@@ -1,0 +1,521 @@
+/* ================================================================
+   AdminReportsPage.css
+   Pattern: matches CmErrorReportPage — cmer- prefix
+   Colors: #f37021 (primary), #034ea2 (secondary), #fafafa (left background)
+   ================================================================ */
+
+.cmer-page {
+    width: 100%;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    padding-bottom: 32px;
+}
+
+.cmer-wrap {
+    display: grid;
+    grid-template-columns: 11fr 9fr; /* Left table list, right details panel */
+    height: calc(100vh - 120px);
+    min-height: 600px;
+    border: 0.5px solid #e4e6ee;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+}
+
+@media (max-width: 992px) {
+    .cmer-wrap {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: auto;
+    }
+}
+
+/* ══════════════════════════════════════════
+   LEFT — Table list panel
+   ══════════════════════════════════════════ */
+.cmer-left-panel {
+    border-right: 0.5px solid #e4e6ee;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+}
+
+.cmer-tree-top {
+    padding: 12px 16px;
+    border-bottom: 0.5px solid #e4e6ee;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.cmer-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.cmer-filter-chip {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #ffffff;
+    color: #4b5563;
+    border: 0.5px solid #e4e6ee;
+    transition: all 0.15s ease;
+}
+
+.cmer-filter-chip:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.cmer-filter-chip--active {
+    background: #f37021;
+    color: #ffffff;
+    border-color: #f37021;
+}
+
+.cmer-filter-chip--active:hover {
+    background: #e56012;
+    color: #ffffff;
+}
+
+.cmer-list-body {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Table */
+.cmer-table-wrapper {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.cmer-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.cmer-table th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #f8fafc;
+    padding: 10px 14px;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #64748b;
+    border-bottom: 0.5px solid #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cmer-table td {
+    padding: 12px 14px;
+    font-size: 12.5px;
+    border-bottom: 0.5px solid #f1f2f6;
+    color: #334155;
+}
+
+.cmer-row-clickable {
+    cursor: pointer;
+    background: #ffffff;
+    transition: background 0.15s;
+}
+
+.cmer-row-clickable:hover {
+    background: #f8fafc;
+}
+
+.cmer-row--active {
+    background: #fff3eb !important; /* highlight active report */
+}
+
+.cmer-col-type {
+    font-weight: 700;
+    width: 130px;
+}
+
+.cmer-type-badge {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.cmer-col-desc {
+    max-width: 200px;
+}
+
+.cmer-desc-text {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cmer-col-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.cmer-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.cmer-status-dot--pending {
+    background: #0284c7;
+}
+
+.cmer-status-dot--progress {
+    background: #6366f1;
+}
+
+.cmer-status-dot--resolved {
+    background: #16a34a;
+}
+
+.cmer-status-dot--dismissed {
+    background: #ef4444;
+}
+
+.cmer-status-dot--cancelled {
+    background: #94a3b8;
+}
+
+.cmer-status-text {
+    font-size: 12px;
+}
+
+/* Pagination */
+.cmer-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-top: 0.5px solid #e4e6ee;
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+.cmer-pag-btn {
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 0.5px solid #cbd5e1;
+    background: #ffffff;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.cmer-pag-btn:hover:not(:disabled) {
+    background: #f1f5f9;
+}
+
+.cmer-pag-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.cmer-pag-info {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+/* ══════════════════════════════════════════
+   RIGHT — Detail / Processing Panel
+   ══════════════════════════════════════════ */
+.cmer-right-panel {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+}
+
+.cmer-panel-header {
+    padding: 14px 20px;
+    border-bottom: 0.5px solid #e4e6ee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.cmer-panel-meta {
+    flex: 1;
+}
+
+.cmer-panel-eyebrow {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 3px;
+}
+
+.cmer-panel-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0d1b3e;
+    margin: 0;
+}
+
+.cmer-btn-navigate {
+    background: #ffffff;
+    border: 0.5px solid #cbd5e1;
+    color: #4b5563;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.cmer-btn-navigate:hover {
+    background: #f8fafc;
+    border-color: #f37021;
+    color: #f37021;
+}
+
+.cmer-panel-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cmer-detail-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cmer-detail-label {
+    font-size: 10px;
+    font-weight: 750;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cmer-detail-value {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #0d1b3e;
+}
+
+.cmer-detail-desc-box {
+    background: #fafafa;
+    border: 0.5px solid #e4e6ee;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #334155;
+    margin: 0;
+    white-space: pre-line;
+}
+
+.cmer-divider {
+    border: 0;
+    border-top: 0.5px solid #e4e6ee;
+    margin: 6px 0;
+}
+
+.cmer-section-title {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #0d1b3e;
+    margin: 0 0 4px;
+}
+
+.cmer-status-cancelled-box {
+    background: #fafafa;
+    border: 0.5px solid #e4e6ee;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 12.5px;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+/* Form inputs */
+.cmer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.cmer-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cmer-form-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #4b5563;
+}
+
+.cmer-required {
+    color: #ef4444;
+}
+
+.cmer-form-select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 0.5px solid rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+    font-size: 12.5px;
+    color: #0d1b3e;
+    background: #ffffff;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.cmer-form-select:focus {
+    border-color: #f37021;
+}
+
+.cmer-form-textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 0.5px solid rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+    font-size: 12.5px;
+    color: #0d1b3e;
+    background: #ffffff;
+    outline: none;
+    resize: vertical;
+    line-height: 1.5;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.cmer-form-textarea:focus {
+    border-color: #f37021;
+}
+
+.cmer-error-msg {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #a32d2d;
+    background: #fdecea;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 0.5px solid #f5c2c2;
+}
+
+.cmer-error-msg svg {
+    flex-shrink: 0;
+}
+
+.cmer-success-msg {
+    color: #2d7a26;
+    background: #edf7ec;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    border: 0.5px solid #c0dd97;
+}
+
+.cmer-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 4px;
+}
+
+.cmer-btn-save {
+    background: #f37021;
+    color: #ffffff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.cmer-btn-save:hover {
+    background: #e56012;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(243, 112, 33, 0.2);
+}
+
+.cmer-btn-save:active {
+    transform: translateY(0);
+}
+
+/* Custom Red Variant for Admin delete button */
+.cmer-btn-delete-admin {
+    background: #dc2626 !important;
+    color: #ffffff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.cmer-btn-delete-admin:hover {
+    background: #b91c1c !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+}
+
+/* Empty placeholder */
+.cmer-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    background: #fafafa;
+    text-align: center;
+    padding: 24px;
+}
+
+.cmer-empty-icon {
+    margin-bottom: 10px;
+    color: #cbd5e1;
+}
+
+.cmer-empty-text {
+    font-size: 12px;
+    font-weight: 500;
+    max-width: 240px;
+    line-height: 1.6;
+}
+
+.cmer-loading, .cmer-empty-state {
+    text-align: center;
+    padding: 48px 12px;
+    color: #9ca3af;
+    font-size: 13px;
+}

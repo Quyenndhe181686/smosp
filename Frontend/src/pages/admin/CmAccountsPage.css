@@ -1,0 +1,17 @@
+/* ================================================================
+   CmAccountsPage.css
+
+   Khung trang, thẻ số liệu, bảng, bảng phụ bên phải đều lấy từ
+   admin-ui.css. File này chỉ giữ phần riêng của trang tài khoản CM.
+   ================================================================ */
+
+/* Cột trạng thái rộng đúng bằng ô chọn bên dưới để tiêu đề không bị lệch */
+.cma-th-status {
+    width: 190px;
+}
+
+@media (max-width: 720px) {
+    .cma-th-status {
+        width: auto;
+    }
+}

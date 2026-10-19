@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Fonts - Imported Be Vietnam Pro -->
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@900&amp;display=swap');
+      .outer-acronym {
+        font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-weight: 900;
+        font-size: 85px;
+        fill: #FFFFFF;
+        letter-spacing: 14px;
+        stroke: #0F172A;
+        stroke-width: 5px;
+        stroke-linejoin: round;
+        filter: drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.6));
+      }
+    </style>
+
+    <!-- Gradients -->
+    <!-- Rich Orange to Deep Burnt Red-Orange Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFA858" />
+      <stop offset="50%" stop-color="#FF6B00" />
+      <stop offset="100%" stop-color="#C23A00" />
+    </linearGradient>
+
+    <!-- Glowing Gold/Yellow Gradient for Pointers and Highlights -->
+    <linearGradient id="goldHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082" />
+      <stop offset="100%" stop-color="#FFB300" />
+    </linearGradient>
+
+    <!-- Academic Blue Gradient for the Cap -->
+    <linearGradient id="academicBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1E3A8A" />
+    </linearGradient>
+
+    <!-- Cap Glassmorphism Top Face Gradient -->
+    <linearGradient id="capTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E0F2FE" />
+      <stop offset="100%" stop-color="#7DD3FC" />
+    </linearGradient>
+
+    <!-- Inner Shadow and Glow Filters -->
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#7C2D12" flood-opacity="0.6" />
+    </filter>
+
+    <filter id="whiteGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComponentTransfer in="blur" result="glow">
+        <feFuncA type="linear" slope="0.4"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 1. Background Shield (Orange Gradient - Centered at 250, 250) -->
+  <circle cx="250" cy="250" r="235" fill="url(#bgGrad)" filter="url(#dropShadow)" stroke="#FFFFFF" stroke-width="3" />
+
+  <!-- 2. Inner Decorative Rings (Compass Outer Tracks) -->
+  <!-- Thin Pale Gold Ring -->
+  <circle cx="250" cy="250" r="225" fill="none" stroke="#FFE3C1" stroke-width="2" opacity="0.6" />
+  <!-- White Inner Ring for Contrast -->
+  <circle cx="250" cy="250" r="215" fill="none" stroke="#FFFFFF" stroke-width="5" filter="url(#whiteGlow)" />
+  
+  <!-- Outer Compass Ring Scale (Double Solid lines with radial ticks) -->
+  <circle cx="250" cy="250" r="198" fill="none" stroke="#FFFFFF" stroke-width="2.5" />
+  <circle cx="250" cy="250" r="190" fill="none" stroke="#FFFFFF" stroke-width="1.5" />
+  
+  <!-- Radial Compass Ticks -->
+  <g stroke="#FFFFFF" stroke-width="2" opacity="0.85">
+    <line x1="250" y1="52" x2="250" y2="60" />
+    <line x1="250" y1="440" x2="250" y2="448" />
+    <line x1="52" y1="250" x2="60" y2="250" />
+    <line x1="440" y1="250" x2="448" y2="250" />
+    
+    <!-- 30 deg ticks -->
+    <line x1="347" y1="81" x2="341" y2="91" />
+    <line x1="153" y1="81" x2="159" y2="91" />
+    <line x1="347" y1="419" x2="341" y2="409" />
+    <line x1="153" y1="419" x2="159" y2="409" />
+    
+    <!-- 60 deg ticks -->
+    <line x1="419" y1="153" x2="409" y2="159" />
+    <line x1="419" y1="347" x2="409" y2="341" />
+    <line x1="81" y1="153" x2="91" y2="159" />
+    <line x1="81" y1="347" x2="91" y2="341" />
+  </g>
+
+  <!-- 3. Curved Path for SMOSP Text on the Outermost Rim (Radius 225, wrapping right on the edge) -->
+  <path id="smospRimPath" d="M 20,250 A 230,230 0 0,0 480,250" fill="none" />
+
+  <text class="outer-acronym">
+    <textPath href="#smospRimPath" startOffset="50%" text-anchor="middle">
+      SMOSP
+    </textPath>
+  </text>
+
+  <!-- 4. Advanced 3D Compass Star -->
+  <!-- Vertical Points -->
+  <polygon points="250,90 262,250 250,250" fill="url(#goldHighlight)" stroke="#0F172A" stroke-width="2" />
+  <polygon points="250,90 238,250 250,250" fill="#E65100" stroke="#0F172A" stroke-width="2" />
+  <polygon points="250,410 238,250 250,250" fill="url(#goldHighlight)" stroke="#0F172A" stroke-width="2" />
+  <polygon points="250,410 262,250 250,250" fill="#E65100" stroke="#0F172A" stroke-width="2" />
+  <!-- Horizontal Points -->
+  <polygon points="410,250 250,238 250,250" fill="#FFFFFF" stroke="#0F172A" stroke-width="2" />
+  <polygon points="410,250 250,262 250,250" fill="#FFE082" stroke="#0F172A" stroke-width="2" />
+  <polygon points="90,250 250,262 250,250" fill="#FFFFFF" stroke="#0F172A" stroke-width="2" />
+  <polygon points="90,250 250,238 250,250" fill="#FFE082" stroke="#0F172A" stroke-width="2" />
+
+  <!-- Diagonal Subcardinal Needles -->
+  <g stroke="#0F172A" stroke-width="2">
+    <!-- NE Point -->
+    <polygon points="345,155 250,244 256,250" fill="#FFE082" />
+    <polygon points="345,155 244,250 250,244" fill="#E65100" />
+    <!-- NW Point -->
+    <polygon points="155,155 250,244 244,250" fill="#FFE082" />
+    <polygon points="155,155 256,250 250,244" fill="#E65100" />
+    <!-- SE Point -->
+    <polygon points="345,345 250,256 256,250" fill="#FFE082" />
+    <polygon points="345,345 244,250 250,256" fill="#E65100" />
+    <!-- SW Point -->
+    <polygon points="155,345 250,256 244,250" fill="#FFE082" />
+    <polygon points="155,345 256,250 250,256" fill="#E65100" />
+  </g>
+
+  <!-- 5. Central Badge Frame (Warm Cream Circle) -->
+  <circle cx="250" cy="250" r="82" fill="#FFFDFB" stroke="#0F172A" stroke-width="4.5" filter="url(#dropShadow)" />
+  <circle cx="250" cy="250" r="78" fill="none" stroke="url(#goldHighlight)" stroke-width="2" />
+
+  <!-- 6. Graduation Cap (Shifted down by 18px to be perfectly centered inside the central circle) -->
+  <g transform="translate(0, 18)">
+    <!-- Cap Base -->
+    <path d="M 218,245 L 218,260 C 218,275 282,275 282,260 L 282,245 Z" fill="#0F172A" />
+    <path d="M 218,248 C 218,248 236,260 250,260 C 264,260 282,248 282,248 L 282,258 C 282,268 264,272 250,272 C 236,272 218,268 218,258 Z" fill="url(#academicBlue)" stroke="#0F172A" stroke-width="2" />
+
+    <!-- Cap Top Diamond -->
+    <polygon points="250,188 312,219 250,250 188,219" fill="url(#capTop)" stroke="#0F172A" stroke-width="3.5" stroke-linejoin="round" />
+    <polygon points="250,192 306,219 250,246 194,219" fill="none" stroke="#2563EB" stroke-width="1.5" />
+
+    <!-- Center Button -->
+    <ellipse cx="250" cy="219" rx="5" ry="3.5" fill="#FFE082" stroke="#0F172A" stroke-width="1.5" />
+
+    <!-- Tassel -->
+    <path d="M 250,219 C 215,219 192,237 186,254 C 184,261 188,266 194,266 C 200,266 201,259 206,255 C 210,252 217,254 217,261 L 217,274" fill="none" stroke="#0F172A" stroke-width="4.5" stroke-linecap="round" />
+    <path d="M 250,219 C 215,219 192,237 186,254 C 184,261 188,266 194,266 C 200,266 201,259 206,255 C 210,252 217,254 217,261 L 217,274" fill="none" stroke="#1D4ED8" stroke-width="2.5" stroke-linecap="round" />
+    
+    <!-- Tassel Hanging Head -->
+    <path d="M 214,274 L 220,274 M 217,274 L 217,282 M 214,282 L 220,282" stroke="#0F172A" stroke-width="3" stroke-linecap="round" />
+    <path d="M 214,274 L 220,274 M 217,274 L 217,282 M 214,282 L 220,282" stroke="#FFE082" stroke-width="1.5" stroke-linecap="round" />
+  </g>
+</svg>

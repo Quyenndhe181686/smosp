@@ -1,0 +1,398 @@
+/* ================================================================
+   CmCompatibilityWeightPage.css — tiền tố nsw-
+
+   Dùng token dùng chung của cm-ui.css. Nút, tag và thông báo lấy từ
+   hệ thống chung: .cm-btn-*, .cm-tag-*, CmToast.
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+.nsw-page {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    padding: 20px 24px 40px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: var(--cm-ink);
+    background: var(--cm-surface-alt);
+    min-height: 100vh;
+}
+
+/* Hai cột ngang hàng: chỉnh trọng số bên trái, lịch sử bên phải.
+   Trước đây lồng ba lớp container mà chỉ để dựng đúng bố cục này. */
+.nsw-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px;
+    align-items: start;
+}
+
+@media (max-width: 1180px) {
+    .nsw-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.nsw-card {
+    padding: 18px 20px;
+    background: var(--cm-surface);
+    border: 1px solid var(--cm-border);
+    border-radius: 14px;
+}
+
+.nsw-card-head {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--cm-border);
+}
+
+.nsw-section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--cm-ink);
+}
+
+.nsw-section-title svg {
+    color: var(--cm-blue);
+}
+
+.nsw-section-hint {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--cm-text-soft);
+}
+
+.nsw-block {
+    margin-bottom: 18px;
+}
+
+.nsw-block-title {
+    margin: 0 0 14px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cm-ink);
+}
+
+/* Tên kỹ thuật của tham số — để trong ngoặc, chữ nhỏ, không lấn nhãn tiếng Việt */
+.nsw-code-hint {
+    margin-left: 6px;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--cm-muted);
+}
+
+.nsw-divider {
+    margin: 18px 0;
+    border: 0;
+    border-top: 1px solid var(--cm-border);
+}
+
+/* ── Thanh trượt ── */
+.nsw-slider-row {
+    margin-bottom: 16px;
+}
+
+.nsw-slider-row:last-child {
+    margin-bottom: 0;
+}
+
+.nsw-slider-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.nsw-slider-label {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cm-ink);
+}
+
+.nsw-num-input {
+    width: 72px;
+    flex-shrink: 0;
+    padding: 5px 8px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: 6px;
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--cm-ink);
+    text-align: center;
+    outline: none;
+    transition: border-color var(--cm-ease), box-shadow var(--cm-ease);
+}
+
+.nsw-num-input:focus {
+    border-color: var(--cm-blue);
+    box-shadow: var(--cm-ring);
+}
+
+.nsw-num-input:disabled {
+    background: #f6f7f9;
+    color: var(--cm-muted);
+    cursor: not-allowed;
+}
+
+.nsw-slider {
+    width: 100%;
+    accent-color: var(--cm-blue);
+    cursor: pointer;
+}
+
+.nsw-slider:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Hai đầu thang đo — mỗi bên một màu để thấy ngay đang nghiêng về phía nào */
+.nsw-scale {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.nsw-scale-end {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.nsw-scale-end--market {
+    color: var(--cm-blue);
+}
+
+.nsw-scale-end--profile {
+    color: var(--cm-success);
+}
+
+/* ── Khối chỉ số thị trường ── */
+.nsw-market-box {
+    margin-bottom: 18px;
+    padding: 13px 15px;
+    border: 1px solid var(--cm-border);
+    border-left: 3px solid var(--cm-orange);
+    border-radius: var(--cm-radius);
+    background: var(--cm-surface-sunken);
+}
+
+.nsw-market-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.nsw-market-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--cm-text);
+}
+
+.nsw-market-label svg {
+    color: var(--cm-orange);
+}
+
+.nsw-market-value {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--cm-blue);
+}
+
+.nsw-market-value.is-empty {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--cm-muted);
+}
+
+.nsw-market-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--cm-border-strong);
+}
+
+@media (max-width: 560px) {
+    .nsw-market-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.nsw-market-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.nsw-market-cell-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--cm-text-soft);
+}
+
+.nsw-market-cell strong {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--cm-ink);
+}
+
+/* ── Ghi chú + hành động ── */
+.nsw-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 16px;
+}
+
+.nsw-field-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--cm-text);
+}
+
+.nsw-field-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 9px 11px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 12.5px;
+    color: var(--cm-ink);
+    outline: none;
+    transition: border-color var(--cm-ease), box-shadow var(--cm-ease);
+}
+
+.nsw-field-input:focus {
+    border-color: var(--cm-blue);
+    box-shadow: var(--cm-ring);
+}
+
+.nsw-field-input:disabled {
+    background: #f6f7f9;
+    color: var(--cm-muted);
+    cursor: not-allowed;
+}
+
+.nsw-field-input::placeholder {
+    color: var(--cm-muted);
+}
+
+.nsw-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 14px;
+    border-top: 1px solid var(--cm-border);
+}
+
+.nsw-actions-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+/* ── Bảng lịch sử ── */
+.nsw-table-wrap {
+    overflow-x: auto;
+}
+
+.nsw-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.nsw-table th {
+    padding: 0 10px 8px 0;
+    border-bottom: 1.5px solid var(--cm-border);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.nsw-table td {
+    padding: 10px 10px 10px 0;
+    border-bottom: 1px solid var(--cm-line);
+    font-size: 11.5px;
+    color: var(--cm-text);
+    vertical-align: middle;
+}
+
+.nsw-table tr:last-child td {
+    border-bottom: none;
+}
+
+.nsw-table tbody tr:hover td {
+    background: var(--cm-surface-sunken);
+}
+
+.nsw-nowrap {
+    white-space: nowrap;
+}
+
+/* Ô nào thực sự đổi giá trị thì tô đậm bằng màu thương hiệu; ô không đổi để
+   chìm, tránh bảng lịch sử toàn số trông như nhau. */
+.nsw-audit-delta {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 11.5px;
+    color: var(--cm-muted);
+    white-space: nowrap;
+}
+
+.nsw-audit-delta.is-changed {
+    color: var(--cm-text);
+}
+
+.nsw-audit-delta.is-changed strong {
+    padding: 1px 6px;
+    border-radius: 5px;
+    background: var(--cm-blue-soft);
+    color: var(--cm-blue-deep);
+    font-weight: 800;
+}
+
+.nsw-muted {
+    color: var(--cm-text-soft);
+}
+
+.nsw-empty {
+    padding: 28px 0;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--cm-muted);
+}

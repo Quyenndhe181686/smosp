@@ -1,0 +1,1265 @@
+/* ================================================================
+   TrendingWeightPage.css — tw- prefix
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+.tw-page {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    width: 100%;
+    padding-bottom: 48px;
+}
+
+.tw-header {
+    margin-bottom: 2px;
+}
+
+.tw-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0d1b3e;
+    margin: 0;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.tw-subtitle {
+    font-size: 12px;
+    color: #9ca3af;
+    margin: 4px 0 0;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+/* ── Layout container ── */
+.tw-layout-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.tw-main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.tw-side-panel {
+    width: 320px;
+    min-width: 320px;
+    flex-shrink: 0;
+}
+
+/* ── Batch bar ── */
+.tw-batch-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: #fafafb;
+    border: 0.5px solid #e6e7eb;
+    border-radius: 10px;
+    padding: 12px 16px;
+    flex-wrap: wrap;
+}
+
+.tw-batch-info {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.tw-batch-id {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0d1b3e;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.tw-batch-meta {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.tw-batch-stats {
+    display: flex;
+    gap: 6px;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.tw-anomaly-notice {
+    background: #fdfcea;
+    border: 0.5px solid rgba(245, 158, 11, 0.3);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #c45a0a;
+    line-height: 1.5;
+}
+
+/* ── Card ── */
+.tw-card {
+    background: #fff;
+    border: 0.5px solid #e4e6ee;
+    border-radius: 16px;
+    padding: 18px 20px;
+}
+
+.tw-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.tw-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0d1b3e;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.tw-card-desc {
+    font-size: 11px;
+    color: #9ca3af;
+    margin: 0 0 12px;
+    line-height: 1.5;
+}
+
+.tw-bulk-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* ── Table ── */
+.tw-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.tw-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0 10px 8px 0;
+    border-bottom: 0.5px solid #f0f0f0;
+}
+
+.tw-table td {
+    padding: 10px 10px 10px 0;
+    border-bottom: 0.5px solid #f0f0f0;
+    vertical-align: middle;
+    color: #4b5060;
+}
+
+.tw-table tr:last-child td {
+    border-bottom: none;
+}
+
+.tw-ns-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0d1b3e;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.tw-ns-sub {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 2px;
+}
+
+.tw-tw-values {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0d1b3e;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.tw-delta {
+    margin-left: 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.tw-up {
+    color: #2d7a26;
+}
+
+.tw-down {
+    color: #a32d2d;
+}
+
+.tw-flat {
+    color: #9ca3af;
+}
+
+.tw-component {
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.tw-comp-cur {
+    color: #9ca3af;
+}
+
+.tw-decision-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.tw-decision-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 6px;
+}
+
+.tw-decision-badge--approved {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.tw-decision-badge--rejected {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+/* ── Rollback rows ── */
+.tw-rollback-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 0.5px solid #eceef1;
+}
+
+.tw-rollback-row:last-child {
+    border-bottom: none;
+}
+
+.tw-rollback-batch {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0d1b3e;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.tw-rollback-meta {
+    display: block;
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 2px;
+}
+
+/* ── Buttons — matching design system ── */
+.tw-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #0284c7 0%, #034ea2 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(3, 78, 162, 0.25);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tw-btn-primary:hover {
+    background: linear-gradient(135deg, #0369a1 0%, #023f88 100%);
+    box-shadow: 0 6px 18px rgba(3, 78, 162, 0.35);
+    transform: translateY(-1px);
+}
+
+.tw-btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(3, 78, 162, 0.2);
+}
+
+.tw-btn-solid {
+    padding: 8px 14px;
+    background: #034EA2;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 140ms ease;
+}
+
+.tw-btn-solid:hover {
+    background: #023f88;
+}
+
+.tw-btn-outline {
+    padding: 8px 14px;
+    background: transparent;
+    border: 0.5px solid rgba(0, 0, 0, 0.18);
+    border-radius: 7px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    transition: background 140ms ease;
+}
+
+.tw-btn-outline:hover {
+    background: #f0f2f7;
+}
+
+.tw-btn-solid-sm {
+    padding: 5px 10px;
+    background: #034EA2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 140ms ease;
+}
+
+.tw-btn-solid-sm:hover {
+    background: #023f88;
+}
+
+.tw-btn-outline-sm {
+    padding: 5px 10px;
+    background: transparent;
+    border: 0.5px solid rgba(0, 0, 0, 0.18);
+    border-radius: 6px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 140ms ease;
+}
+
+.tw-btn-outline-sm:hover:not(:disabled) {
+    background: #f0f2f7;
+}
+
+.tw-btn-outline-sm:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ================================================================
+   Toolbar — bộ lọc riêng + nhóm nút hành động (cùng 1 hàng)
+   ================================================================ */
+.tw-toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: #fff;
+    border: 0.5px solid #e4e6ee;
+    border-radius: 14px;
+    padding: 14px 18px;
+}
+
+.tw-toolbar-filters {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.tw-toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-left: auto;
+}
+
+.tw-toolbar-divider {
+    width: 1px;
+    align-self: stretch;
+    background: #e9ebf1;
+    margin: 0 2px;
+}
+
+.tw-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.tw-field-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.tw-select {
+    padding: 7px 10px;
+    font-size: 12.5px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 500;
+    color: #0d1b3e;
+    background: #fff;
+    border: 1px solid #d8dbe4;
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    width: 190px;
+    max-width: 190px;
+    text-overflow: ellipsis;
+    transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.tw-select:hover:not(:disabled) {
+    border-color: #9db4d4;
+}
+
+.tw-select:focus {
+    border-color: #034EA2;
+    box-shadow: 0 0 0 3px rgba(3, 78, 162, 0.1);
+}
+
+.tw-select:disabled {
+    background: #f6f7f9;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* ── Ô tìm kiếm theo Mã / Tên CNH ── */
+.tw-search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 200px;
+}
+
+.tw-search-icon {
+    position: absolute;
+    left: 10px;
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+.tw-search-input {
+    width: 100%;
+    padding: 7px 26px 7px 30px;
+    font-size: 12.5px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 500;
+    color: #0d1b3e;
+    background: #fff;
+    border: 1px solid #d8dbe4;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.tw-search-input:hover {
+    border-color: #9db4d4;
+}
+
+.tw-search-input:focus {
+    border-color: #034EA2;
+    box-shadow: 0 0 0 3px rgba(3, 78, 162, 0.1);
+}
+
+.tw-search-clear {
+    position: absolute;
+    right: 8px;
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 2px 4px;
+    border-radius: 50%;
+}
+
+.tw-search-clear:hover {
+    color: #1f2430;
+    background: #f0f1f5;
+}
+
+.tw-filter-summary {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 8px;
+}
+
+.tw-filter-summary strong {
+    color: #4b5060;
+    font-weight: 600;
+}
+
+/* ── Nhóm nút: 3 cấp độ nhấn khác nhau ── */
+.tw-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 9px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 140ms ease;
+}
+
+.tw-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Hành động chính — cào toàn bộ */
+.tw-btn--primary {
+    background: linear-gradient(135deg, #0a5cbb 0%, #034EA2 100%);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(3, 78, 162, 0.22);
+}
+
+.tw-btn--primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #0952a6 0%, #023f88 100%);
+    box-shadow: 0 4px 12px rgba(3, 78, 162, 0.3);
+}
+
+/* Hành động phụ — cào theo phạm vi đã lọc */
+.tw-btn--secondary {
+    background: #eef5fd;
+    color: #034EA2;
+    border-color: #bcd7f5;
+}
+
+.tw-btn--secondary:hover:not(:disabled) {
+    background: #e0edfb;
+    border-color: #94bdec;
+}
+
+/* Hành động trung tính — làm mới / xóa lọc */
+.tw-btn--ghost {
+    background: #fff;
+    color: #4b5060;
+    border-color: #dfe2e9;
+}
+
+.tw-btn--ghost:hover:not(:disabled) {
+    background: #f5f6f9;
+    border-color: #c4c9d4;
+}
+
+.tw-btn--sm {
+    padding: 6px 11px;
+    font-size: 11.5px;
+    border-radius: 8px;
+}
+
+/* ================================================================
+   Banner tiến trình crawler
+   ================================================================ */
+@keyframes tw-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.tw-spin {
+    animation: tw-spin 1s linear infinite;
+}
+
+.tw-spin-slow {
+    animation: tw-spin 3s linear infinite;
+}
+
+.tw-banner {
+    background: linear-gradient(90deg, #f2f8ff 0%, #eaf4ff 100%);
+    border: 1px solid #bcd7f5;
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tw-banner--checking {
+    background: #fafafb;
+    border-color: #e6e7eb;
+}
+
+.tw-banner-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.tw-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.tw-banner-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #034EA2;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tw-banner--checking .tw-banner-icon {
+    background: #9ca3af;
+}
+
+.tw-banner-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0d1b3e;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tw-banner-sub {
+    font-size: 11.5px;
+    color: #5b7ea8;
+    margin-top: 2px;
+}
+
+.tw-banner--checking .tw-banner-sub {
+    color: #9ca3af;
+}
+
+.tw-banner-hint {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: #6b7280;
+    white-space: nowrap;
+}
+
+.tw-chip {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+/* ── Danh sách tiến trình từng batch ── */
+/* Người dùng kéo được mép dưới để phóng to / thu nhỏ khung theo dõi. Cố ý KHÔNG
+   set height qua inline style của React: trình duyệt ghi chiều cao vừa kéo vào
+   chính thuộc tính style của element, nếu React cũng ghi style thì mỗi nhịp
+   polling (5s) sẽ ghi đè, làm khung tự nhảy về kích thước cũ. Chiều cao mặc định
+   vì vậy đi qua class .tw-jobs--tall, để inline height do kéo luôn thắng. */
+.tw-jobs {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(188, 215, 245, 0.7);
+    border-radius: 10px;
+    padding: 8px 12px;
+    min-height: 52px;
+    max-height: 80vh;
+    overflow-y: auto;
+    resize: vertical;
+}
+
+/* Từ 4 batch trở lên mới chốt chiều cao mặc định; ít hơn thì để khung ôm sát nội
+   dung, tránh chừa khoảng trống thừa khi chỉ cào 1 chuyên ngành. */
+.tw-jobs--tall {
+    height: 210px;
+}
+
+/* Tay nắm kéo cho dễ thấy — resizer mặc định của trình duyệt khá mờ trên nền sáng */
+.tw-jobs::-webkit-resizer {
+    background: transparent;
+    border-right: 2px solid rgba(3, 105, 161, 0.45);
+    border-bottom: 2px solid rgba(3, 105, 161, 0.45);
+}
+
+.tw-job {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 12px;
+    padding: 6px 0;
+}
+
+.tw-job-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 0;
+}
+
+.tw-job + .tw-job {
+    border-top: 0.5px solid #eaf0f8;
+}
+
+.tw-job-name {
+    font-weight: 600;
+    color: #0d1b3e;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tw-job-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.tw-job-meta {
+    font-size: 11px;
+    color: #9ca3af;
+    white-space: nowrap;
+}
+
+.tw-phase {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.tw-phase--crawl {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.tw-phase--normalize {
+    background: #ede9fe;
+    color: #6d28d9;
+}
+
+.tw-phase--calculate {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.tw-phase--done {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.tw-phase--failed {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+/* Đã dừng theo yêu cầu — cố ý KHÔNG dùng tông đỏ như "Thất bại": người dùng chủ
+   động dừng thì đây không phải lỗi, tô đỏ sẽ khiến CM tưởng hệ thống hỏng. */
+.tw-phase--cancelled {
+    background: #f4f4f5;
+    color: #52525b;
+}
+
+/* Tên CM đang giữ phiên — hiện cho người KHÔNG dừng được, để biết hỏi ai. */
+.tw-job-owner {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: #f4f4f5;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #52525b;
+}
+
+.tw-job-stop {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 8px;
+    border: 1px solid #fecaca;
+    border-radius: 999px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #b91c1c;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.tw-job-stop:hover:not(:disabled) {
+    background: #fef2f2;
+    border-color: #f87171;
+}
+
+.tw-job-stop:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* ── Thanh tiến độ từng batch ── */
+.tw-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tw-progress-track {
+    flex: 1;
+    height: 5px;
+    border-radius: 999px;
+    background: #e6edf7;
+    overflow: hidden;
+}
+
+.tw-progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #0369a1, #38bdf8);
+    transition: width 0.4s ease;
+}
+
+/* Chưa tính được % (nguồn không trả tổng số) — hiện vệt chạy thay vì 0% sai lệch */
+.tw-progress-fill--unknown {
+    background: repeating-linear-gradient(90deg, #cbd5e1 0 8px, #e2e8f0 8px 16px);
+}
+
+.tw-progress-pct {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #64748b;
+    min-width: 32px;
+    text-align: right;
+}
+
+.tw-err-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: #fff7ed;
+    color: #c2410c;
+    white-space: nowrap;
+}
+
+/* ── Breakdown theo chuyên ngành hẹp ── */
+.tw-breakdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #0369a1;
+}
+
+.tw-breakdown-toggle:hover {
+    text-decoration: underline;
+}
+
+.tw-breakdown-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 4px;
+    padding-left: 15px;
+    max-height: 132px;
+    overflow-y: auto;
+}
+
+.tw-breakdown-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 11px;
+    color: #475569;
+}
+
+.tw-breakdown-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tw-breakdown-count {
+    flex-shrink: 0;
+    font-weight: 600;
+    color: #0d1b3e;
+}
+
+/* ── Grid nội dung ── */
+.tw-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 20px;
+    align-items: start;
+}
+
+@media (max-width: 1180px) {
+    .tw-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.tw-empty {
+    text-align: center;
+    padding: 26px 12px;
+    color: #9ca3af;
+    font-size: 12.5px;
+}
+
+/* ── Lịch sử đã duyệt ── */
+.tw-history-item {
+    padding: 10px 12px;
+    border-bottom: 0.5px solid #f1f2f6;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tw-history-item:last-child {
+    border-bottom: none;
+}
+
+.tw-history-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.tw-history-name {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #0d1b3e;
+}
+
+.tw-history-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 11.5px;
+    color: #4b5060;
+    background: #fafafb;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.tw-history-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+.tw-btn-rollback {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    border-radius: 7px;
+    padding: 3px 9px;
+    font-size: 11px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 140ms ease;
+}
+
+.tw-btn-rollback:hover {
+    background: #fee2e2;
+}
+
+/* ── Pagination (dùng chung style cm-) ── */
+.cm-pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    margin-top: 10px;
+    border-top: 1px solid #f1f5f9;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 12px;
+}
+
+.cm-pagination-size {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.cm-pagination-select {
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    font-size: 12px;
+    outline: none;
+    cursor: pointer;
+    background: #fff;
+}
+
+.cm-pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cm-page-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    color: #334155;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.12s ease;
+}
+
+.cm-page-btn:hover:not(:disabled) {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.cm-page-btn--active {
+    background: #034EA2 !important;
+    color: #fff !important;
+    border-color: #034EA2 !important;
+    font-weight: 700;
+}
+
+.cm-page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ── Toast ── */
+.tw-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0d1b3e;
+    color: #fff;
+    padding: 11px 20px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 200;
+}
+
+/* ── Multi-select Dropdown ── */
+.tw-multi-select-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    cursor: pointer;
+    background: #fff;
+    min-width: 200px;
+}
+
+.tw-multi-select-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 240px;
+    max-width: 320px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    z-index: 100;
+    padding: 8px 0;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.tw-multi-select-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 12px 8px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.tw-btn-link {
+    background: none;
+    border: none;
+    color: #034EA2;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+}
+
+.tw-btn-link:hover {
+    text-decoration: underline;
+}
+
+.tw-multi-select-count {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.tw-multi-select-list {
+    max-height: 220px;
+    overflow-y: auto;
+    padding: 4px 0;
+}
+
+.tw-multi-select-empty {
+    padding: 12px;
+    font-size: 12px;
+    color: #94a3b8;
+    text-align: center;
+}
+
+.tw-multi-select-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background 0.12s ease;
+    font-size: 12px;
+    color: #334155;
+}
+
+.tw-multi-select-item:hover {
+    background: #f8fafc;
+}
+
+.tw-multi-select-item input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: #034EA2;
+    cursor: pointer;
+}
+
+.tw-multi-select-label {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/* Nút dừng hàng loạt trên banner đang chạy. Nhãn do JSX quyết định theo số phiên
+   thực sự dừng được — xem chú thích tại chỗ dùng. */
+.tw-banner-stop-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-right: 10px;
+    padding: 3px 10px;
+    border: 1px solid #fecaca;
+    border-radius: 999px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    color: #b91c1c;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.tw-banner-stop-all:hover:not(:disabled) {
+    background: #fef2f2;
+    border-color: #f87171;
+}
+
+.tw-banner-stop-all:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.tw-btn--rollback-batch {
+    background: #fff1f2;
+    color: #e11d48;
+    border: 1px solid #fecdd3;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.tw-btn--rollback-batch:hover:not(:disabled) {
+    background: #ffe4e6;
+    color: #be123c;
+    border-color: #fda4af;
+}
+
+.tw-btn--rollback-batch:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+

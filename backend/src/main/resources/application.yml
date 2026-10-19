@@ -1,0 +1,117 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/smosp} 
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:123}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  security:
+    user:
+      name: disabled
+      password: disabled
+
+  gmail:
+    client-id: ${GMAIL_CLIENT_ID}
+    client-secret: ${GMAIL_CLIENT_SECRET}
+    refresh-token: ${GMAIL_REFRESH_TOKEN}
+
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 30MB
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 86400000
+  refresh-expiration: 604800000
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    com.sep490_g47.smosp: INFO
+    org.springframework.security: WARN
+
+app:
+  base-url: http://localhost:8080
+  frontend-url: http://localhost:5173
+
+smosp:
+  # Tài khoản mẫu do DataSeeder tạo lúc khởi động: admin / contentmanager / student.
+  #
+  # ⚠️ DataSeeder là CommandLineRunner KHÔNG gắn @Profile, và dự án chưa cấu hình
+  # profile nào — nó chạy ở MỌI môi trường. Trước khi deploy thật, BẮT BUỘC làm một
+  # trong hai:
+  #     smosp.seed.accounts.enabled = false          (khuyến nghị)
+  #     SMOSP_SEED_ACCOUNTS_PASSWORD = <mật khẩu thật>
+  # Không làm thì hệ thống tự tạo một ROLE_SUPER_ADMIN với mật khẩu nằm công khai
+  # trong mã nguồn. Cờ forceChangePassword KHÔNG cứu được: ai biết mật khẩu vẫn
+  # đăng nhập rồi tự đổi sang mật khẩu của mình.
+  seed:
+    accounts:
+      enabled: ${SMOSP_SEED_ACCOUNTS_ENABLED:true}
+      password: ${SMOSP_SEED_ACCOUNTS_PASSWORD:12345678}
+  crawler:
+    # Khôi phục phần việc dở dang của pipeline sau khi server khởi động lại
+    # (PipelineRecoveryRunner): đóng crawl_batch kẹt RUNNING và chạy lại normalize
+    # cho tracking còn PENDING.
+    recovery:
+      # Đặt false khi cần khởi động server mà tuyệt đối không đụng vào dữ liệu dở —
+      # ví dụ đang điều tra sự cố và muốn giữ nguyên hiện trường.
+      enabled: true
+      # Số lần cố khôi phục 1 tracking trước khi bỏ cuộc (đánh FAILED). Đây là thứ
+      # cắt vòng lặp "restart ➔ normalize ➔ chết ➔ restart" khi payload của chính
+      # tracking đó là nguyên nhân làm chết tiến trình.
+      max-attempts: 3
+      # Chu kỳ vòng quét ĐỊNH KỲ đóng crawl_batch treo (mặc định 15 phút).
+      #
+      # Khôi phục lúc khởi động là chưa đủ: server chạy liên tục hàng tuần thì không
+      # có gì dọn batch kẹt RUNNING, mà một batch kẹt là guard chặn vĩnh viễn lần cào
+      # sau của đúng Chuyên ngành đó.
+      sweep-interval-ms: 900000
+    # Quá ngần này phút mà crawl_batch vẫn RUNNING thì coi như thread xử lý đã chết,
+    # không phải đang cào dở. Dùng chung cho guard chặn crawl trùng
+    # (CrawlPersistenceService) và vòng quét định kỳ (PipelineRecoveryRunner).
+    #
+    # PHẢI lớn hơn thời gian một phiên cào thật (~20-30 phút với Chuyên ngành nhiều
+    # tin). Đặt quá thấp sẽ đóng nhầm phiên đang chạy và cho phép hai phiên cùng ghi
+    # vào một Chuyên ngành.
+    stale-batch-minutes: 120
+    # Vòng quét dọn tracking PENDING mồ côi (OrphanTrackingSweeper). Chạy sau mỗi
+    # đợt pipeline, cộng thêm một lượt theo lịch để bọc trường hợp hệ thống nằm im
+    # nhiều ngày không có đợt crawl nào.
+    sweep:
+      enabled: true
+      # Mặc định 3h sáng hằng ngày — giờ thấp điểm, vì mỗi lượt có thể chạy
+      # normalize thật và chiếm thread khá lâu.
+      cron: "0 0 3 * * *"
+
+cloudinary:
+  cloud-name: ${CLOUDINARY_CLOUD_NAME}
+  api-key: ${CLOUDINARY_API_KEY}
+  api-secret: ${CLOUDINARY_API_SECRET}
+
+gemini:
+  api-key: ${GEMINI_API_KEY}
+  model: gemini-2.5-flash
+  endpoint: https://generativelanguage.googleapis.com/v1beta/models

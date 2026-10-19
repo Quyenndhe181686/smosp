@@ -1,0 +1,1047 @@
+/* ================================================================
+   cm-ui.css — hệ thống dùng chung cho toàn bộ trang Curriculum Manager
+
+   Import qua CmPagination / CmSelect nên mọi trang dùng 2 component này
+   đều nhận được token màu, tag, badge mà không phải khai báo lại.
+
+   KHÔNG đụng tới namespace .tw-* và .cm-pagination-* — TrendingWeightPage
+   giữ nguyên style riêng của nó.
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Thương hiệu */
+    --cm-blue: #034EA2;
+    --cm-blue-dark: #023f88;
+    --cm-blue-deep: #0C447C;
+    --cm-blue-soft: #E6F1FB;
+    --cm-blue-tint: #edf4ff;
+    --cm-orange: #F37021;
+    --cm-green: #51B848;
+
+    /* Chữ */
+    --cm-ink: #0d1b3e;
+    --cm-text: #374151;
+    --cm-text-soft: #6b7280;
+    --cm-muted: #9ca3af;
+
+    /* Nền & viền */
+    --cm-surface: #ffffff;
+    --cm-surface-alt: #fafafa;
+    --cm-surface-sunken: #f7f9ff;
+    --cm-hover: #f0f2f7;
+    --cm-border: #e4e6ee;
+    --cm-border-strong: #d1d5db;
+    --cm-line: #f0f0f0;
+
+    /* Trạng thái */
+    --cm-success: #2d7a26;
+    --cm-success-bg: #edf7ec;
+    --cm-success-border: #c0dd97;
+    --cm-warn: #C45A0A;
+    --cm-warn-strong: #9A5100;
+    --cm-warn-bg: #fff6ed;
+    --cm-warn-border: #FAC775;
+    --cm-danger: #a32d2d;
+    --cm-danger-strong: #d93025;
+    --cm-danger-bg: #fdecea;
+    --cm-danger-border: #f5c2c2;
+    --cm-purple: #6d28d9;
+    --cm-purple-bg: #f5f3ff;
+
+    /* Hình khối */
+    --cm-radius: 10px;
+    --cm-radius-sm: 8px;
+    --cm-ring: 0 0 0 3px rgba(3, 78, 162, 0.12);
+    --cm-shadow-pop: 0 10px 28px rgba(13, 27, 62, 0.14);
+    --cm-ease: 140ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ================================================================
+   Đầu trang — mọi trang CM dùng chung một khối tiêu đề
+   ================================================================ */
+.cm-page-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--cm-border);
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.cm-page-head-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.cm-page-head-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--cm-blue-soft);
+    color: var(--cm-blue);
+}
+
+.cm-page-title {
+    margin: 0 0 3px;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    color: var(--cm-ink);
+}
+
+.cm-page-sub {
+    margin: 0;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--cm-text-soft);
+    line-height: 1.45;
+}
+
+.cm-page-head-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ================================================================
+   Thông báo (toast) — góc phải trên, dưới thanh điều hướng
+   ================================================================ */
+.cm-toast-host {
+    position: fixed;
+    top: 100px;
+    right: 24px;
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: min(380px, calc(100vw - 48px));
+    pointer-events: none;
+}
+
+.cm-toast {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 11px 12px 11px 14px;
+    border-radius: var(--cm-radius);
+    border: 1px solid transparent;
+    border-left-width: 4px;
+    background: var(--cm-surface);
+    box-shadow: 0 8px 24px rgba(13, 27, 62, 0.14);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.5;
+    pointer-events: auto;
+    animation: cm-toast-in 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes cm-toast-in {
+    from {
+        opacity: 0;
+        transform: translateX(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.cm-toast-icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.cm-toast-text {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.cm-toast-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    background: none;
+    color: inherit;
+    opacity: 0.45;
+    cursor: pointer;
+    transition: opacity var(--cm-ease), background var(--cm-ease);
+}
+
+.cm-toast-close:hover {
+    opacity: 1;
+    background: rgba(13, 27, 62, 0.08);
+}
+
+.cm-toast--success {
+    background: var(--cm-success-bg);
+    border-color: var(--cm-success-border);
+    border-left-color: var(--cm-green);
+    color: #1f5c1a;
+}
+
+.cm-toast--success .cm-toast-icon {
+    color: var(--cm-green);
+}
+
+.cm-toast--error {
+    background: var(--cm-danger-bg);
+    border-color: var(--cm-danger-border);
+    border-left-color: var(--cm-danger-strong);
+    color: #7f1d1d;
+}
+
+.cm-toast--error .cm-toast-icon {
+    color: var(--cm-danger-strong);
+}
+
+.cm-toast--warning {
+    background: var(--cm-warn-bg);
+    border-color: var(--cm-warn-border);
+    border-left-color: var(--cm-orange);
+    color: #7c3a06;
+}
+
+.cm-toast--warning .cm-toast-icon {
+    color: var(--cm-warn);
+}
+
+.cm-toast--info {
+    background: var(--cm-blue-soft);
+    border-color: rgba(3, 78, 162, 0.2);
+    border-left-color: var(--cm-blue);
+    color: var(--cm-blue-deep);
+}
+
+.cm-toast--info .cm-toast-icon {
+    color: var(--cm-blue);
+}
+
+@media (max-width: 640px) {
+    .cm-toast-host {
+        top: 88px;
+        right: 12px;
+        left: 12px;
+        max-width: none;
+    }
+}
+
+/* ================================================================
+   Nút bấm dùng chung — mọi nút đều đi kèm icon thể hiện tác vụ
+   ================================================================ */
+.cm-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px solid transparent;
+    border-radius: var(--cm-radius-sm);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background var(--cm-ease), border-color var(--cm-ease), color var(--cm-ease);
+}
+
+.cm-btn svg {
+    flex-shrink: 0;
+}
+
+.cm-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.cm-btn:focus-visible {
+    outline: none;
+    box-shadow: var(--cm-ring);
+}
+
+.cm-btn--sm {
+    padding: 6px 11px;
+    font-size: 11.5px;
+}
+
+.cm-btn--block {
+    width: 100%;
+}
+
+/* Hành động chính của màn hình */
+.cm-btn--primary {
+    background: var(--cm-blue);
+    border-color: var(--cm-blue);
+    color: #fff;
+}
+
+.cm-btn--primary:hover:not(:disabled) {
+    background: var(--cm-blue-dark);
+    border-color: var(--cm-blue-dark);
+}
+
+/* Hành động phụ, đứng cạnh hành động chính */
+.cm-btn--secondary {
+    background: var(--cm-surface);
+    border-color: var(--cm-border-strong);
+    color: var(--cm-text);
+}
+
+.cm-btn--secondary:hover:not(:disabled) {
+    background: var(--cm-blue-tint);
+    border-color: var(--cm-blue);
+    color: var(--cm-blue);
+}
+
+/* Xác nhận / phê duyệt */
+.cm-btn--success {
+    background: var(--cm-success);
+    border-color: var(--cm-success);
+    color: #fff;
+}
+
+.cm-btn--success:hover:not(:disabled) {
+    background: #24631e;
+    border-color: #24631e;
+}
+
+/* Từ chối / xoá — luôn là viền đỏ, không bao giờ trông giống nút xác nhận */
+.cm-btn--danger {
+    background: var(--cm-surface);
+    border-color: var(--cm-danger-border);
+    color: var(--cm-danger);
+}
+
+.cm-btn--danger:hover:not(:disabled) {
+    background: var(--cm-danger-strong);
+    border-color: var(--cm-danger-strong);
+    color: #fff;
+}
+
+.cm-btn--danger-solid {
+    background: var(--cm-danger-strong);
+    border-color: var(--cm-danger-strong);
+    color: #fff;
+}
+
+.cm-btn--danger-solid:hover:not(:disabled) {
+    background: #b3251c;
+    border-color: #b3251c;
+}
+
+/* Nút chìm, dùng cho tác vụ ít quan trọng */
+.cm-btn--ghost {
+    background: none;
+    border-color: transparent;
+    color: var(--cm-text-soft);
+}
+
+.cm-btn--ghost:hover:not(:disabled) {
+    background: var(--cm-hover);
+    color: var(--cm-ink);
+}
+
+/* Nút chỉ có icon */
+.cm-btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid var(--cm-border);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface);
+    color: var(--cm-text-soft);
+    cursor: pointer;
+    transition: background var(--cm-ease), border-color var(--cm-ease), color var(--cm-ease);
+}
+
+.cm-btn-icon:hover:not(:disabled) {
+    background: var(--cm-blue-tint);
+    border-color: var(--cm-blue);
+    color: var(--cm-blue);
+}
+
+.cm-btn-icon--danger:hover:not(:disabled) {
+    background: var(--cm-danger-bg);
+    border-color: var(--cm-danger-border);
+    color: var(--cm-danger-strong);
+}
+
+.cm-btn-icon:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* ================================================================
+   Tag / badge trạng thái — dùng chung mọi trang
+   ================================================================ */
+.cm-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    max-width: 100%;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 0.5px solid transparent;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.55;
+    white-space: nowrap;
+}
+
+.cm-tag>span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cm-tag svg {
+    flex-shrink: 0;
+}
+
+.cm-tag--neutral {
+    background: var(--cm-hover);
+    border-color: var(--cm-border);
+    color: var(--cm-text-soft);
+}
+
+.cm-tag--blue {
+    background: var(--cm-blue-soft);
+    border-color: rgba(3, 78, 162, 0.18);
+    color: var(--cm-blue-deep);
+}
+
+.cm-tag--green {
+    background: var(--cm-success-bg);
+    border-color: var(--cm-success-border);
+    color: var(--cm-success);
+}
+
+.cm-tag--orange {
+    background: var(--cm-warn-bg);
+    border-color: var(--cm-warn-border);
+    color: var(--cm-warn-strong);
+}
+
+.cm-tag--red {
+    background: var(--cm-danger-bg);
+    border-color: var(--cm-danger-border);
+    color: var(--cm-danger);
+}
+
+.cm-tag--purple {
+    background: var(--cm-purple-bg);
+    border-color: rgba(109, 40, 217, 0.18);
+    color: var(--cm-purple);
+}
+
+/* Tag lọc có nút gỡ */
+.cm-tag-dismiss {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 -3px 0 1px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    opacity: 0.5;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: opacity var(--cm-ease), background var(--cm-ease);
+}
+
+.cm-tag-dismiss:hover {
+    opacity: 1;
+    background: rgba(13, 27, 62, 0.08);
+}
+
+/* ================================================================
+   CmSelect — dropdown khoá theo đúng bề rộng ô lọc
+   ================================================================ */
+.cmsel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.cmsel-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.cmsel-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    padding: 7px 10px;
+    background: var(--cm-surface);
+    border: 1px solid var(--cm-border-strong);
+    border-radius: var(--cm-radius-sm);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--cm-ink);
+    text-align: left;
+    cursor: pointer;
+    transition: border-color var(--cm-ease), box-shadow var(--cm-ease), background var(--cm-ease);
+}
+
+.cmsel-trigger:hover:not(:disabled) {
+    border-color: #9db4d4;
+}
+
+.cmsel-trigger:focus-visible,
+.cmsel-trigger.is-open {
+    outline: none;
+    border-color: var(--cm-blue);
+    box-shadow: var(--cm-ring);
+}
+
+.cmsel-trigger:disabled {
+    background: #f6f7f9;
+    color: var(--cm-muted);
+    cursor: not-allowed;
+}
+
+.cmsel-trigger--sm {
+    padding: 5px 8px;
+    font-size: 11px;
+    border-radius: var(--cm-radius-sm);
+}
+
+/* Ô lọc đang có giá trị — nhấn nhẹ bằng màu thương hiệu */
+.cmsel-trigger.is-active {
+    border-color: var(--cm-blue);
+    background: var(--cm-blue-tint);
+    color: var(--cm-blue);
+}
+
+.cmsel-value {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cmsel-value--placeholder {
+    color: var(--cm-muted);
+    font-weight: 500;
+}
+
+.cmsel-caret {
+    flex-shrink: 0;
+    color: var(--cm-muted);
+    transition: transform var(--cm-ease);
+}
+
+.cmsel-trigger.is-open .cmsel-caret {
+    transform: rotate(180deg);
+}
+
+.cmsel-trigger.is-active .cmsel-caret {
+    color: var(--cm-blue);
+}
+
+/* Panel: render qua portal, width được JS gán đúng bằng bề rộng trigger.
+   border-box để 1px viền không nong panel rộng hơn ô lọc 2px. */
+.cmsel-panel {
+    position: fixed;
+    box-sizing: border-box;
+    z-index: 4000;
+    display: flex;
+    flex-direction: column;
+    background: var(--cm-surface);
+    border: 1px solid var(--cm-border);
+    border-radius: var(--cm-radius);
+    box-shadow: var(--cm-shadow-pop);
+    overflow: hidden;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    animation: cmsel-in 120ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes cmsel-in {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cmsel-search {
+    flex-shrink: 0;
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    border-bottom: 1px solid var(--cm-line);
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--cm-ink);
+    background: var(--cm-surface-alt);
+}
+
+.cmsel-search:focus {
+    outline: none;
+    background: var(--cm-surface);
+}
+
+.cmsel-search::placeholder {
+    color: var(--cm-muted);
+}
+
+.cmsel-list {
+    max-height: 260px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 4px;
+}
+
+.cmsel-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cmsel-list::-webkit-scrollbar-thumb {
+    background: var(--cm-border-strong);
+    border-radius: 4px;
+}
+
+.cmsel-list::-webkit-scrollbar-thumb:hover {
+    background: var(--cm-muted);
+}
+
+.cmsel-opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    padding: 7px 9px;
+    border: none;
+    border-radius: 7px;
+    background: none;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--cm-text);
+    text-align: left;
+    cursor: pointer;
+    transition: background var(--cm-ease), color var(--cm-ease);
+}
+
+/* Mặc định 1 dòng, cắt bằng ellipsis để panel luôn đúng bề rộng ô lọc.
+   Hover / focus mới bung đủ chữ — xuống dòng trong đúng bề rộng đó,
+   không nong panel ra. */
+.cmsel-opt-text {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.5;
+}
+
+.cmsel-opt:hover .cmsel-opt-text,
+.cmsel-opt.is-cursor .cmsel-opt-text {
+    overflow: visible;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.cmsel-opt:hover,
+.cmsel-opt.is-cursor {
+    background: var(--cm-hover);
+    color: var(--cm-ink);
+}
+
+.cmsel-opt.is-selected {
+    background: var(--cm-blue-tint);
+    color: var(--cm-blue);
+    font-weight: 600;
+}
+
+.cmsel-opt.is-selected:hover,
+.cmsel-opt.is-selected.is-cursor {
+    background: var(--cm-blue-soft);
+}
+
+.cmsel-opt-check {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--cm-blue);
+    opacity: 0;
+}
+
+.cmsel-opt.is-selected .cmsel-opt-check {
+    opacity: 1;
+}
+
+/* Chấm trạng thái trong dropdown trạng thái */
+.cmsel-dot {
+    flex-shrink: 0;
+    width: 7px;
+    height: 7px;
+    margin-top: 5px;
+    border-radius: 50%;
+    background: var(--cm-muted);
+}
+
+.cmsel-trigger .cmsel-dot {
+    margin-top: 0;
+}
+
+.cmsel-dot--green {
+    background: var(--cm-green);
+}
+
+.cmsel-dot--orange {
+    background: var(--cm-orange);
+}
+
+.cmsel-dot--red {
+    background: var(--cm-danger-strong);
+}
+
+.cmsel-dot--blue {
+    background: var(--cm-blue);
+}
+
+.cmsel-dot--gray {
+    background: var(--cm-border-strong);
+}
+
+.cmsel-opt-tick {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--cm-blue);
+}
+
+/* Ô lọc mang luôn màu trạng thái đang chọn (prop `tinted`) */
+.cmsel-trigger.cmsel-tone-green {
+    background: var(--cm-success-bg);
+    border-color: var(--cm-success-border);
+    color: var(--cm-success);
+}
+
+.cmsel-trigger.cmsel-tone-orange {
+    background: var(--cm-warn-bg);
+    border-color: var(--cm-warn-border);
+    color: var(--cm-warn-strong);
+}
+
+.cmsel-trigger.cmsel-tone-red {
+    background: var(--cm-danger-bg);
+    border-color: var(--cm-danger-border);
+    color: var(--cm-danger);
+}
+
+.cmsel-trigger.cmsel-tone-gray {
+    background: var(--cm-hover);
+    border-color: var(--cm-border-strong);
+    color: var(--cm-text-soft);
+}
+
+.cmsel-trigger.cmsel-tone-green .cmsel-caret,
+.cmsel-trigger.cmsel-tone-orange .cmsel-caret,
+.cmsel-trigger.cmsel-tone-red .cmsel-caret,
+.cmsel-trigger.cmsel-tone-gray .cmsel-caret {
+    color: currentColor;
+    opacity: 0.7;
+}
+
+.cmsel-empty {
+    padding: 14px 10px;
+    font-size: 12px;
+    color: var(--cm-muted);
+    text-align: center;
+}
+
+/* ================================================================
+   CmCatalogFilter — thanh lọc Ngành → Chuyên ngành → Ngành hẹp
+   ================================================================ */
+.cmf-bar {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: var(--cm-surface);
+    border: 0.5px solid var(--cm-border);
+    border-radius: 14px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.cmf-lead {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 32px;
+    padding-right: 14px;
+    border-right: 1px solid var(--cm-border);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--cm-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.cmf-fields {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+/* Bề rộng cố định — đây cũng chính là bề rộng bảng chọn khi mở ra */
+.cmf-field {
+    width: 210px;
+}
+
+.cmf-field--narrow {
+    width: 160px;
+}
+
+.cmf-extra {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+@media (max-width: 720px) {
+    .cmf-lead {
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .cmf-fields {
+        width: 100%;
+    }
+
+    .cmf-field,
+    .cmf-field--narrow {
+        width: 100%;
+    }
+}
+
+/* ================================================================
+   CmPagination — bố cục thống nhất trên mọi trang
+   ‹ Trước | [ô nhập số trang] / tổng số trang | Sau ›
+   ================================================================ */
+.cmp {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    padding-top: 12px;
+    margin-top: 10px;
+    border-top: 1px solid var(--cm-line);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12px;
+    color: var(--cm-text-soft);
+}
+
+/* Biến thể gọn: dùng trong panel hẹp / card nhỏ, không kẻ vạch trên */
+.cmp--bare {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: none;
+}
+
+.cmp--center {
+    justify-content: center;
+}
+
+.cmp-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    font-weight: 500;
+}
+
+.cmp-range {
+    white-space: nowrap;
+}
+
+.cmp-range strong {
+    color: var(--cm-ink);
+    font-weight: 600;
+}
+
+.cmp-size {
+    padding: 4px 8px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: 6px;
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--cm-text);
+    outline: none;
+    cursor: pointer;
+    transition: border-color var(--cm-ease), box-shadow var(--cm-ease);
+}
+
+.cmp-size:hover {
+    border-color: #9db4d4;
+}
+
+.cmp-size:focus {
+    border-color: var(--cm-blue);
+    box-shadow: var(--cm-ring);
+}
+
+.cmp-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.cmp--center .cmp-controls {
+    margin-left: 0;
+}
+
+.cmp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 30px;
+    padding: 0 11px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cm-text);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background var(--cm-ease), border-color var(--cm-ease), color var(--cm-ease);
+}
+
+.cmp-btn:hover:not(:disabled) {
+    background: var(--cm-blue-tint);
+    border-color: var(--cm-blue);
+    color: var(--cm-blue);
+}
+
+.cmp-btn:focus-visible {
+    outline: none;
+    border-color: var(--cm-blue);
+    box-shadow: var(--cm-ring);
+}
+
+.cmp-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.cmp-jump {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid var(--cm-border);
+    border-radius: var(--cm-radius-sm);
+    background: var(--cm-surface-alt);
+    white-space: nowrap;
+}
+
+.cmp-input {
+    width: 44px;
+    height: 22px;
+    padding: 0 4px;
+    border: 1px solid var(--cm-border-strong);
+    border-radius: 6px;
+    background: var(--cm-surface);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cm-ink);
+    text-align: center;
+    outline: none;
+    transition: border-color var(--cm-ease), box-shadow var(--cm-ease);
+    /* Bỏ mũi tên tăng/giảm — chỉ nhập số, giữ ô gọn */
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.cmp-input::-webkit-outer-spin-button,
+.cmp-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.cmp-input:focus {
+    border-color: var(--cm-blue);
+    box-shadow: var(--cm-ring);
+}
+
+.cmp-sep {
+    color: var(--cm-border-strong);
+    font-weight: 400;
+}
+
+.cmp-total {
+    font-weight: 700;
+    color: var(--cm-ink);
+}
+
+@media (max-width: 640px) {
+    .cmp {
+        justify-content: center;
+    }
+
+    .cmp-controls {
+        margin-left: 0;
+    }
+
+    .cmp-btn-text {
+        display: none;
+    }
+
+    .cmp-btn {
+        padding: 0 8px;
+    }
+}
